@@ -1,4 +1,4 @@
-# evrythng-swagger
+# swagger
 
 Swagger file for the EVRYTHNG REST API. 
 [Swagger](http://swagger.io/specification/) is an API description format that is 
@@ -6,7 +6,7 @@ machine-readable, and enables a number of valuable benefits including automated
 documentation generation and API behavior verification.
 
 
-## Anatomy
+## Anatomy
 
 The Swagger file (`swagger.json`) describes all the endpoints in the EVRYTHNG 
 API. These are listed in the `paths` object:
