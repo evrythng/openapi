@@ -107,3 +107,9 @@ Details which API keys may be used for this operation. Possible values are:
 `Device`. See the 
 [API Keys and Key Permissions](https://developers.evrythng.com/docs/api-key-scopes-and-permissions) 
 page in the EVRYTHNG Developer Hub for more information about API keys.
+
+
+**x-filterable-fields**
+
+Details which fields on this resource are filterable using 
+[filters](https://developers.evrythng.com/docs/filters).
