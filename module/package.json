@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Test project for evrythng-swagger",
   "scripts": {
-    "test": "npm i && ./node_modules/.bin/mocha tests/tests.js"
+    "test": "./node_modules/.bin/mocha tests/tests.js"
   },
   "author": "EVRYTHNG",
   "dependencies": {

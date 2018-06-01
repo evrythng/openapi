@@ -2,8 +2,8 @@ let spec;
 
 const { expect } = require('chai');
 
-describe('Exported Swagger spec', () => {
-  it('Can be required', () => {
+describe('evrythng-swagger', () => {
+  it('Can be imported', () => {
     spec = require('evrythng-swagger');
   });
 
