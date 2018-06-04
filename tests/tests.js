@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 describe('evrythng-swagger', () => {
   it('Can be imported', () => {
-    spec = require('evrythng-swagger');
+    spec = require('../lib');
   });
 
   it('Is an object', () => {

@@ -2,6 +2,26 @@
   "name": "evrythng-swagger",
   "version": "1.0.0",
   "description": "Module for the EVRYTHNG Swagger file",
-  "main": "module/src/main.js",
-  "author": "EVRYTHNG"
+  "main": "lib/index.js",
+  "author": "EVRYTHNG",
+  "scripts": {
+    "test": "./node_modules/.bin/nyc ./node_modules/.bin/_mocha 'tests/*.js'"
+  },
+  "nyc": {
+    "exclude": [
+      "test/*.js"
+    ],
+    "reporter": [
+      "cobertura",
+      "html",
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "./reports"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
 }
