@@ -3,13 +3,5 @@
   "version": "1.0.0",
   "description": "Module for the EVRYTHNG Swagger file",
   "main": "module/src/main.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/evrythng/swagger.git"
-  },
-  "author": "EVRYTHNG",
-  "bugs": {
-    "url": "https://github.com/evrythng/swagger/issues"
-  },
-  "homepage": "https://github.com/evrythng/swagger#readme"
+  "author": "EVRYTHNG"
 }
