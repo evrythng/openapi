@@ -100,7 +100,7 @@ or response payload schema, using the standard JSON Schema format.
 
 The following vendor-specific extensions are implemented:
 
-**x-api-key**
+**x-api-keys**
 
 Details which API keys may be used for this operation. Possible values are: 
 `Operator`, `Application`, `Trusted Application`, `Application User`, and 
