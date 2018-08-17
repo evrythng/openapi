@@ -969,7 +969,7 @@
             }
           }
         },
-        "x-api-keys": [ "Operator" ]
+        "x-api-keys": [ "Operator", "Trusted Application" ]
       }
     },
     "/users/{evrythngUser}": {
@@ -998,7 +998,7 @@
             }
           }
         },
-        "x-api-keys": [ "Operator", "Application User" ]
+        "x-api-keys": [ "Operator", "Trusted Application", "Application User" ]
       },
       "put": {
         "tags": [ "Application Users" ],
@@ -4898,7 +4898,7 @@
           "type": "string",
           "description": "The method used to find the location where the action took place, and requires `location` to also be set. If a GPS was used (with user permission granted), `sensor` is specified. Otherwise an estimate is made based on the apparent location, which may not be the device itself.",
           "enum": [
-            "sensor", "geoIp", "unknown"
+            "sensor", "geoIp", "unknown", "place"
           ]
         },
         "context": { "$ref": "#/definitions/ActionContextDocument" },
@@ -4971,8 +4971,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "The name of the action type. Custom action types must begin with an underscore.",
-          "readOnly": true
+          "description": "The name of the action type. Custom action types must begin with an underscore."
         },
         "id": { "$ref": "#/definitions/IdField" },
         "createdAt": { "$ref": "#/definitions/CreatedAtField" },
@@ -5954,7 +5953,7 @@
       "description": "Specification of the task input parameters for the `FILE_BASED` type.",
       "required": [
         "type", "generateThngs", "generateRedirections", "defaultRedirectUrl", "thngTemplate", 
-        "shortDomain", "quantity", "shortIdTemplate", "location", "format"
+        "shortDomain", "shortIdTemplate", "location", "format"
       ],
       "properties": {
         "type": { "$ref": "#/definitions/FileBasedInputParametersTypeField" },
@@ -6499,7 +6498,8 @@
         "customFields": { "$ref": "#/definitions/CustomFieldsDocument" },
         "fn": {
           "type": "string",
-          "description": "Friendly name of the product."
+          "description": "Friendly name of the product.",
+          "readOnly": true
         },
         "brand": {
           "type": "string",
