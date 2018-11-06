@@ -4780,7 +4780,7 @@
         "id", "createdAt", "updatedAt", "tfaRequired"
       ],
       "properties": {
-        "name": { "$ref": "#/definitions/NameField" },
+        "name": { "$ref": "#/definitions/AccountNameField" },
         "id": { "$ref": "#/definitions/IdField" },
         "createdAt": { "$ref": "#/definitions/CreatedAtField" },
         "updatedAt": { "$ref": "#/definitions/UpdatedAtField" },
@@ -6557,7 +6557,6 @@
           "description": "The property key-value key."
         },
         "value": {
-          "type": [ "string", "number", "boolean" ],
           "description": "The property key-value value."
         },
         "timestamp": {
@@ -6772,7 +6771,7 @@
         "shortId": {
           "type": "string",
           "description": "The short ID of the redirection",
-          "minLength": 10,
+          "minLength": 8,
           "maxLength": 10,
           "readOnly": true
         },
@@ -6894,10 +6893,7 @@
           "description": "The JSON Schema description of the objects this schema will validate."
         },
         "product": {
-          "description": "The product ID filter applied to Thngs compared to this schema. If `null`, the product ID filter is not applied.",
-          "type": [
-            "string", "null"
-          ]
+          "description": "The product ID filter applied to Thngs compared to this schema. If `null`, the product ID filter is not applied."
         }
       }
     },
@@ -7215,6 +7211,12 @@
       "x-filterable-fields": [
         "collections", "createdAt", "identifiers.<key>", "name", "product", "tags"
       ]
+    },
+    "AccountNameField": {
+      "type": "string",
+      "description": "Friendly name of this resource. Must be between 1 and 30 characters.",
+      "minLength": 1,
+      "maxLength": 30
     },
     "AppUserStatusField": {
       "type": "string",
