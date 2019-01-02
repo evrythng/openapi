@@ -615,7 +615,7 @@
                   "operatingSystemName": "Mac OS",
                   "region": "England",
                   "timeZone": "Europe/London",
-                  "userAgentName": ""
+                  "userAgent": "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36"
                 },
                 "createdAt": 1490356832189,
                 "id": "Uk7CwHXaeg8w9KaaagVDhHqq",
@@ -1674,7 +1674,7 @@
                   "city": "Crayford",
                   "region": "England",
                   "countryCode": "GB",
-                  "userAgentName": "Unknown",
+                  "userAgent": "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36",
                   "operatingSystemName": "Unknown",
                   "timeZone": "Europe/London"
                 },
@@ -2693,7 +2693,7 @@
                   "city": "Crayford",
                   "region": "England",
                   "countryCode": "GB",
-                  "userAgentName": "Unknown",
+                  "userAgent": "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36",
                   "operatingSystemName": "Unknown",
                   "timeZone": "Europe/London"
                 },
@@ -2883,7 +2883,7 @@
         "x-api-keys": [ "Operator", "Trusted Application" ]
       }
     },
-    "/products?filter=createdAt>=1176974616000": {
+    "/products?filter=name%3DTest*": {
       "put": {
         "tags": [ "Products" ],
         "summary": "Update multiple products",
@@ -4581,7 +4581,7 @@
                   "city": "Crayford",
                   "region": "England",
                   "countryCode": "GB",
-                  "userAgentName": "Unknown",
+                  "userAgent": "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36",
                   "operatingSystemName": "Unknown",
                   "timeZone": "Europe/London"
                 },
@@ -4921,7 +4921,7 @@
       "type": "object",
       "description": "Object containing contextual data about the action creator.",
       "required": [
-        "countryCode", "userAgentName", "operatingSystemName", "timeZone"
+        "countryCode", "timeZone"
       ],
       "properties": {
         "ipAddress": {
@@ -4947,6 +4947,11 @@
         "userAgentName": {
           "type": "string",
           "description": "The user agent name of the action creator's browser or other client.",
+          "readOnly": true
+        },
+        "userAgent": {
+          "type": "string",
+          "description": "The user agent of the action creator's browser or other client.",
           "readOnly": true
         },
         "operatingSystemName": {
@@ -5953,7 +5958,7 @@
       "description": "Specification of the task input parameters for the `FILE_BASED` type.",
       "required": [
         "type", "generateThngs", "generateRedirections", "defaultRedirectUrl", "thngTemplate", 
-        "shortDomain", "shortIdTemplate", "location", "format"
+        "shortDomain", "location", "format"
       ],
       "properties": {
         "type": { "$ref": "#/definitions/FileBasedInputParametersTypeField" },
@@ -6005,8 +6010,7 @@
       "type": "object",
       "description": "Specification of the task input parameters for the `IDENTIFIERS_LIST_BASED` type.",
       "required": [
-        "type", "generateThngs", "generateRedirections", "defaultRedirectUrl", "thngTemplate", 
-        "shortDomain", "customIdentifier"
+        "type", "generateThngs", "generateRedirections", "thngTemplate", "customIdentifier"
       ],
       "properties": {
         "type": { "$ref": "#/definitions/IdentifiersListBasedInputParametersTypeField" },
