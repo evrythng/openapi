@@ -1,6 +1,6 @@
 {
   "name": "evrythng-swagger",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Module for the EVRYTHNG Swagger file",
   "main": "lib/index.js",
   "author": "EVRYTHNG",
