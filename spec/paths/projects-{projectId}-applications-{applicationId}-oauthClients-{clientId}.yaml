@@ -1,0 +1,86 @@
+get:
+  tags:
+    - OAuth
+  summary: 'Read an OAuth client'
+  description: 'Read a specific OAuth client by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/clientId'
+  responses:
+    '200':
+      description: 'The requested OAuth client, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuthClientDocument'
+          example:
+            id: AbOfZyGinxSOSCx889b5YlVX9db8nBBth52Ndw4Egd1Er
+            name: 'Updated Example Client'
+            redirectUrl: 'https://examples.com/oauth/updated/callback'
+            customFields:
+              type: 'Web Application'
+              homeUrl: 'https://examples.com/updated'
+            createdAt: 1476451299788
+            updatedAt: 1476452882154
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - OAuth
+  summary: 'Update an OAuth client'
+  description: 'Update an OAuth client by ID. As soon as the redirect URL is modified, the old URL is not used for a user''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/clientId'
+  responses:
+    '200':
+      description: 'The OAuthClientDocument was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuthClientDocument'
+          example:
+            id: AbOfZyGinxSOSCx889b5YlVX9db8nBBth52Ndw4Egd1Er
+            name: 'Updated Example Client'
+            redirectUrl: 'https://examples.com/oauth/updated/callback'
+            customFields:
+              a: field
+            createdAt: 1476451299788
+            updatedAt: 1493818580874
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/OAuthClientDocument'
+        example:
+          customFields:
+            example: field
+    description: 'The request body to update an OAuth client.'
+    required: true
+delete:
+  tags:
+    - OAuth
+  summary: 'Delete an OAuth client'
+  description: 'Delete an OAuth client by ID. After the client is removed, it is not allowed to obtain the Application User access token anymore.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/clientId'
+  responses:
+    '200':
+      description: 'The OAuth client was deleted successfully.'
+  x-api-keys:
+    - Operator

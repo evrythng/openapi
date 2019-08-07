@@ -1,0 +1,18 @@
+additionalProperties: false
+type: object
+description: 'A single reaction from Redirector.'
+properties:
+  type:
+    type: string
+    description: 'The reaction type.'
+    enum:
+      - redirection
+    readOnly: true
+  redirectUrl:
+    type: string
+    description: 'The redirection URL.'
+    readOnly: true
+  redirectionContext:
+    type: object
+    description: 'Object of redirection context values.'
+    readOnly: true

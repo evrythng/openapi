@@ -1,0 +1,24 @@
+get:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Read a connector'
+  description: 'Read a single connector by name as the authenticating Application User.'
+  parameters:
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '200':
+      description: 'The requested connector, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            name: nest
+            displayName: Nest
+            url: 'http://www.nest.com'
+            image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+            authUrl: 'https://api.evrythng.com/connectors/nest/auth'
+            status: disconnected
+  x-api-keys:
+    - 'Application User'

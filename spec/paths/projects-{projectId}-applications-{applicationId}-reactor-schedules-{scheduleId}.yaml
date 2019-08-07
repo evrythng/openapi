@@ -1,0 +1,91 @@
+get:
+  tags:
+    - Reactor
+  summary: 'Read a Reactor schedule'
+  description: 'Read a single Reactor schedule by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/scheduleId'
+  responses:
+    '200':
+      description: 'An array of available Reactor schedules.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScheduleDocument'
+          example:
+            id: UE9Bt3CyM4gd87g4rHYSBqTc
+            createdAt: 1475672402665
+            updatedAt: 1475672402665
+            event:
+              foo: bar
+            function: onScheduledEvent
+            cron: '0 45 14 * * ?'
+            description: 'Example Reactor schedule'
+            enabled: true
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+put:
+  tags:
+    - Reactor
+  summary: 'Update a Reactor schedule'
+  description: 'Update fields of an existing Reactor schedule by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/scheduleId'
+  responses:
+    '200':
+      description: 'The Reactor schedule was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScheduleDocument'
+          example:
+            id: UE9Bt3CyM4gd87g4rHYSBqTc
+            createdAt: 1475672402665
+            updatedAt: 1475674411237
+            event:
+              foo: bar
+            function: onScheduledEvent
+            cron: '0 45 14 * * ?'
+            description: 'Updated example Reactor schedule'
+            enabled: false
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ReactorScheduleDocument'
+        example:
+          description: 'Updated Reactor schedule'
+    description: 'The request body for updating a Reactor schedule.'
+    required: true
+delete:
+  tags:
+    - Reactor
+  summary: 'Delete a Reactor schedule'
+  description: 'Delete a Reactor schedule by ID. A one-shot scheduled event (using `executeAt` instead of `cron`) will be deleted after it has elapsed, and not assigned an ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/scheduleId'
+  responses:
+    '200':
+      description: 'The Reactor schedule was deleted successfully'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

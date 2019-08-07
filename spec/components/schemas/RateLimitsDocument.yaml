@@ -1,0 +1,11 @@
+additionalProperties: false
+type: object
+description: 'Object containing API key rate limit information.'
+properties:
+  name:
+    type: string
+    description: 'The name of the rate limit type.'
+  rateLimits:
+    type: array
+    items:
+      $ref: '#/components/schemas/SingleRateLimitField'

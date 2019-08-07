@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Accounts
+  summary: 'Read account accesses'
+  description: 'Read an account''s access information and current role.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: 'An array of the account''s accesses.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AccessDocument'
+  x-api-keys:
+    - Operator

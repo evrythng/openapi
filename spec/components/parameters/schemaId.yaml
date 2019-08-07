@@ -1,0 +1,8 @@
+name: schemaId
+in: path
+required: true
+description: 'A schema ID.'
+example: '{schemaId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

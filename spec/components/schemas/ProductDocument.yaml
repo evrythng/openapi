@@ -1,0 +1,53 @@
+additionalProperties: false
+type: object
+description: 'An object representing a platform product.'
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  activatedAt:
+    type: integer
+    description: 'Timestamp when the product was activated.'
+    readOnly: true
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  categories:
+    description: 'An array of product categories as strings.'
+    type: array
+    items:
+      type: string
+  photos:
+    description: 'An array of product photo URLs as strings.'
+    type: array
+    items:
+      type: string
+  url:
+    type: string
+    description: 'The URL linking to the product information.'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  properties:
+    type: object
+    description: 'A JSON object with key-value pairs describing properties of the product.'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  fn:
+    type: string
+    description: 'Friendly name of the product.'
+    readOnly: true
+  brand:
+    type: string
+    description: 'The product''s brand name.'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - name
+  - identifiers.<key>
+  - tags

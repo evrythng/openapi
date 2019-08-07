@@ -1,0 +1,5 @@
+additionalProperties: false
+type: array
+description: 'An object representing multiple properties.'
+items:
+  $ref: '#/components/schemas/PropertyDocument'

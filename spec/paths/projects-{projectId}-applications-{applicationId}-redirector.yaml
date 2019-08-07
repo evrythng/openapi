@@ -1,0 +1,67 @@
+get:
+  tags:
+    - Redirector
+  summary: 'Read an application Redirector'
+  description: 'Read an application''s Redirector.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The Redirector was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationRedirectorRulesDocument'
+          example:
+            id: Ukr5GxCrEy2WNQPdEYkpmCrg
+            createdAt: 1490784605091
+            updatedAt: 1491209809028
+            rules:
+              -
+                match: project.name=TestProduct
+                name: TestAppRule
+                constants: {}
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Redirector
+  summary: 'Update an application Redirector'
+  description: 'Update the application Redirector. Will be created if it does not exist.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The application Redirector was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationRedirectorRulesDocument'
+          example:
+            id: UfUtDs8d2ECpfpF6qFKKXg7d
+            createdAt: 1430220515122
+            updatedAt: 1430220515122
+            rules:
+              -
+                match: thng.name=test
+                redirectUrl: 'https://evrythng.com'
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationRedirectorRulesDocument'
+        example:
+          rules:
+            -
+              match: thng.name=test
+              redirectUrl: 'https://evrythng.com'
+    description: 'The ApplicationRedirectorRulesDocument containing rules to create/update.'
+    required: true

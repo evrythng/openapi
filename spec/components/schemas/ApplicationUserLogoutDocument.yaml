@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'An object representing an Application User logout response.'
+properties:
+  logout:
+    type: string
+    description: 'The status of the logout operation.'
+    enum:
+      - ok
+    readOnly: true

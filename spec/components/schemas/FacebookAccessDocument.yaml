@@ -1,0 +1,23 @@
+additionalProperties: false
+type: object
+description: 'An object representing an access to Facebook.'
+properties:
+  socialNetwork:
+    type: string
+    description: 'The social network type'
+    enum:
+      - facebook
+  access:
+    $ref: '#/components/schemas/FacebookAccessParametersDocument'
+  socialNetworkId:
+    type: string
+    description: 'The ID of the user on Facebook'
+  appId:
+    type: string
+    description: 'The ID of the application'
+  evrythngUser:
+    type: string
+    description: 'The ID of the App User'
+  evrythngApiKey:
+    type: string
+    description: 'The API key of the App User'

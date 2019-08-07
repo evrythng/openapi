@@ -1,0 +1,3 @@
+type: integer
+description: 'Time at which the task was completed.'
+readOnly: true

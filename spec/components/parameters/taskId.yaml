@@ -1,0 +1,8 @@
+name: taskId
+in: path
+required: true
+description: 'A task ID.'
+example: '{taskId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

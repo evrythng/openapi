@@ -1,0 +1,21 @@
+additionalProperties: false
+type: object
+description: 'Object representing a role policy.'
+required:
+  - schema
+  - role
+properties:
+  schema:
+    type: string
+    description: 'ID of the schema to apply to this role.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    readOnly: true
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  role:
+    type: string
+    description: 'ID of the role this policy applies to.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    readOnly: true

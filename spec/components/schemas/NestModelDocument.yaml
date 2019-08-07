@@ -1,0 +1,8 @@
+additionalProperties: false
+type: object
+description: 'Object representing the device connector model with the Nest API.'
+properties:
+  structures:
+    $ref: '#/components/schemas/ThngDocument'
+  devices:
+    $ref: '#/components/schemas/NestModelDevicesDocument'

@@ -1,0 +1,32 @@
+post:
+  tags:
+    - 'Application Users'
+  summary: 'Create an Application User'
+  description: 'Create a new unactivated Application User with a unique email address. The response contains an `activationCode` that must be returned to the API (See ''Activate an Application User'') before it can access the API. This gives the client application an opportunity to ensure the email address has been validated.'
+  responses:
+    '201':
+      description: 'The application user was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserActivationDocument'
+          example:
+            evrythngUser: U2N4xqPyVgsa95wRwhFGNmma
+            activationCode: 38iVlrnV
+            status: inactive
+            email: test@testers.com
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserDocument'
+        example:
+          firstName: Test
+          lastName: Testers
+          email: test@testers.com
+          password: password
+    description: 'The app user to create.'
+    required: true

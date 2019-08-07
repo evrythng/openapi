@@ -1,0 +1,114 @@
+post:
+  tags:
+    - Thngs
+  summary: 'Create a Thng''s redirection'
+  description: 'Create a Thng''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '201':
+      description: 'The redirection was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 799yeEi4qp
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{thngId}'
+    description: 'The request body for creating a or updating a Thng''s redirection.'
+    required: true
+get:
+  tags:
+    - Thngs
+  summary: 'Read a Thng''s redirection'
+  description: 'Read a Thng''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng''s redirection, if it has one.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496664729327
+            updatedAt: 1496664729327
+            defaultRedirectUrl: 'https://google.com'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 39aZNy4g
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+put:
+  tags:
+    - Thngs
+  summary: 'Update a Thng''s redirection'
+  description: 'Update a Thng''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The redirection was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 799yeEi4qp
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{thngId}'
+    description: 'The request body for creating a or updating a Thng''s redirection.'
+    required: true
+delete:
+  tags:
+    - Thngs
+  summary: 'Delete a Thng''s redirection'
+  description: 'Delete a Thng''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng''s redirection was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

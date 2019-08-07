@@ -1,0 +1,13 @@
+additionalProperties: false
+type: object
+description: 'An object describing an Application User''s status.'
+properties:
+  activated:
+    type: boolean
+    description: Whether or not the Application User is activated.
+  activationDate:
+    type: number
+    description: Timestamp when the Application User was activated.
+  activationCode:
+    type: string
+    description: If the Application User is not activated, this is the code required to activate them.

@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'Object containing an existing OAuth token to use with Cloud 2 Cloud.'
+properties:
+  access_token:
+    type: string
+    description: 'The existing OAuth token.'
+  expires_in:
+    type: number
+    description: 'Time until the token expires.'

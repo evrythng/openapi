@@ -1,0 +1,28 @@
+additionalProperties: false
+type: object
+description: 'OAuth connector credentials'
+required:
+  - clientId
+  - clientSecret
+properties:
+  clientId:
+    type: string
+    description: 'The OAuth client ID for the 3rd party service.'
+    minLength: 36
+    maxLength: 36
+  clientSecret:
+    type: string
+    description: 'The OAuth client secret for the 3rd party service.'
+    minLength: 25
+    maxLength: 25
+  type:
+    type: string
+    description: 'The authentication type.'
+    enum:
+      - oauth
+  oAuthUrl:
+    type: string
+    description: 'The URL of the OAuth service.'
+  tokenUrl:
+    type: string
+    description: 'The URL of the OAuth service access token.'

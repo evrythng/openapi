@@ -1,0 +1,114 @@
+post:
+  tags:
+    - Products
+  summary: 'Create a product''s redirection'
+  description: 'Create a product''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '201':
+      description: 'The redirection was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/products/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 799yeEi4qp
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{productId}'
+    description: 'The request body for creating a or updating a Thng''s redirection.'
+    required: true
+get:
+  tags:
+    - Products
+  summary: 'Read a product''s redirection'
+  description: 'Read a product''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The product''s redirection, if it has one.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496664729327
+            updatedAt: 1496664729327
+            defaultRedirectUrl: 'https://google.com'
+            evrythngUrl: 'https://api.evrythng.com/products/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 39aZNy4g
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'
+put:
+  tags:
+    - Products
+  summary: 'Update a product''s redirection'
+  description: 'Update a product''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The redirection was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/products/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 799yeEi4qp
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{productId}'
+    description: 'The request body for creating a or updating a Thng''s redirection.'
+    required: true
+delete:
+  tags:
+    - Products
+  summary: 'Delete a product''s redirection'
+  description: 'Delete a product''s redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The product''s redirection was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

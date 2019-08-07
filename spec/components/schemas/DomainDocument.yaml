@@ -1,0 +1,17 @@
+additionalProperties: false
+type: object
+description: 'A single account domain entry.'
+properties:
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  accountId:
+    type: string
+    description: 'The account this domain belongs to.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  domain:
+    type: string
+    description: 'The domain URL.'

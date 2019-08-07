@@ -1,0 +1,60 @@
+get:
+  tags:
+    - Accounts
+  summary: 'Read an account'
+  description: 'Read a single account by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: 'The requested AccountDocument, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountDocument'
+          example:
+            id: UFNCRXfCVM87QNawaE8rrKqc
+            createdAt: 1471862431010
+            customFields:
+              owner: UEp4rDGsnpCAF6xABbys5Amc
+            updatedAt: 1477652024205
+            name: 'Test Account Owner'
+            tfaRequired: false
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Accounts
+  summary: 'Update an account'
+  description: 'Update an account with new user information, such as new `customFields`.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: 'The updated AccountDocument'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountDocument'
+          example:
+            id: UhpHrg39QCy38dht93kiuwnb
+            createdAt: 1471862430889
+            customFields:
+              owner: UEp4rDGsnpjdu37d76yg5Amc
+            updatedAt: 1471862431010
+            name: 'Updated Account Name'
+            tfaRequired: false
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccountDocument'
+        example:
+          customFields:
+            environment: test
+    description: 'The AccountDocument containing fields to create/update.'
+    required: true

@@ -1,0 +1,8 @@
+name: actionId
+in: path
+required: true
+description: 'An action ID.'
+example: '{actionId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

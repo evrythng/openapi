@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Access
+  summary: 'Read key access information'
+  description: 'Read key access information for the authenticating key.'
+  responses:
+    '200':
+      description: 'The access information for the authenticating key.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KeyAccessDocument'
+          example:
+            account: UFNCRXfCVM87QNawaE8rrKqc
+            actor:
+              type: operator
+              id: U2NCaXfCBgPaQ5wRwhTsWnmc
+  x-api-keys:
+    - Operator
+    - Application
+    - 'Trusted Application'
+    - 'Application User'
+    - Device

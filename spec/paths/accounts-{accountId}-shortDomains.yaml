@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Accounts
+  summary: 'Read account short domains'
+  description: 'Read all short domains available to an account.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: 'An array of the account''s short domains.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+          example:
+            - tn.gg
+  x-api-keys:
+    - Operator

@@ -1,0 +1,13 @@
+additionalProperties: false
+type: object
+description: 'An object representing an access to Facebook.'
+required:
+  - expires
+  - token
+properties:
+  expires:
+    type: number
+    description: 'Timestamp when the access expires'
+  token:
+    type: string
+    description: 'The Facebook access token'

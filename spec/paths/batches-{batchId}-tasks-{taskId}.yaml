@@ -1,0 +1,64 @@
+get:
+  tags:
+    - Tasks
+  summary: 'Read a batch task'
+  description: 'Read a single task for a given batch.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+    -
+      $ref: '#/components/parameters/taskId'
+  responses:
+    '200':
+      description: 'The requested task, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BasicTaskDocument'
+          example:
+            id: UG92f3A2MmPEE6wRwhtErd9f
+            createdAt: 1509447992783
+            updatedAt: 1509447993852
+            completedAt: 1509447993852
+            batch: UmNqmfDEBDswtpaaRDs6xHpn
+            type: POPULATING
+            status: EXECUTED
+            result:
+              type: POPULATING
+              failedOperationsAmount: 0
+              location: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UmFVekRaVXsa9pRwwYaRDmer/batch-UmNqmfDEBDswtpaaRDs6xHpn-task-Um92fmAkBgswtpRwRXHMFDke3437439154428411976~59f8593963153ae0.zip'
+              format: CSV
+              totalThngsCreated: 5
+              totalUrlBindingsCreated: 5
+              totalCount: 10
+            inputParameters:
+              generateThngs: true
+              generateRedirections: true
+              shortDomain: tn.gg
+              defaultRedirectUrl: 'https://google.com'
+              thngTemplate:
+                tags:
+                  - Generated
+                name: 'List Based Task Thng'
+              type: LIST_BASED
+              inputData:
+                -
+                  shortId: IDF20170001
+                -
+                  shortId: IDF20170002
+                -
+                  shortId: IDF20170003
+                -
+                  shortId: IDF20170004
+                -
+                  shortId: IDF20170005
+            progress:
+              contributions:
+                U3QkWGUm6QteEsawwEAVht2b:
+                  urlBindings: 5
+                  thngs: 5
+                  failedUrlBindings: 0
+                  failedThngs: 0
+              totalAmount: 10
+  x-api-keys:
+    - Operator

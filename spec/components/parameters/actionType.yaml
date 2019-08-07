@@ -1,0 +1,7 @@
+name: actionType
+in: path
+required: true
+description: 'An action type name.'
+example: '{actionType}'
+schema:
+  type: string

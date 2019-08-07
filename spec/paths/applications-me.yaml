@@ -1,0 +1,62 @@
+get:
+  tags:
+    - Applications
+  summary: 'Read self application'
+  description: 'Read the self application of the authenticating Trusted App API Key.'
+  responses:
+    '200':
+      description: 'The authenticating `ApplicationDocument`, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            id: Umbn56MmBDsatpaawg6XgKfk
+            createdAt: 1494924489128
+            customFields: {}
+            updatedAt: 1496755229994
+            name: 'Main Application'
+            description: 'Main Application'
+            project: UmxHK6K8BXsa9KawRh4bTbqc
+            socialNetworks: {}
+            appApiKey: m9xYExkQJNt78BI7676Ftx3TLcpPK5Dbpv2WcSBA...
+            defaultRole: base_app_user
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+put:
+  tags:
+    - Applications
+  summary: 'Update self application'
+  description: 'Update the self application of the authenticating Trusted App API Key.'
+  responses:
+    '200':
+      description: 'The application was updated.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            id: Umbn56MmBDsatpaawg6XgKfk
+            createdAt: 1494924489128
+            customFields: {}
+            updatedAt: 1496755229994
+            name: 'Main Application'
+            description: 'Main Application'
+            project: UmxHK6K8BXsa9KawRh4bTbqc
+            socialNetworks: {}
+            appApiKey: m9xYExkQJNt78BI7676Ftx3TLcpPK5Dbpv2WcSBA...
+            defaultRole: base_app_user
+  x-api-keys:
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationDocument'
+        example:
+          name: 'Test Application'
+          description: 'A test application'
+          socialNetworks: {}
+    description: 'The ApplicationDocument containing fields to create/update.'
+    required: true

@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Projects
+  summary: 'Create a project'
+  description: 'Create a new project within an account.'
+  responses:
+    '201':
+      description: 'The project was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProjectDocument'
+          example:
+            id: UFN3ahEYMGshYMaaaECtDeYd
+            createdAt: 1490618231682
+            updatedAt: 1490618231682
+            name: 'Tagged Products'
+            shortDomains:
+              - tn.gg
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ProjectDocument'
+        example:
+          name: 'Test Project'
+    description: 'The ProjectDocument containing fields to create/update.'
+    required: true
+get:
+  tags:
+    - Projects
+  summary: 'Read all projects'
+  description: 'Read all projects.'
+  responses:
+    '200':
+      description: 'All projects in scope.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProjectDocument'
+          example:
+            -
+              id: UkMptdx4eDsaQ5wRwDW3pmhn
+              createdAt: 1489761050680
+              updatedAt: 1489761050680
+              name: 'Supply Chain PoC'
+              shortDomains:
+                - tn.gg
+  x-api-keys:
+    - Operator

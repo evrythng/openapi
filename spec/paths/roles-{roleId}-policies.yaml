@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Policies
+  summary: 'Create a policy'
+  description: 'Create a new policy to apply a schema to a role.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '201':
+      description: 'The policy was created.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PolicyDocument'
+          example:
+            schema: UGBHm6BFVDsaQKRwaFCrGhmp
+            id: UGVnG7MfeXPRQpRaRFCNGhGq
+            createdAt: 1498062277333
+            role: 5925998d8c29fc2800dea2e2
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PolicyDocument'
+        example:
+          schema: UGBHm6BFVDsaQKRwaFCrGhmp
+    description: 'The request body for creating a policy.'
+    required: true
+get:
+  tags:
+    - Policies
+  summary: 'Read all policies'
+  description: 'Read all policies for a given role ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'A list of all available policies.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PolicyDocument'
+          example:
+            -
+              schema: UGBHm6BFVDsaQKRwaFCrGhmp
+              id: UGVnG7MfeXPRQpRaRFCNGhGq
+              createdAt: 1498062277333
+              role: 5925998d8c29fc2800dea2e2
+  x-api-keys:
+    - Operator

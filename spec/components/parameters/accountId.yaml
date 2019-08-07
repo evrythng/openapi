@@ -1,0 +1,8 @@
+name: accountId
+in: path
+description: 'An account ID.'
+required: true
+example: '{accountId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

@@ -1,0 +1,24 @@
+get:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Read all connectors'
+  description: 'Read a list of connectors that are visible to the Application User authenticating this request with their Application User API Key.'
+  responses:
+    '200':
+      description: 'A list of connectors available to the authenticating Application User.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            -
+              name: nest
+              displayName: Nest
+              url: 'http://www.nest.com'
+              image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+              authUrl: 'https://api.evrythng.com/connectors/nest/auth'
+              status: disconnected
+  x-api-keys:
+    - 'Application User'

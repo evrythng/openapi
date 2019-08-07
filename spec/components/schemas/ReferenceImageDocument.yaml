@@ -1,0 +1,18 @@
+additionalProperties: false
+type: object
+description: 'Object representing an image recognition reference image.'
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  name:
+    type: string
+    description: 'Long name of the image resource.'
+  thumb60:
+    type: string
+    description: 'Location of the 60px thumbnail.'
+  thumb120:
+    type: string
+    description: 'Location of the 120px thumbnail.'
+  file:
+    type: string
+    description: 'Location of the file.'

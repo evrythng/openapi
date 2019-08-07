@@ -1,0 +1,4 @@
+type: string
+description: 'The FIXED_AMOUNT task type.'
+enum:
+  - FIXED_AMOUNT

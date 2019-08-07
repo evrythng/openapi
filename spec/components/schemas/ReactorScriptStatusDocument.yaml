@@ -1,0 +1,12 @@
+additionalProperties: false
+type: object
+description: 'Object describing the status of the Reactor script.'
+properties:
+  updating:
+    type: boolean
+    description: 'If the Reactor script is updating at the moment.'
+    readOnly: true
+  error:
+    type: string
+    description: 'Error message if failed to update the Reactor script.'
+    readOnly: true

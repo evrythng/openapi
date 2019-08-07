@@ -1,0 +1,99 @@
+get:
+  tags:
+    - Places
+  summary: 'Read a place'
+  description: 'Read a place by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/placeId'
+  responses:
+    '200':
+      description: 'The place that was requested, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaceDocument'
+          example:
+            id: U2rNbKSxBgsRQpaawhPnCc5d
+            createdAt: 1490885393724
+            updatedAt: 1491314202340
+            name: 'Permanent Place'
+            description: 'New description'
+            position:
+              type: Point
+              coordinates:
+                - -0.0882956
+                - 51.5303183
+            address:
+              street: 'East Road'
+              postalCode: 'N1 6FB'
+              city: London
+              countryCode: GB
+            longitude: -0.0882956
+            latitude: 51.5303183
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'
+put:
+  tags:
+    - Places
+  summary: 'Update a place'
+  description: 'Update a place by ID. The old fields are entirely overwritten by the new values, so to add a tag for example you must submit the previous tag array including the new tags.'
+  parameters:
+    -
+      $ref: '#/components/parameters/placeId'
+  responses:
+    '200':
+      description: 'The place was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaceDocument'
+          example:
+            id: U2rNbKSxBgsRQpaawhPnCc5d
+            createdAt: 1490885393724
+            updatedAt: 1490885393724
+            name: 'Permanent Place'
+            description: 'London HQ'
+            icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
+            position:
+              type: Point
+              coordinates:
+                - -0.0882956
+                - 51.5303183
+            address:
+              extension: 'Unit 4, 122'
+              street: 'East Road'
+              postalCode: 'N1 6FB'
+              city: London
+              countryCode: GB
+            latitude: 51.5303183
+            longitude: -0.0882956
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PlaceDocument'
+        example:
+          description: 'New description'
+    description: 'The request body for updating a place.'
+    required: true
+delete:
+  tags:
+    - Places
+  summary: 'Delete a place'
+  description: 'Delete a place by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/placeId'
+  responses:
+    '200':
+      description: 'The place was successfully deleted.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

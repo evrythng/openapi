@@ -1,11 +1,11 @@
 {
   "name": "evrythng-swagger",
   "version": "1.0.4",
-  "description": "Module for the EVRYTHNG Swagger file",
+  "description": "Module for the EVRYTHNG OpenAPI file",
   "main": "lib/index.js",
   "author": "EVRYTHNG",
   "scripts": {
-    "test": "./node_modules/.bin/nyc ./node_modules/.bin/_mocha 'tests/*.js'"
+    "test": "nyc mocha tests/index.spec.js"
   },
   "nyc": {
     "exclude": [
@@ -20,12 +20,15 @@
     "report-dir": "./reports"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
-    "nyc": "^12.0.2"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/evrythng/swagger"
+  },
+  "dependencies": {
+    "yamljs": "^0.3.0"
   }
 }

@@ -1,0 +1,145 @@
+post:
+  tags:
+    - Actions
+  summary: 'Create an action'
+  description: 'Create a new action of the specified type. `all` can be specified as the `actionType`, in which case the specified action type must be supplied in the payload. If no location is specified, the Platform will automatically determine the location based on the IP address of the device who has issued it, along with a country code that is returned in the context object.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '201':
+      description: 'The newly created action.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            id: 51cac5610c31fcd6f0434a90
+            createdAt: 1372243297475
+            customFields:
+              color: blue
+            timestamp: 1386322747971
+            identifiers:
+              sapId: KDL-46EX402AEP
+              event_Id: 48901909
+            type: scans
+            user: 51c95a9ae4b08235bfeef378
+            createdByProject: 51c95a9ae4b08235bfeef341
+            createdByApp: 51c98b6ae4b08235bfeef345
+            location:
+              position:
+                type: Point
+                coordinates:
+                  - 6.1667
+                  - 49.75
+            locationSource: geoIp
+            context:
+              ipAddress: 147.67.4.98
+              countryCode: LU
+            thng: 51c98c28e4b08235bfeef389
+            product: 51c98b6ae4b08235bfeef387
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ActionDocument'
+        example:
+          type: scans
+          thng: Uk7KFKGKBXPwQKawwDYF9bPr
+    description: 'The ActionDocument to create.'
+    required: true
+get:
+  tags:
+    - Actions
+  summary: 'Read all actions of a type'
+  description: 'Read all actions of the specified `actionType` visible to the authenticating API key. `all` can be used as the `actionType` to view actions of all types.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '200':
+      description: 'The actions of type requested, if available.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActionDocument'
+          example:
+            -
+              createdAt: 1489415597321
+              createdByApp: UkMgYtdEVDsaQKaRwgdAWsdn
+              createdByProject: UF5hQHxMBg8a9pwwRYxqXkqp
+              customFields:
+                ExternalScan: true
+              id: U2MDHNnsVg8RtpRawDDAmFge
+              location:
+                latitude: 51.748446699999995
+                longitude: -0.9656587999999999
+                position:
+                  coordinates:
+                    - -0.9656587999999999
+                    - 51.748446699999995
+                  type: Point
+              locationSource: sensor
+              product: UFKE9nHBBg8atKaawgVrKKbs
+              thng: Uk6XkAPbBXPwtKwawDAepMmm
+              timestamp: 1489415597321
+              type: scans
+              user: UkqD4NnYBD8a9pawwEsXqrkh
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+put:
+  tags:
+    - Actions
+  summary: 'Update an action type'
+  description: 'Update an action type with new metadata.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '200':
+      description: 'The action type was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionTypeDocument'
+          example:
+            id: UFPMHq2xeDPatpRRwERN2hGm
+            createdAt: 1491905665800
+            tags:
+              - updated
+            updatedAt: 1492521409780
+            name: _permanent
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ActionTypeDocument'
+        example:
+          tags:
+            - demo
+    description: 'Payload for updating an action type.'
+    required: true
+delete:
+  tags:
+    - Actions
+  summary: 'Delete an action type'
+  description: 'Delete an action type.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '200':
+      description: 'The action type was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

@@ -1,0 +1,4 @@
+type: string
+description: 'The triggering application.'
+pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+readOnly: true

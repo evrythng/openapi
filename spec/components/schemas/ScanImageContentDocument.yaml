@@ -1,0 +1,7 @@
+additionalProperties: false
+type: object
+description: 'An object containing image data in Base 64 encoding.'
+properties:
+  image:
+    type: string
+    description: 'Base 64 encoded image data'

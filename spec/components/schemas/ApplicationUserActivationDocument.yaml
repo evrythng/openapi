@@ -1,0 +1,23 @@
+additionalProperties: false
+type: object
+description: 'An object describing an Application User prior to activation.'
+properties:
+  evrythngUser:
+    type: string
+    description: 'The ID of the Application User.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  activationCode:
+    type: string
+    description: 'The code to use to validate the user.'
+    readOnly: true
+  status:
+    $ref: '#/components/schemas/AppUserStatusField'
+  email:
+    type: string
+    description: 'The email address of the new Application User.'
+    readOnly: true
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'

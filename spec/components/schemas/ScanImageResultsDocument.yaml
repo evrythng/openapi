@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'Object containing the results of an image scan with the Identifier Recognition API.'
+properties:
+  meta:
+    $ref: '#/components/schemas/ScanImageMetadataDocument'
+  results:
+    type: array
+    items:
+      $ref: '#/components/schemas/ScanImageResultDocument'

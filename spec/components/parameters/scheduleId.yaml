@@ -1,0 +1,8 @@
+name: scheduleId
+in: path
+required: true
+description: 'A Reactor schedule ID.'
+example: '{scheduleId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

@@ -1,0 +1,80 @@
+get:
+  tags:
+    - 'Application Users'
+  summary: 'Read an Application User'
+  description: 'Read a single Application User but their `evrythngUser` ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/evrythngUser'
+  responses:
+    '200':
+      description: 'The Application User was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserDocument'
+          example:
+            id: UGN5FtfdV6PNQ7aRaXwCrhHp
+            createdAt: 1507561299992
+            updatedAt: 1507561300298
+            email: appuser-1507561299766@example.com
+            firstName: Example
+            lastName: User
+            project: UmrK2QWAegPwQ5waRh4QMQfp
+            app: UGr5kQCUBMsr9NwwR2wPeKbe
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+put:
+  tags:
+    - 'Application Users'
+  summary: 'Update an Application User'
+  description: 'Update an existing Application User by their `evrythngUser` ID. Authorised Application Users can modify their own data (including the password) using their API key.'
+  parameters:
+    -
+      $ref: '#/components/parameters/evrythngUser'
+  responses:
+    '200':
+      description: 'The Application User was updated.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserDocument'
+          example:
+            id: Uka3sDEB6B7SyCDqqYDNHdfs
+            createdAt: 1477043828768
+            updatedAt: 1490780828406
+            email: population1@test.com
+            firstName: UPdated
+            lastName: One
+            project: Uh5qRBqc4DcmbNbAANtMnrYm
+            app: Uh6GfhFnmgScpnxwMsqmbbBk
+  x-api-keys:
+    - Operator
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserDocument'
+        example:
+          firstName: Test
+          lastName: Testers
+          password: password
+          oldPassword: password
+    description: 'The ApplicationUserDocument with fields to update.'
+    required: true
+delete:
+  tags:
+    - 'Application Users'
+  summary: 'Delete an Application User'
+  description: 'Delete an Application User by its `evrythngUser` ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/evrythngUser'
+  responses:
+    '200':
+      description: 'The Application User was deleted.'
+  x-api-keys:
+    - Operator

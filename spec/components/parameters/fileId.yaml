@@ -1,0 +1,8 @@
+name: fileId
+in: path
+required: true
+description: 'A file ID.'
+example: '{fileId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

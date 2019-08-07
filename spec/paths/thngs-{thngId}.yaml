@@ -1,0 +1,76 @@
+get:
+  tags:
+    - Thngs
+  summary: 'Read a Thng'
+  description: 'Read a single Thng by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The requested Thng, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ThngDocument'
+          example:
+            id: UkNCRED7BDPaQKRRwhAnPaQn
+            createdAt: 1490356077941
+            updatedAt: 1491234759285
+            name: 'Action Thng'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+put:
+  tags:
+    - Thngs
+  summary: 'Update a Thng'
+  description: 'Update a Thng by ID. Only the basic fields (`name`, `description`, `product`, `identifiers`, `tags`, and `customFields`) can be updated in this manner. Properties, location and collections must be updated via their respective `/thngs/:thngId/location`, `/thngs/:thngId/properties` and `/collections/:collectionId/thngs` endpoints.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ThngDocument'
+          example:
+            id: UkNCRED7BDPaQKRRwhAnPaQn
+            createdAt: 1490356077941
+            updatedAt: 1491236784044
+            name: 'Action Thng'
+            description: 'Updated description'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ThngDocument'
+        example:
+          description: 'Updated Thng description.'
+          tags:
+            - updated
+    description: 'The request body for updating a Thng.'
+    required: true
+delete:
+  tags:
+    - Thngs
+  summary: 'Delete a Thng'
+  description: 'Delete a Thng by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'An object representing an Application User login request.'
+properties:
+  email:
+    type: string
+    description: 'The email address assigned to the Application User.'
+  password:
+    type: string
+    description: 'The Application User''s password used at account creation time.'

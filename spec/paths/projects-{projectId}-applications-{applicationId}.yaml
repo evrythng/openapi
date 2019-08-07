@@ -1,0 +1,85 @@
+get:
+  tags:
+    - Applications
+  summary: 'Read an application'
+  description: 'Read an application by `applicationId` in the project specified by `projectId`.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The application requested, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            -
+              appApiKey: nbB8SdjtzWrgmbSQwp7HAHug3wCBPZ4MJwkqBvZL...
+              id: Uh6GfhFnmgScpnxwMsqmbbBk
+              createdAt: 1472812938247
+              updatedAt: 1486632665680
+              name: 'Main App'
+              description: 'Main app for API testing and documentation'
+              project: Uh5qRBqc4DcmbNbAANtMnrYm
+              socialNetworks: {}
+              defaultRole: base_app_user
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Applications
+  summary: 'Update an application'
+  description: 'Update an application by `applicationId`.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The updated application'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            appApiKey: nbB8SdjtzWrgmbSQwp7HAHug3wCBPZ4MJwkqBvZL...
+            id: Uh6GfhFnmgScpnxwMsqmbbBk
+            createdAt: 1472812938247
+            updatedAt: 1486632665680
+            name: 'Main App'
+            description: 'Main app for API testing and documentation'
+            project: Uh5qRBqc4DcmbNbAANtMnrYm
+            socialNetworks: {}
+            defaultRole: base_app_user
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationDocument'
+        example:
+          name: 'Test Application'
+          description: 'A test application'
+          socialNetworks: {}
+    description: 'The ApplicationDocument containing fields to create/update.'
+    required: true
+delete:
+  tags:
+    - Applications
+  summary: 'Delete an application'
+  description: 'Delete an application by `applicationId`.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The application was successfully deleted.'
+  x-api-keys:
+    - Operator

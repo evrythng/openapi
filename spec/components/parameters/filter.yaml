@@ -1,0 +1,5 @@
+name: filter
+in: query
+description: 'The filter query parameter.'
+schema:
+  type: string

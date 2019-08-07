@@ -1,0 +1,104 @@
+post:
+  tags:
+    - Places
+  summary: 'Create a place'
+  description: 'Create a new place.'
+  responses:
+    '201':
+      description: 'The place was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PlaceDocument'
+          example:
+            id: UkrNxSAaVD8wQpaaaDTRKtkp
+            createdAt: 1490882864661
+            updatedAt: 1490882864661
+            name: 'Evrythng London Office'
+            description: 'London HQ'
+            icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
+            position:
+              type: Point
+              coordinates:
+                - -0.0882956
+                - 51.5303183
+            address:
+              extension: 'Unit 4, 122'
+              street: 'East Road'
+              postalCode: 'N1 6FB'
+              city: London
+              countryCode: GB
+            latitude: 51.5303183
+            longitude: -0.0882956
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/LocationDocument'
+        example:
+          name: 'Evrythng London Office'
+          position:
+            type: Point
+            coordinates:
+              - -0.0882956
+              - 51.5303183
+          address:
+            extension: 'Unit 4, 122'
+            street: 'East Road'
+            postalCode: 'N1 6FB'
+            city: London
+            countryCode: GB
+          description: 'London HQ'
+          icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
+    description: 'The LocationDocument containing the fields to create.'
+    required: true
+get:
+  tags:
+    - Places
+  summary: 'Read all places'
+  description: 'Read all places in an account, with an optional search origin and distance.'
+  parameters:
+    -
+      $ref: '#/components/parameters/latitude'
+    -
+      $ref: '#/components/parameters/longitude'
+    -
+      $ref: '#/components/parameters/maxDistance'
+  responses:
+    '200':
+      description: 'An array of all visible places in the account.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PlaceDocument'
+          example:
+            -
+              id: UFR3PBUe7a2xDnbXQGYVnrGh
+              createdAt: 1477043252443
+              updatedAt: 1477043252443
+              name: 'Evrythng London Office'
+              description: 'London HQ'
+              icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
+              position:
+                type: Point
+                coordinates:
+                  - 125.6
+                  - 10.1
+              address:
+                extension: 'Unit 4, 122'
+                street: 'East Road'
+                postalCode: 'N1 6FB'
+                city: London
+                countryCode: GB
+              latitude: 10.1
+              longitude: 125.6
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'

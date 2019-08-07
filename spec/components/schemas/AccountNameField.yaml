@@ -1,0 +1,4 @@
+type: string
+description: 'Friendly name of this resource. Must be between 1 and 30 characters.'
+minLength: 1
+maxLength: 30

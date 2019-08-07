@@ -1,0 +1,21 @@
+additionalProperties: false
+type: object
+description: 'A single task error log entry.'
+properties:
+  jobId:
+    type: string
+    description: 'The ID of the task associated with this entry.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  payload:
+    $ref: '#/components/schemas/TaskLogPayloadDocument'
+  type:
+    type: string
+    description: 'The type of log entry.'
+    enum:
+      - ERROR
+    readOnly: true
+  message:
+    type: string
+    description: 'A description of the nature of the error.'
+    readOnly: true

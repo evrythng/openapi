@@ -1,0 +1,39 @@
+additionalProperties: false
+type: object
+description: 'An object describing a Cloud 2 Cloud Connector Framework connector.'
+required:
+  - name
+properties:
+  name:
+    type: string
+    description: 'The unique name of the connector.'
+    readOnly: true
+    enum:
+      - nest
+  model:
+    $ref: '#/components/schemas/NestModelDocument'
+  auth:
+    $ref: '#/components/schemas/OAuthDocument'
+  displayName:
+    type: string
+    description: 'Friendly name of the connector.'
+    readOnly: true
+  url:
+    type: string
+    description: 'The url of the 3rd party service.'
+    readOnly: true
+  image:
+    type: string
+    description: 'The location of an image associated with the 3rd party service.'
+    readOnly: true
+  authUrl:
+    type: string
+    description: 'The authentication url for the 3rd party service.'
+    readOnly: true
+  status:
+    type: string
+    description: 'The status of the connector.'
+    enum:
+      - connected
+      - disconnected
+    readOnly: true

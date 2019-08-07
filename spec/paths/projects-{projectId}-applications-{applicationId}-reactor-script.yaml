@@ -1,0 +1,57 @@
+put:
+  tags:
+    - Reactor
+  summary: 'Update a Reactor script'
+  description: 'Update the Reactor script for an application.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The Reactor script was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScriptDocument'
+          example:
+            createdAt: 1491401875951
+            updatedAt: 1491401875951
+            type: simple
+            script: "function onActionCreated(event) {\n  logger.info(JSON.stringify(event));\n  done();\n}"
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ReactorScriptDocument'
+        example:
+          script: "function onActionCreated(event) {\n  logger.info(JSON.stringify(event));\n  done();\n}"
+    description: 'The request body for updating a Reactor script.'
+    required: true
+get:
+  tags:
+    - Reactor
+  summary: 'Read a Reactor script'
+  description: 'Read the Reactor script for an application by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The Reactor script with associated metadata.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScriptDocument'
+          example:
+            createdAt: 1491401875951
+            updatedAt: 1491403179163
+            type: simple
+            script: "function onActionCreated(event) {\n  logger.info(JSON.stringify(event));\n  done();\n}"
+  x-api-keys:
+    - Operator

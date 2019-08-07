@@ -1,0 +1,8 @@
+name: policyId
+in: path
+required: true
+description: 'A policy ID.'
+example: '{policyId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

@@ -1,0 +1,13 @@
+additionalProperties: false
+type: object
+description: 'An object containing a Device API key and associated Thng ID. Used for both request and response.'
+properties:
+  thngId:
+    type: string
+    description: 'The Thng ID to create a Device key for.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  thngApiKey:
+    type: string
+    description: 'The Device API key.'
+    readOnly: true
+    pattern: '^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]{80}$'

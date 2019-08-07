@@ -1,0 +1,4 @@
+type: string
+description: 'The type of task to perform.'
+enum:
+  - POPULATING

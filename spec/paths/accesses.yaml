@@ -1,0 +1,49 @@
+post:
+  tags:
+    - Access
+  summary: 'Create a new access'
+  description: 'Create a new access for another Application User.'
+  responses:
+    '201':
+      description: 'The access was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserAccessDocument'
+          example:
+            id: 59ad60d9b24413002c7d7695
+            project: UG4WExTKBqPr9NwRa3twYDnk
+            app: UG4NWfQ7BMPN97wawGQRrxtm
+            user: UGHrfg5XB6PNQraaamtRNbts
+            actor: UGH7CG5WeqP7tNRawGQwrydc
+            role: 59a676cc6404572c00294433
+            customFields:
+              email: test@example.com
+  x-api-keys:
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserAccessDocument'
+        example:
+          email: test@example.com
+          role: 59a676cc6404572c00294433
+    description: 'The details required to create an Application User access.'
+    required: true
+get:
+  tags:
+    - Access
+  summary: 'Read all accesses'
+  description: 'Read an Application User''s available acesses.'
+  responses:
+    '200':
+      description: 'The list of available accesses.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationUserAccessDocument'
+  x-api-keys:
+    - 'Application User'

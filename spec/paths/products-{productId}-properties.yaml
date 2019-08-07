@@ -1,0 +1,66 @@
+post:
+  tags:
+    - Properties
+  summary: 'Create/update product properties'
+  description: 'Create/update a product''s properties. When a resource is created, you can specify an initial set of properties and their values. To update those properties or to add new ones, use a `PUT` request with an array of `PropertyDocument` JSON objects containing the changed fields. If the properties updated do not exist, they are created automatically by this request and no error/notification will be returned.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The property updates were applied successfully.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PropertyDocument'
+          example:
+            -
+              createdAt: 1490953506826
+              timestamp: 1490953506826
+              key: temperature_celsius
+              value: 33
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PropertiesDocument'
+        example:
+          -
+            key: test_key
+            value: 33
+    description: 'The request body for updating properties.'
+    required: true
+get:
+  tags:
+    - Properties
+  summary: 'Read product properties'
+  description: 'Read all properties on a product. The returned payload is the complete array of all the properties with the last value of each.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'An array of properties of this product.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PropertyDocument'
+          example:
+            -
+              createdAt: 1490955243760
+              timestamp: 1490955243760
+              key: temperature_celsius
+              value: 33
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'

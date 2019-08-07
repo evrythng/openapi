@@ -1,0 +1,20 @@
+additionalProperties: false
+type: object
+description: 'An object describing an Application User that has just been activated.'
+properties:
+  evrythngUser:
+    type: string
+    description: 'The ID of the Application User.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  status:
+    type: string
+    description: 'The activation status of the user.'
+    readOnly: true
+    enum:
+      - active
+  evrythngApiKey:
+    type: string
+    description: 'The activated user''s initial Application User API key.'
+    readOnly: true
+    pattern: '^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]{80}$'

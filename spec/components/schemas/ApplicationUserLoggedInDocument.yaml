@@ -1,0 +1,28 @@
+additionalProperties: false
+type: object
+description: 'An object representing a logged in Application User.'
+properties:
+  evrythngUser:
+    type: string
+    description: 'The Application User ID of this application user.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  email:
+    type: string
+    description: 'The email address assigned to the application user.'
+    readOnly: true
+  evrythngApiKey:
+    type: string
+    description: 'The API key available to the application user.'
+    readOnly: true
+    pattern: '^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]{80}$'
+  socialNetwork:
+    type: string
+    description: 'The socialNetwork of the application user.'
+    readOnly: true
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  status:
+    $ref: '#/components/schemas/AppUserStatusField'

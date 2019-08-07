@@ -1,0 +1,8 @@
+name: projectId
+in: path
+required: true
+description: 'A project ID.'
+example: '{projectId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

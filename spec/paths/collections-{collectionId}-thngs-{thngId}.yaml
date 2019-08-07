@@ -1,0 +1,17 @@
+delete:
+  tags:
+    - Collections
+  summary: 'Remove a Thng from a collection'
+  description: 'Remove a Thng from a collection. There is a limit of 500 Thngs removed per API call on collections. If your collection contains more than 500 elements you should consider an iterative solution.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng was successfully deleted.'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'

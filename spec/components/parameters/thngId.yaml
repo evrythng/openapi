@@ -1,0 +1,8 @@
+name: thngId
+in: path
+required: true
+description: 'A Thng ID.'
+example: '{thngId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

@@ -1,0 +1,25 @@
+additionalProperties: false
+type: object
+description: 'An object representing an OAuth client.'
+required:
+  - name
+  - redirectUrl
+properties:
+  id:
+    type: string
+    description: 'The ID of the OAuth client.'
+    minLength: 45
+    maxLength: 45
+    readOnly: true
+  name:
+    type: string
+    description: 'The name of the OAuth client.'
+  redirectUrl:
+    type: string
+    description: 'The OAuth redirect URL. Must be a valid absolute URL under HTTPS protocol.'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'

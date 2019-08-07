@@ -1,0 +1,2 @@
+type: object
+description: 'Object as defined in the `ReactorScheduleDocument.event` field.'

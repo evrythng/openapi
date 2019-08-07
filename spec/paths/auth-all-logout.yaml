@@ -1,0 +1,16 @@
+post:
+  tags:
+    - 'Application Users'
+  summary: 'Log an Application User out'
+  description: 'Log an Application User out and invalidate their Application User API key.'
+  responses:
+    '201':
+      description: 'The Application User was logged out successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserLogoutDocument'
+          example:
+            logout: ok
+  x-api-keys:
+    - 'Application User'

@@ -1,0 +1,14 @@
+additionalProperties: false
+type: object
+description: 'The roles and projects scopes this role is scoped to.'
+properties:
+  roles:
+    type: array
+    description: 'The roles this role is scoped to.'
+    items:
+      $ref: '#/components/schemas/IdField'
+  projects:
+    type: array
+    description: 'The projects this role is scoped to.'
+    items:
+      $ref: '#/components/schemas/IdField'

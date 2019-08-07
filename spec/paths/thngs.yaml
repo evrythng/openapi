@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Thngs
+  summary: 'Create a Thng'
+  description: 'Create a new Thng.'
+  responses:
+    '201':
+      description: 'The Thng was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ThngDocument'
+          example:
+            id: UFsyXmXCVq8NtrRwREMfGaSs
+            createdAt: 1491233125432
+            updatedAt: 1491233125432
+            name: TestThng
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ThngDocument'
+        example:
+          name: 'Test Thng'
+          description: 'Test Thng description'
+    description: 'The request body for creating a Thng.'
+    required: true
+get:
+  tags:
+    - Thngs
+  summary: 'Read all Thngs'
+  description: 'Read all Thngs.'
+  responses:
+    '200':
+      description: 'An array of all available Thngs, paginated as required.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ThngDocument'
+          example:
+            -
+              id: UkMMaXbaBDPatKawRDhCwmxm
+              createdAt: 1489765904266
+              updatedAt: 1489765904266
+              name: 'Detector 3'
+              properties: {}
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'

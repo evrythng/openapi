@@ -1,0 +1,96 @@
+post:
+  tags:
+    - Tasks
+  summary: 'Create a batch task'
+  description: 'Create a task on the specified batch.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+  responses:
+    '202':
+      description: 'The new task was accepted. Check the `Location` header for the URL of the new task.'
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/FixedAmountTaskDocument'
+        example:
+          type: POPULATING
+          outputParameters:
+            type: CSV
+            columns:
+              - SHORT_ID
+              - THNG
+          inputParameters:
+            type: FIXED_AMOUNT
+            generateThngs: true
+            generateRedirections: true
+            defaultRedirectUrl: 'https://google.com'
+            thngTemplate:
+              name: 'Fixed Amount Task Thng'
+              tags:
+                - Generated
+            shortDomain: tn.gg
+            quantity: 1
+            shortIdTemplate:
+              type: THNG_ID
+    description: 'The TaskDocument to create a `FIXED_AMOUNT` type of task on a batch.'
+    required: true
+get:
+  tags:
+    - Tasks
+  summary: 'Read all batch tasks'
+  description: 'Read all tasks for a given batch.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+  responses:
+    '200':
+      description: 'All available tasks for this batch.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BasicTaskDocument'
+          example:
+            -
+              id: UE9DddW7qnDA8rg4rHHxrsFn
+              createdAt: 1475752797109
+              updatedAt: 1475752798198
+              completedAt: 1475752798198
+              batch: UEtdHPBbmgxypHxWhVKbBbCa
+              type: POPULATING
+              status: EXECUTED
+              result:
+                type: POPULATING
+                failedOperationsAmount: 0
+                location: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UhpHrg39QCy9dsSddN8xhwnb/batch-UEtdHPBbmgxypHxWhVKbBbCa-task-UE9gAdf7mWeBKtbAxdkAhbMk452646197797282204~57f6335d2b888118.zip'
+                format: CSV
+                totalThngsCreated: 10
+                totalUrlBindingsCreated: 10
+                totalCount: 20
+              inputParameters:
+                generateThngs: true
+                generateRedirections: true
+                shortDomain: tn.gg
+                defaultRedirectUrl: 'https://developers.evrythng.com'
+                thngTemplate:
+                  name: 'Batch Thng'
+                  description: 'A Thng born from a task on a batch'
+                type: FIXED_AMOUNT
+                quantity: 10
+                shortIdTemplate:
+                  type: THNG_ID
+              progress:
+                contributions:
+                  Uh9XAAWN9nerWHAfC2x4Cbrg:
+                    urlBindings: 10
+                    thngs: 10
+                    failedUrlBindings: 0
+                    failedThngs: 0
+                totalAmount: 20
+  x-api-keys:
+    - Operator

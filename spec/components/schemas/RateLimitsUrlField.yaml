@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'Information on rate limit URL'
+properties:
+  path:
+    type: string
+    description: 'The rate limit path'
+  depth:
+    type: number
+    description: 'The rate limit path URL depth'

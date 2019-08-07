@@ -1,0 +1,81 @@
+additionalProperties: false
+type: object
+description: 'An object representing a Platform action.'
+required:
+  - type
+properties:
+  type:
+    type: string
+    description: 'The action type.'
+  id:
+    $ref: '#/components/schemas/IdField'
+  user:
+    type: string
+    description: 'The EVRYTHNG ID of the user who has performed this action.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  createdByProject:
+    type: string
+    description: 'The EVRYTHNG ID of the project who has performed this action.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  createdByApp:
+    type: string
+    description: 'The EVRYTHNG ID of the application who has performed this action.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  thng:
+    type: string
+    description: 'The EVRYTHNG ID of the Thng this action was carried out on.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  product:
+    type: string
+    description: 'The EVRYTHNG product ID associated with the Thng this action was carried out on.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  collection:
+    type: string
+    description: 'The EVRYTHNG ID of the collection this action was carried out on. Custom action types only.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  timestamp:
+    type: integer
+    description: 'The timestamp when the action took place. Filled automatically if unspecified.'
+    readOnly: true
+    minimum: 0
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  location:
+    $ref: '#/components/schemas/LocationDocument'
+  locationSource:
+    type: string
+    description: 'The method used to find the location where the action took place, and requires `location` to also be set. If a GPS was used (with user permission granted), `sensor` is specified. Otherwise an estimate is made based on the apparent location, which may not be the device itself.'
+    enum:
+      - sensor
+      - geoIp
+      - unknown
+      - place
+  context:
+    $ref: '#/components/schemas/ActionContextDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  reactions:
+    type: array
+    description: 'An array of Redirector reactions that occured from this action.'
+    items:
+      $ref: '#/components/schemas/ReactionDocument'
+x-filterable-fields:
+  - timestamp
+  - identifiers.<key>
+  - tags
+  - type
+  - user
+  - context.city
+  - context.countryCode
+  - thng
+  - product
+  - collection

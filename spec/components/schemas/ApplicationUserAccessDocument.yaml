@@ -1,0 +1,34 @@
+additionalProperties: false
+type: object
+description: 'Object containing data relevant to an Application User''s platform access.'
+properties:
+  id:
+    type: string
+    description: 'The access ID.'
+    readOnly: true
+  project:
+    type: string
+    description: 'The ID of the project the user belongs to.'
+    readOnly: true
+  app:
+    type: string
+    description: 'The ID of the application the user belongs to.'
+    readOnly: true
+  user:
+    type: string
+    description: 'This user''s ID.'
+    readOnly: true
+  actor:
+    type: string
+    description: 'The accessing actor''s ID.'
+    readOnly: true
+  role:
+    type: string
+    description: 'The ID of the user''s role.'
+    readOnly: true
+  apiKey:
+    type: string
+    description: 'The actor''s Application User API Key.'
+    readOnly: true
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'

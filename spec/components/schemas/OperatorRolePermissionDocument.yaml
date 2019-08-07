@@ -1,0 +1,32 @@
+additionalProperties: false
+type: string
+description: 'Object describing Operator role permissions'
+required:
+  - name
+  - enabled
+properties:
+  name:
+    type: string
+    description: 'Name of the specific role permission.'
+    enum:
+      - global_read
+      - gl_resource_update
+      - gl_project_update
+      - project_read
+      - project_update
+      - project_resource_update
+  enabled:
+    type: boolean
+    description: '`true` if this permission is enabled, `false` otherwise.'
+  projectScoped:
+    type: boolean
+    description: '`true` if this permission if enabled only for specific project(s), `false` otherwise.'
+    readOnly: true
+  projects:
+    type: array
+    description: 'Array of project IDs that this permission is enabled for.'
+    items:
+      type: string
+      pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  children:
+    $ref: '#/components/schemas/OperatorRolePermissionDocument'

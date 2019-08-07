@@ -1,0 +1,92 @@
+post:
+  tags:
+    - Collections
+  summary: 'Create a collection action'
+  description: 'Create an action on a collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '201':
+      description: 'The action was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            id: UkPgUBmABXPwQpaawhKtSCms
+            createdAt: 1491481747604
+            timestamp: 1491481747604
+            type: _permanent
+            location:
+              latitude: 51.4519
+              longitude: 0.1792
+              position:
+                type: Point
+                coordinates:
+                  - 0.1792
+                  - 51.4519
+            locationSource: geoIp
+            context:
+              ipAddress: 141.0.154.202
+              city: Crayford
+              region: England
+              countryCode: GB
+              userAgent: 'Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36'
+              operatingSystemName: Unknown
+              timeZone: Europe/London
+            collection: UFNq7cbWqGsYhqwaaXcp5cYr
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ActionDocument'
+        example:
+          type: scans
+    description: 'The request body to create an action, which does not include the resource.'
+    required: true
+get:
+  tags:
+    - Collections
+  summary: 'Read all collection actions'
+  description: 'Read all actions on a collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+    -
+      $ref: '#/components/parameters/actionType'
+  responses:
+    '200':
+      description: 'Array of all available actions on this collection.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActionDocument'
+          example:
+            -
+              id: UF8gd9hD6ttBE8awRgNUmafh
+              createdAt: 1491484534118
+              timestamp: 1491484534118
+              type: _permanent
+              location:
+                latitude: 51.4519
+                longitude: 0.1792
+                position:
+                  type: Point
+                  coordinates:
+                    - 0.1792
+                    - 51.4519
+              locationSource: geoIp
+              collection: UFNq7cbWqGsYhqwaaXcp5cYr
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'

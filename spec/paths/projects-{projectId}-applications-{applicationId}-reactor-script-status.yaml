@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Reactor
+  summary: 'Read Reactor script status'
+  description: 'Read the status of a Reactor script update in progress.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The status of the Reactor script.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScriptStatusDocument'
+          example:
+            updating: false
+  x-api-keys:
+    - Operator

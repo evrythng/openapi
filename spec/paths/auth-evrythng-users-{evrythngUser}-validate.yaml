@@ -1,0 +1,31 @@
+post:
+  tags:
+    - 'Application Users'
+  summary: 'Activate an Application User'
+  description: 'Activate a new Application User using the `activationCode` provided in the ''Create an Application User'' step.'
+  parameters:
+    -
+      $ref: '#/components/parameters/evrythngUser'
+  responses:
+    '201':
+      description: 'The Application User was successfully activated.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserActivatedDocument'
+          example:
+            status: active
+            evrythngUser: U2r5EyXxVgPRQpwRwhHGCebs
+            evrythngApiKey: hy4auhuQ31YsxvZT7Y2nWbzRg2wKczBzlLGSQakC...
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ActivationCodeDocument'
+        example:
+          activationCode: LIy4ScLy
+    description: 'The request body for activating an unactivated Application User.'
+    required: true

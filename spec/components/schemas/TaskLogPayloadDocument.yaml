@@ -1,0 +1,17 @@
+additionalProperties: false
+type: object
+description: 'The task payload parameters.'
+properties:
+  shortId:
+    type: string
+    description: 'The short ID.'
+  thng:
+    type: string
+    description: 'ID of the Thng.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  thngIdentifier:
+    type: object
+    description: 'Key-value pair of the Thng identifier.'
+  urlBinding:
+    type: string
+    description: 'ID of the URL binding for this Thng.'

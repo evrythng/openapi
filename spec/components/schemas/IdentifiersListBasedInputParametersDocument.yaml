@@ -1,0 +1,20 @@
+additionalProperties: false
+type: object
+description: 'Specification of the task input parameters for the `IDENTIFIERS_LIST_BASED` type.'
+required:
+  - type
+  - generateThngs
+  - generateRedirections
+  - thngTemplate
+  - customIdentifier
+properties:
+  type:
+    $ref: '#/components/schemas/IdentifiersListBasedInputParametersTypeField'
+  generateThngs:
+    $ref: '#/components/schemas/GenerateThngsField'
+  generateRedirections:
+    $ref: '#/components/schemas/GenerateRedirectionsField'
+  thngTemplate:
+    $ref: '#/components/schemas/ThngDocument'
+  customIdentifier:
+    $ref: '#/components/schemas/CustomIdentifierDocument'

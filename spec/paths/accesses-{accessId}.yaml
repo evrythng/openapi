@@ -1,0 +1,13 @@
+delete:
+  tags:
+    - Access
+  summary: 'Delete an access'
+  description: 'Delete an existing Application User access to revoke it. Either the granting or receiving user can do this.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accessId'
+  responses:
+    '204':
+      description: 'The access was deleted successfully.'
+  x-api-keys:
+    - 'Application User'

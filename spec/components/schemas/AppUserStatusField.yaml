@@ -1,0 +1,6 @@
+type: string
+description: 'The activation status of the user.'
+readOnly: true
+enum:
+  - inactive
+  - active

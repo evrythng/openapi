@@ -1,0 +1,7 @@
+name: evrythngUser
+in: path
+required: true
+description: 'An application User ID.'
+example: '{evrythngUser}'
+schema:
+  type: string

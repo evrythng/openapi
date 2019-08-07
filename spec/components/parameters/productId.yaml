@@ -1,0 +1,8 @@
+name: productId
+in: path
+required: true
+description: 'A product ID.'
+example: '{productId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

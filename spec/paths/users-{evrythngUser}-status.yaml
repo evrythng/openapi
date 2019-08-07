@@ -1,0 +1,21 @@
+get:
+  tags:
+    - 'Application Users'
+  summary: 'Read an Application User''s activation status.'
+  description: 'Read a single Application User''s activation status but their `evrythngUser` ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/evrythngUser'
+  responses:
+    '200':
+      description: 'The Application User''s status was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserStatusDocument'
+          example:
+            activated: true
+            activationDate: 1515598555651
+  x-api-keys:
+    - Operator
+    - 'Application User'

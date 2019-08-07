@@ -1,0 +1,8 @@
+name: batchId
+in: path
+required: true
+description: 'A batch ID.'
+example: '{batchId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

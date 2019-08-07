@@ -1,0 +1,15 @@
+additionalProperties: false
+type: object
+description: 'A single app/project delegate.'
+required:
+  - app
+  - project
+properties:
+  app:
+    type: string
+    description: 'The delegate application ID.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  project:
+    type: string
+    description: 'The delegate project ID.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

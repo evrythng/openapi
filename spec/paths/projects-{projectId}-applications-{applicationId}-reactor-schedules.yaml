@@ -1,0 +1,74 @@
+post:
+  tags:
+    - Reactor
+  summary: 'Create a Reactor schedule'
+  description: 'Create a Reactor schedule document, describing how the schedule should behave.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '201':
+      description: 'The Reactor schedule was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReactorScheduleDocument'
+          example:
+            event:
+              foo: bar
+            function: onScheduledEvent
+            executeAt: 1475664300
+            description: 'Example Reactor schedule'
+            enabled: true
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ReactorScheduleDocument'
+        example:
+          function: onScheduledEvent
+          event:
+            foo: bar
+          executeAt: 1523028921000
+          description: 'Example Reactor schedule'
+          enabled: true
+    description: 'The request body for creating a Reactor schedule.'
+    required: true
+get:
+  tags:
+    - Reactor
+  summary: 'Read all Reactor schedules'
+  description: 'Read all Reactor schedules of the specified application.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'An array of all available Reactor schedules.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ReactorScheduleDocument'
+          example:
+            -
+              id: UE9Bt3CyM4gd87g4rHYSBqTc
+              createdAt: 1475672402665
+              updatedAt: 1475672402665
+              event:
+                foo: bar
+              function: onScheduledEvent
+              cron: '0 45 14 * * ?'
+              description: 'Example Reactor schedule'
+              enabled: true
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

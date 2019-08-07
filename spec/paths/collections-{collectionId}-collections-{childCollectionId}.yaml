@@ -1,0 +1,16 @@
+delete:
+  tags:
+    - Collections
+  summary: 'Remove a collection from a collection'
+  description: 'Remove a collection from a parent collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+    -
+      $ref: '#/components/parameters/childCollectionId'
+  responses:
+    '200':
+      description: 'The child collection was deleted from the parent successfully'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

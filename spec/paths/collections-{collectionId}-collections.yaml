@@ -1,0 +1,69 @@
+post:
+  tags:
+    - Collections
+  summary: 'Add collections to a collection'
+  description: 'Add collections to a collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The child collections were added successfully.'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: string
+          example:
+            - Ukr6sEY7Bg8w9pRawDUgYDdh
+    description: 'A list of collection IDs to add to the collection.'
+    required: true
+get:
+  tags:
+    - Collections
+  summary: 'Read all collections in a collection'
+  description: 'Read all collections in a collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'An array of all collections available.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CollectionDocument'
+          example:
+            -
+              id: Ukr6sEY7Bg8w9pRawDUgYDdh
+              createdAt: 1490872189534
+              updatedAt: 1490872492927
+              name: 'Child collection'
+              collections:
+                - UFNq7cbWqGsYhqwaaXcp5cYr
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+delete:
+  tags:
+    - Collections
+  summary: 'Remove all collections in a collection'
+  description: 'Remove all collections from a parent collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The collections were successfully deleted from the parent collection.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

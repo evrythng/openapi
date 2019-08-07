@@ -1,0 +1,4 @@
+type: integer
+description: 'Timestamp when the resource was created.'
+readOnly: true
+minimum: 0

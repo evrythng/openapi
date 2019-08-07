@@ -1,0 +1,12 @@
+additionalProperties: false
+type: object
+description: 'Object describing the property changes for this event.'
+properties:
+  oldValue:
+    description: 'The previous property value.'
+  newValue:
+    description: 'The new property value'
+  timestamp:
+    type: integer
+    description: 'The time that the update occured.'
+    minimum: 1508761430000

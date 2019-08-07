@@ -1,0 +1,17 @@
+additionalProperties: false
+type: object
+description: 'An object representing an Application Redirector''s rules.'
+required:
+  - rules
+properties:
+  rules:
+    description: 'The rules set up for a Redirector.'
+    type: array
+    items:
+      $ref: '#/components/schemas/ApplicationRedirectorRuleDocument'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'

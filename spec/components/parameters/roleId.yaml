@@ -1,0 +1,8 @@
+name: roleId
+in: path
+required: true
+description: 'A role ID.'
+example: '{roleId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

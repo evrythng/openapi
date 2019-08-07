@@ -1,0 +1,42 @@
+post:
+  tags:
+    - 'Application Users'
+  summary: 'Log In with Access Info'
+  description: 'Log an Application User in and obtain access details.'
+  responses:
+    '200':
+      description: 'The log in was successful.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserDocument'
+          example:
+            id: UGCMtpXfqQQBYPRwahgnwPnc
+            createdAt: 1499265893463
+            updatedAt: 1499265908969
+            email: test@evrythng.com
+            firstName: Test
+            lastName: User
+            project: U2As9WsMthW5F5aeFECpCeDs
+            app: UFUstWQVQEC5FpRe2EWpWBhf
+            access:
+              id: 595cfb74b4a46a2c00b7b6d5
+              project: U2As9WsMthW5F5aeFECpCeDs
+              app: UFUstWQVQEC5FpRe2EWpWBhf
+              user: UGCMtpXfqQQBYPRwahgnwPnc
+              actor: UGCMtpXfqQQBYPRwahgnwPnc
+              role: 592d70418c5e3f2800408a74
+              apiKey: N8tUbOLK4B5RD3VIXoJs05DkP4lrE1RE3WbChQw7...
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserLoginDocument'
+        example:
+          email: test@email.com
+          password: M7@29P6Stk9zF5gX5@4!c3Vm
+    description: 'The Application User''s email and password to log in again.'
+    required: true

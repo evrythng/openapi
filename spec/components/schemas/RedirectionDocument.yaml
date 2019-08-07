@@ -1,0 +1,46 @@
+additionalProperties: false
+type: object
+description: 'A redirection on a resource.'
+properties:
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  defaultRedirectUrl:
+    type: string
+    description: 'The location to redirect to.'
+  redirectUrl:
+    type: string
+    description: 'The redirect URL.'
+  evrythngUrl:
+    type: string
+    description: 'The location of the EVRYTHNG resource.'
+    readOnly: true
+  evrythngId:
+    type: string
+    description: 'The EVRYTHNG ID of the associated resource.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    readOnly: true
+  shortDomain:
+    type: string
+    description: 'The associated short domain for the redirection.'
+    readOnly: true
+  shortId:
+    type: string
+    description: 'The short ID of the redirection'
+    minLength: 8
+    maxLength: 10
+    readOnly: true
+  type:
+    type: string
+    description: 'The type of the associated EVRYTHNG resource.'
+    enum:
+      - thng
+      - product
+      - collection
+      - place
+    readOnly: true
+  hits:
+    type: integer
+    description: 'The number of times the redirection has been hit.'
+    readOnly: true

@@ -1,0 +1,38 @@
+get:
+  tags:
+    - Products
+  summary: 'Read a product action'
+  description: 'Read an action on a product by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+    -
+      $ref: '#/components/parameters/actionType'
+    -
+      $ref: '#/components/parameters/actionId'
+  responses:
+    '200':
+      description: 'The requested action, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            id: UF8gd9hD6ttBE8awRgNUmafh
+            createdAt: 1491484534118
+            timestamp: 1491484534118
+            type: _permanent
+            location:
+              latitude: 51.4519
+              longitude: 0.1792
+              position:
+                type: Point
+                coordinates:
+                  - 0.1792
+                  - 51.4519
+            locationSource: geoIp
+            product: UFNPxXxwVDPRQpaRwYPttarb
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'

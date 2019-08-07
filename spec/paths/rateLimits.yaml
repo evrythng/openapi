@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Accounts
+  summary: 'View rate limit information'
+  description: 'View rate limit information for the accounts.'
+  responses:
+    '200':
+      description: 'The available rate limit information'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RateLimitsDocument'
+          example:
+            -
+              name: trial
+              rateLimits:
+                -
+                  url:
+                    path: /
+                    depth: 1
+                  access: crud
+                  limit:
+                    rate: day
+                    timeFrame: 1
+                    warningMaxHits: 3600
+                    blockingMaxHits: 5000
+                  hits: 3
+                  hitsRemaining: 4997
+                  reset: 30020
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'
+    - Device

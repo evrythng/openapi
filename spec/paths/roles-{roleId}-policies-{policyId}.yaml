@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Policies
+  summary: 'Read a policy'
+  description: 'Read a single policy on a role by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+    -
+      $ref: '#/components/parameters/policyId'
+  responses:
+    '200':
+      description: 'The requested policy, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PolicyDocument'
+          example:
+            schema: UGBHm6BFVDsaQKRwaFCrGhmp
+            id: UGVnG7MfeXPRQpRaRFCNGhGq
+            createdAt: 1498062277333
+            role: 5925998d8c29fc2800dea2e2
+  x-api-keys:
+    - Operator
+delete:
+  tags:
+    - Policies
+  summary: 'Delete a policy'
+  description: 'Delete a single policy on a role by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+    -
+      $ref: '#/components/parameters/policyId'
+  responses:
+    '204':
+      description: 'The policy was deleted successfully.'
+  x-api-keys:
+    - Operator

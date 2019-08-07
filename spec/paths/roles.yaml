@@ -1,0 +1,77 @@
+post:
+  tags:
+    - Roles
+  summary: 'Create an Application User role'
+  description: 'Create a new Application User role. Only the account owner can create new roles. You cannot create roles with the same `name` as the predefined `admin` and `none` roles. Roles `name`s are considered unique. This means two roles with different `id`s cannot share the same `name`.'
+  responses:
+    '201':
+      description: 'The new role was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserRoleDocument'
+          example:
+            id: 58f8773ffc7c042800fda32b
+            version: 2
+            type: userInApp
+            name: 'Test Role'
+            description: 'A role for the purposes of testing.'
+            customFields:
+              test: true
+            createdAt: 1492678463423
+            updatedAt: 1492678463423
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserRoleDocument'
+        example:
+          name: 'Test Role'
+          version: 2
+          type: userInApp
+          description: 'A role for the purposes of testing.'
+          customFields:
+            test: true
+    description: 'The request body for creating a role.'
+    required: true
+get:
+  tags:
+    - Roles
+  summary: 'Read all roles'
+  description: 'Read all available roles within the account.'
+  responses:
+    '200':
+      description: 'An array of the available roles.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationUserRoleDocument'
+          example:
+            -
+              id: admin
+              name: admin
+            -
+              id: none
+              name: none
+            -
+              id: base_app_user
+              version: 2
+              type: userInApp
+              name: base_app_user
+            -
+              id: 58f8773ffc7c042800fda32b
+              version: 2
+              type: userInApp
+              name: 'Test Role'
+              description: 'A role for the purposes of testing.'
+              customFields:
+                test: true
+              createdAt: 1492678463423
+              updatedAt: 1492678463423
+  x-api-keys:
+    - Operator
+    - 'Application User'

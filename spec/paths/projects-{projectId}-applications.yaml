@@ -1,0 +1,68 @@
+post:
+  tags:
+    - Applications
+  summary: 'Create an application'
+  description: 'Create an application within a project. The object returned contains the `appApiKey` parameter, which is an Application API key that must be used within an external application to issue calls to the API. However, because this API key can be hard coded within external applications (e.g. mobile/JS) and is visible to anyone, it can be used only for a very limited set of operations (create users, read a product, send actions etc.).'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+  responses:
+    '201':
+      description: 'The created application was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            appApiKey: nbB8SdjtzWrgmbSQwp7HAHug3wCBPZ4MJwkqBvZL...
+            id: Uh6GfhFnmgScpnxwMsqmbbBk
+            createdAt: 1472812938247
+            updatedAt: 1486632665680
+            name: 'Main App'
+            description: 'Main app for API testing and documentation'
+            project: Uh5qRBqc4DcmbNbAANtMnrYm
+            socialNetworks: {}
+            defaultRole: base_app_user
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationDocument'
+        example:
+          name: 'Test Application'
+          description: 'A test application'
+          socialNetworks: {}
+    description: 'The ApplicationDocument containing fields to create/update.'
+    required: true
+get:
+  tags:
+    - Applications
+  summary: 'Read all applications'
+  description: 'Read all applications inside the specified project.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+  responses:
+    '200':
+      description: 'All visible applications.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationDocument'
+          example:
+            -
+              appApiKey: nbB8SdjtzWrgmbSQwp7HAHug3wCBPZ4MJwkqBvZL...
+              id: Uh6GfhFnmgScpnxwMsqmbbBk
+              createdAt: 1472812938247
+              updatedAt: 1486632665680
+              name: 'Main App'
+              description: 'Main app for API testing and documentation'
+              project: Uh5qRBqc4DcmbNbAANtMnrYm
+              socialNetworks: {}
+              defaultRole: base_app_user
+  x-api-keys:
+    - Operator

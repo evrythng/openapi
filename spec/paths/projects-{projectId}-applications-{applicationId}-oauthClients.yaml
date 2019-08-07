@@ -1,0 +1,72 @@
+post:
+  tags:
+    - OAuth
+  summary: 'Create an OAuth client'
+  description: 'Registers a new OAuth client.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '201':
+      description: 'The OAuth client was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OAuthClientDocument'
+          example:
+            id: A5OQjkABzTCR3gkoGHybC8tsKOn5bMlQ7O9xpQylXxPQr
+            name: 'Example Client'
+            redirectUrl: 'https://examples.com/oauth/callback'
+            customFields:
+              type: 'Web Application'
+              homeUrl: 'https://examples.com'
+            createdAt: 1493815665131
+            updatedAt: 1493815665131
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/OAuthClientDocument'
+        example:
+          name: 'Example Client'
+          redirectUrl: 'https://examples.com/oauth/callback'
+          customFields:
+            type: 'Web Application'
+            homeUrl: 'https://examples.com'
+    description: 'The request body to create an OAuth client.'
+    required: true
+get:
+  tags:
+    - OAuth
+  summary: 'Read all OAuth clients'
+  description: 'Read all registered OAuth clients in an application.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'A list of all registered OAuth clients in scope.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/OAuthClientDocument'
+          example:
+            -
+              id: A5OQjkABzTCR3gkoGHybC8tsKOn5bMlQ7O9xpQylXxPQr
+              name: 'Example Client'
+              redirectUrl: 'https://examples.com/oauth/callback'
+              customFields:
+                type: 'Web Application'
+                homeUrl: 'https://examples.com'
+              createdAt: 1493815665131
+              updatedAt: 1493815665131
+  x-api-keys:
+    - Operator

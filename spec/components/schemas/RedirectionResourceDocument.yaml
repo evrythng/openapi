@@ -1,0 +1,7 @@
+additionalProperties: false
+type: object
+description: 'Container for a task generation short ID.'
+properties:
+  shortId:
+    type: string
+    description: 'The short ID for the redirection.'

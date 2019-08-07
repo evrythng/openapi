@@ -1,0 +1,59 @@
+get:
+  tags:
+    - Accounts
+  summary: 'Read an account access'
+  description: 'Read an account access by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+    -
+      $ref: '#/components/parameters/accessId'
+  responses:
+    '200':
+      description: 'The access requested, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessDocument'
+          example:
+            id: 57bad69fc18104025b292da8
+            account: UhpHrg39QCy9dsSddN8xhwnb
+            operator: UEp4rDGsnpCAF6xABbys5Amc
+            apiKey: RHADMAdGAw3txdFemb7xYXtkClrtiHvibJRKCFa8...
+            role: 5889cd38c4b3762e00667633
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Accounts
+  summary: 'Update an account access'
+  description: 'Update an account access to set a new role.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+    -
+      $ref: '#/components/parameters/accessId'
+  responses:
+    '200':
+      description: 'The access was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessDocument'
+          example:
+            id: 57bad69fc18104025b292da8
+            account: UhpHrg39QCy9dsSddN8xhwnb
+            operator: UEp4rDGsnpCAF6xABbys5Amc
+            apiKey: RHADMAdGAw3txdFemb7xYXtkClrtiHvibJRKCFa8...
+            role: 5889cd38c4b3762e00667633
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccountDocument'
+        example:
+          role: admin
+    description: 'The AccountDocument containing the role to create/update.'
+    required: true

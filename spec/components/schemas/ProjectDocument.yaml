@@ -1,0 +1,40 @@
+additionalProperties: false
+type: object
+description: 'An object describing a platform project.'
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  startsAt:
+    type: integer
+    description: 'Timestamp when this project starts.'
+  endsAt:
+    type: integer
+    description: 'Timestamp when this project ends.'
+  imageUrl:
+    type: string
+    description: 'URL link to the image to use in the project properties view.'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  shortDomains:
+    type: array
+    description: 'An array of short domains assigned for the project, for example: `tn.gg` by default.'
+    items:
+      type: string
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - identifiers.<key>
+  - name
+  - tags

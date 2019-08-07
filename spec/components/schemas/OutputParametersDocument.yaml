@@ -1,0 +1,19 @@
+additionalProperties: false
+type: object
+description: 'The output format for the task.'
+required:
+  - type
+properties:
+  type:
+    type: string
+    description: 'The output format type.'
+    enum:
+      - CSV
+  columns:
+    type: array
+    description: 'The CSV columns to use. Valid values are ''SHORT_ID'' and ''THNG''.'
+    items:
+      type: string
+      enum:
+        - SHORT_ID
+        - THNG

@@ -1,0 +1,8 @@
+name: collectionId
+in: path
+required: true
+description: 'A collection ID.'
+example: '{collectionId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

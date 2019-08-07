@@ -1,0 +1,42 @@
+additionalProperties: false
+type: object
+description: 'An object containing remote file metadata.'
+required:
+  - name
+  - type
+  - privateAccess
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  uploadUrl:
+    type: string
+    description: 'The URL to upload file data to with an HTTP `PUT` request. Will expire after 30 mins.'
+    readOnly: true
+  contentUrl:
+    type: string
+    description: 'The URL the file is available at for download.'
+    readOnly: true
+  name:
+    type: string
+    description: 'Name of the file. This is unique to the account, allowing a file to be overwritten.'
+  type:
+    type: string
+    description: 'The MIME type of the file. Must match the Content-Type header used when uploading the file content.'
+  privateAccess:
+    type: boolean
+    description: 'A boolean flag indicating whether a file should have `private` or `public` access on remote storage.'
+  size:
+    type: integer
+    description: 'The size of the uploaded file in bytes.'
+    readOnly: true
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - name
+  - tags

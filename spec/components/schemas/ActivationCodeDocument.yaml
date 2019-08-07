@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'The payload for activating an unactivated Application User.'
+required:
+  - activationCode
+properties:
+  activationCode:
+    type: string
+    description: 'The activation code to use.'
+    readOnly: true

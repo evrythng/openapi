@@ -1,0 +1,21 @@
+additionalProperties: false
+type: object
+description: 'Object containing a Reactor script and associated metadata.'
+properties:
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  type:
+    type: string
+    description: 'The type of Reactor script.'
+    enum:
+      - simple
+      - bundle
+    readOnly: true
+  script:
+    type: string
+    description: 'The Reactor script body.'
+  manifest:
+    type: string
+    description: 'The Reactor script manifest, in a format similar to Node''s `package.json`.'

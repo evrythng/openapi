@@ -1,0 +1,37 @@
+additionalProperties: false
+type: object
+description: 'Specification of the task input parameters for the `FILE_BASED` type.'
+required:
+  - type
+  - generateThngs
+  - generateRedirections
+  - defaultRedirectUrl
+  - thngTemplate
+  - shortDomain
+  - location
+  - format
+properties:
+  type:
+    $ref: '#/components/schemas/FileBasedInputParametersTypeField'
+  generateThngs:
+    $ref: '#/components/schemas/GenerateThngsField'
+  generateRedirections:
+    $ref: '#/components/schemas/GenerateRedirectionsField'
+  defaultRedirectUrl:
+    $ref: '#/components/schemas/DefaultRedirectUrlField'
+  thngTemplate:
+    $ref: '#/components/schemas/ThngDocument'
+  shortDomain:
+    $ref: '#/components/schemas/ShortDomainField'
+  location:
+    type: string
+    description: 'The URL of the input file containing the list of short IDs. This must be a Files API uploaded URL.'
+  format:
+    type: string
+    description: 'The format of the input file referred to by `location`.'
+    enum:
+      - CSV
+      - ZIP
+  headers:
+    type: object
+    description: 'Key-value object of HTTP headers required when requesting the input file.'

@@ -1,0 +1,94 @@
+post:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Create a connector'
+  description: 'To enable a third party integration for a specific application, `POST` a connector model describing the configuration of the connection with the third party cloud. Only the Operator can enable connectors in an application. For Nest connectors, the `auth` credentials can be found in the Nest Developers console.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '201':
+      description: 'The connector was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            name: nest
+            displayName: Nest
+            url: 'http://www.nest.com'
+            image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+            authUrl: 'http://api.evrythng.com/connectors/nest/auth'
+            model:
+              structures:
+                name: 'Structure Name'
+              devices:
+                thermostats:
+                  name: 'Thermostat Name'
+                smoke_co_alarms:
+                  name: 'Smoke Alarm Name'
+            auth:
+              type: oauth
+              oAuthUrl: 'https://home.nest.com/login/oauth2'
+              tokenUrl: 'https://api.home.nest.com/oauth2/access_token'
+              clientId: 8573df3d-4434-443b-b43a-756a9a7e58c6
+              clientSecret: 8593DgGp493BaB8GFHVmACBCB
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ConnectorDocument'
+        example:
+          name: nest
+          model: default
+          auth:
+            clientId: 8573dc8d-b7c8-1c56-b68f-428a9a9056c8
+            clientSecret: 8593aPgGpZC9B8GC2HVmAgGE6
+    description: 'The request body for creating a connector.'
+    required: true
+get:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Read all connectors'
+  description: 'Read all connectors in an application.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'All connectors within the specified application.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            -
+              name: nest
+              displayName: Nest
+              url: 'http://www.nest.com'
+              image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+              authUrl: 'http://api.evrythng.com/connectors/nest/auth'
+              model:
+                structures:
+                  name: 'Structure Name'
+                devices:
+                  thermostats:
+                    name: 'Thermostat Name'
+                  smoke_co_alarms:
+                    name: 'Smoke Alarm Name'
+              auth:
+                type: oauth
+                oAuthUrl: 'https://home.nest.com/login/oauth2'
+                tokenUrl: 'https://api.home.nest.com/oauth2/access_token'
+                clientId: 8573df3d-4434-443b-b43a-756a9a7e58c6
+                clientSecret: 8593DgGp493BaB8GFHVmACBCB
+  x-api-keys:
+    - Operator

@@ -1,0 +1,19 @@
+additionalProperties: false
+type: object
+description: 'An object representing an account role permission. Depending on the type of role, different fields may be returned.'
+required:
+  - path
+  - access
+properties:
+  path:
+    type: string
+    description: 'The API path the role can access. Must be a subset of the default `base_app_user` permissions.'
+  access:
+    type: string
+    description: 'A four letter combination of ''c'', ''r'', ''u'', and ''d'' describing the access to create, read, update, or destroy the resources in the ''path'' of this permission.'
+    minLength: 1
+    maxLength: 4
+  default:
+    type: boolean
+    description: '`true` for default permissions.'
+    readOnly: true

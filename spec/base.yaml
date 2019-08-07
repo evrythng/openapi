@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: 'EVRYTHNG REST API'
+  description: 'The EVRYTHNG RESTful API for developers on the EVRYTHNG Platform.'
+  termsOfService: 'https://developers.evrythng.com/docs/usage-guidelines'
+  contact:
+    name: 'EVRYTHNG Support'
+    url: 'https://developers.evrythng.com/docs/support'
+    email: service-desk@evrythng.com
+  license:
+    name: 'EVRYTHNG Service Level Agreement'
+    url: 'https://evrythng.com/legal/sla/'
+  version: 1.0.0
+paths: {}
+security:
+  -
+    Authorization: []
+externalDocs:
+  description: 'EVRYTHNG Developer Hub'
+  url: 'https://developers.evrythng.com'
+x-explorer-enabled: false
+x-samples-languages:
+  - curl
+  - node
+  - java
+  - python
+servers:
+  -
+    url: 'https://api.evrythng.com'
+components:
+  parameters: {}
+  requestBodies: {}
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      name: Authorization
+      in: header
+  schemas: {}

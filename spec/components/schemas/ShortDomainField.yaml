@@ -1,0 +1,2 @@
+type: string
+description: 'The short domain used for generated redirections.'

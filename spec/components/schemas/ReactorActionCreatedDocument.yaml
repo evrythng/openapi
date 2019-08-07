@@ -1,0 +1,12 @@
+additionalProperties: false
+type: object
+description: 'The event parameter passed to an `onActionCreated` event callback.'
+properties:
+  action:
+    $ref: '#/components/schemas/ActionDocument'
+  triggerApp:
+    $ref: '#/components/schemas/TriggerAppField'
+  triggerUser:
+    $ref: '#/components/schemas/TriggerUserField'
+  triggerUserAnonymous:
+    $ref: '#/components/schemas/TriggerUserAnonymousField'

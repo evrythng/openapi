@@ -1,0 +1,29 @@
+additionalProperties: false
+type: object
+description: 'Specification of the task input parameters for the `FIXED_AMOUNT` type.'
+required:
+  - type
+  - generateThngs
+  - generateRedirections
+  - defaultRedirectUrl
+  - thngTemplate
+  - shortDomain
+  - quantity
+  - shortIdTemplate
+properties:
+  type:
+    $ref: '#/components/schemas/FixedAmountInputParametersTypeField'
+  generateThngs:
+    $ref: '#/components/schemas/GenerateThngsField'
+  generateRedirections:
+    $ref: '#/components/schemas/GenerateRedirectionsField'
+  defaultRedirectUrl:
+    $ref: '#/components/schemas/DefaultRedirectUrlField'
+  thngTemplate:
+    $ref: '#/components/schemas/ThngDocument'
+  shortDomain:
+    $ref: '#/components/schemas/ShortDomainField'
+  quantity:
+    $ref: '#/components/schemas/QuantityField'
+  shortIdTemplate:
+    $ref: '#/components/schemas/ShortIdTemplateField'

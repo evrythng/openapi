@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Reactor
+  summary: 'Read Reactor logs'
+  description: 'Read the Reactor logs.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'Available Reactor logs.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ReactorLogEntryDocument'
+          example:
+            -
+              id: UFPDx6fAVXPaQKwawXdC6mUp
+              createdAt: 1491475539795
+              timestamp: 1491475539795
+              logLevel: trace
+              message: 'Reactor script is about to execute. Function name: onScheduledEvent'
+              app: Uk7KFKGKBXPwQKawwDYF9bPr
+  x-api-keys:
+    - Operator
+delete:
+  tags:
+    - Reactor
+  summary: 'Delete Reactor logs'
+  description: 'Delete the Reactor logs. To delete the Reactor logs of a specific log level you can use a `logLevel` filter.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+  responses:
+    '200':
+      description: 'The Reactor logs were successfully deleted.'
+  x-api-keys:
+    - Operator

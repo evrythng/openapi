@@ -1,0 +1,38 @@
+get:
+  tags:
+    - Collections
+  summary: 'Read a collection action'
+  description: 'Read an action on a collection by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+    -
+      $ref: '#/components/parameters/actionType'
+    -
+      $ref: '#/components/parameters/actionId'
+  responses:
+    '200':
+      description: 'The requested action, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            id: UF8gd9hD6ttBE8awRgNUmafh
+            createdAt: 1491484534118
+            timestamp: 1491484534118
+            type: _permanent
+            location:
+              latitude: 51.4519
+              longitude: 0.1792
+              position:
+                type: Point
+                coordinates:
+                  - 0.1792
+                  - 51.4519
+            locationSource: geoIp
+            collection: UFNq7cbWqGsYhqwaaXcp5cYr
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'

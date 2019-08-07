@@ -1,0 +1,102 @@
+get:
+  tags:
+    - Thngs
+  summary: 'Read a Thng''s location'
+  description: 'Read a Thng''s location history.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng''s location history.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/LocationDocument'
+          example:
+            -
+              createdAt: 1490878669475
+              timestamp: 1490878669475
+              latitude: 36
+              longitude: -17.3
+              position:
+                type: Point
+                coordinates:
+                  - -17.3
+                  - 36
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+put:
+  tags:
+    - Thngs
+  summary: 'Update a Thng''s location'
+  description: 'Update a Thng''s location. The payload must always be an array of `LocationDocument` objects, which allows you to send several locations (with different timestamps each) in a single request. This is useful when a device wants to update a path cached over a certain period of time at once. An example would be a taxi that updates the whole set of locations it has been through once per hour instead of sending each GPS sensor reading individually.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Thng''s location was updated successfully.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/LocationDocument'
+          example:
+            -
+              timestamp: 1490880049611
+              latitude: 36
+              longitude: -17.3
+              position:
+                type: Point
+                coordinates:
+                  - -17.3
+                  - 36
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationDocument'
+          example:
+            -
+              position:
+                type: Point
+                coordinates:
+                  - -17.3
+                  - 36
+            -
+              timestamp: 1347028945711
+              position:
+                type: Point
+                coordinates:
+                  - -179.3
+                  - -37
+    description: 'The LocationDocument to update the Thng''s location.'
+    required: true
+delete:
+  tags:
+    - Thngs
+  summary: 'Delete a Thng location history'
+  description: 'Delete a Thng''s location history. If the `?to=Timestamp` query parameter with timestamp is not specified, all history for this property will be deleted.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The location history was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

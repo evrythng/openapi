@@ -1,0 +1,82 @@
+put:
+  tags:
+    - Collections
+  summary: 'Add Thngs to a collection'
+  description: 'Add Thngs to a collection. The maximum number of Thngs that can be added to a collection is 10,000 per request.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The Thngs were added successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CollectionDocument'
+          example:
+            id: UFNq7cbWqGsYhqwaaXcp5cYr
+            createdAt: 1490866709256
+            scopes:
+              users: []
+              projects: []
+            updatedAt: 1490869890727
+            name: 'New collection name'
+            description: 'New collection description'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: string
+          example:
+            - UkNCRED7BDPaQKRRwhAnPaQn
+    description: 'A list of Thng IDs to add to the collection.'
+    required: true
+get:
+  tags:
+    - Collections
+  summary: 'Read all Thngs in a collection'
+  description: 'Read all Thngs in a collection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'An array of Thngs in this collection, if any.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ThngDocument'
+          example:
+            -
+              id: UkNCRED7BDPaQKRRwhAnPaQn
+              createdAt: 1490356077941
+              updatedAt: 1490869117923
+              name: 'Action Thng'
+              collections:
+                - UFNq7cbWqGsYhqwaaXcp5cYr
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+delete:
+  tags:
+    - Collections
+  summary: 'Remove all Thngs from a collection'
+  description: 'Remove all Thngs from a collection. Note that this does not delete the actual Thngs themselves.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'All Thngs in the collection were deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

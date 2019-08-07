@@ -1,0 +1,31 @@
+post:
+  tags:
+    - 'Application Users'
+  summary: 'Log an Application User in'
+  description: 'Authenticate (log in) an existing user using their original `email` and `password` used at creation time.'
+  responses:
+    '201':
+      description: 'The user was logged in successfully, and a new API key created for this login session.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserLoggedInDocument'
+          example:
+            socialNetwork: evrythng
+            evrythngUser: U2rKMB5QVXsRtKawRhYWDa9f
+            evrythngApiKey: USiVuEFErLJYngR1msPaaOpNNRuOQaiF9Hs4lu8g...
+            email: test@evrythng.com
+            status: active
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserLoginDocument'
+        example:
+          email: test@email.com
+          password: M7@29P6Stk9zF5gX5@4!c3Vm
+    description: 'The Application User''s email and password to log in again.'
+    required: true

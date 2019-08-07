@@ -1,0 +1,70 @@
+get:
+  tags:
+    - Projects
+  summary: 'Read a project'
+  description: 'Read a project by ID'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+  responses:
+    '200':
+      description: 'The requested project, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProjectDocument'
+          example:
+            id: UFN3ahEYMGshYMaaaECtDeYd
+            createdAt: 1490618231682
+            updatedAt: 1490618231682
+            name: 'Tagged Products'
+            shortDomains:
+              - tn.gg
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Projects
+  summary: 'Update a project'
+  description: 'Update a project by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+  responses:
+    '200':
+      description: 'The updated project.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProjectDocument'
+          example:
+            id: UFN3ahEYMGshYMaaaECtDeYd
+            createdAt: 1490618231682
+            updatedAt: 1490618231682
+            name: 'Tagged Products'
+            shortDomains:
+              - tn.gg
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ProjectDocument'
+        example:
+          name: 'Test Project'
+    description: 'The ProjectDocument containing fields to create/update.'
+    required: true
+delete:
+  tags:
+    - Projects
+  summary: 'Delete a project'
+  description: 'Delete a project by ID. This action **cannot** be reversed!'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+  responses:
+    '200':
+      description: 'The project was deleted successfully.'
+  x-api-keys:
+    - Operator

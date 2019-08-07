@@ -1,0 +1,24 @@
+additionalProperties: false
+type: object
+description: 'An object representing a location.'
+properties:
+  position:
+    $ref: '#/components/schemas/GeoJSONPointDocument'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  timestamp:
+    type: integer
+    description: 'The time the location update occurred, or filled automatically by the Platform if omitted.'
+    readOnly: true
+  longitude:
+    $ref: '#/components/schemas/LongitudeField'
+  latitude:
+    $ref: '#/components/schemas/LatitudeField'
+  place:
+    type: string
+    description: 'The place ID.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - timestamp

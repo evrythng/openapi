@@ -1,0 +1,22 @@
+additionalProperties: false
+type: object
+description: 'An object containing a single Redirector rule set.'
+required:
+  - match
+properties:
+  match:
+    type: string
+    description: 'Filter used to evaluate this rule. Will always match if this field is not set.'
+  name:
+    $ref: '#/components/schemas/NameField'
+  redirectUrl:
+    type: string
+    description: 'URL to redirect to if the rule matches.'
+  delegates:
+    description: 'Array of app and/or project delegates that will receive this redirection if necessary.'
+    type: array
+    items:
+      $ref: '#/components/schemas/DelegateDocument'
+  constants:
+    type: object
+    description: 'Key-value pairs (both must be strings). User can add as many as needed.'

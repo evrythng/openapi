@@ -1,0 +1,6 @@
+name: from
+in: query
+description: 'From timestamp.'
+schema:
+  type: integer
+  minimum: 0

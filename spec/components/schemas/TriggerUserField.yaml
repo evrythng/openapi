@@ -1,0 +1,4 @@
+type: string
+description: 'The triggering Application User, if any.'
+pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+readOnly: true

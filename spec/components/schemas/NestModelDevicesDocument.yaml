@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'The device structures for Nest thermostats, smoke alarms, and cameras.'
+properties:
+  thermostats:
+    $ref: '#/components/schemas/ThngDocument'
+  smoke_co_alarms:
+    $ref: '#/components/schemas/ThngDocument'
+  cameras:
+    $ref: '#/components/schemas/ThngDocument'

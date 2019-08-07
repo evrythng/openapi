@@ -1,0 +1,28 @@
+additionalProperties: false
+type: object
+description: 'An object describing a Reactor schedule.'
+properties:
+  event:
+    type: object
+    description: 'Object to be passed as the parameter to the callback when it is invoked.'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  function:
+    type: string
+    description: 'The name of the exported function to invoke.'
+  executeAt:
+    type: integer
+    description: 'Unix timestamp (milliseconds) describing when to execute the scheduled event.'
+    minimum: 0
+  cron:
+    type: string
+    description: 'Cron expression describing the execution interval.'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  enabled:
+    type: boolean
+    description: 'If the schedule is enabled. Defaults to `true`.'

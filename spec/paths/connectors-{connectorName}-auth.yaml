@@ -1,0 +1,13 @@
+get:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Authenticate through connector'
+  description: 'Authenticate the connector service through redirection.'
+  parameters:
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '301':
+      description: 'Check the `Location` header for destination location.'
+  x-api-keys:
+    - 'Application User'

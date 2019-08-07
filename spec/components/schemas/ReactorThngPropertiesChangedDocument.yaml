@@ -1,0 +1,15 @@
+additionalProperties: false
+type: object
+description: 'The event parameter passed to an `onThngPropertiesChanged` event callback.'
+properties:
+  thng:
+    $ref: '#/components/schemas/ThngDocument'
+  changes:
+    type: object
+    description: 'Object containing a key for each changed property, with value of a `ReactorPropertyChangeDocument`.'
+  triggerApp:
+    $ref: '#/components/schemas/TriggerAppField'
+  triggerUser:
+    $ref: '#/components/schemas/TriggerUserField'
+  triggerUserAnonymous:
+    $ref: '#/components/schemas/TriggerUserAnonymousField'

@@ -1,0 +1,51 @@
+get:
+  tags:
+    - Actions
+  summary: 'Read an action'
+  description: 'Read a single action by ID. You can use `all` as an `actionType` to read actions of unknown type.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+    -
+      $ref: '#/components/parameters/actionId'
+  responses:
+    '200':
+      description: 'The requested action, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            createdAt: 1490356832189
+            id: Uk7CwHXaeg8w9KaaagVDhHqq
+            location:
+              latitude: 51.45
+              longitude: 0.2167
+              position:
+                coordinates:
+                  - 0.2167
+                  - 51.45
+                type: Point
+            locationSource: geoIp
+            thng: UkNCRED7BDPaQKRRwhAnPaQn
+            timestamp: 1490356832189
+            type: scans
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+delete:
+  tags:
+    - Actions
+  summary: 'Delete an action'
+  description: 'Delete an action by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/actionType'
+    -
+      $ref: '#/components/parameters/actionId'
+  responses:
+    '200':
+      description: 'The action was deleted. No body is returned'
+  x-api-keys:
+    - Operator

@@ -1,0 +1,29 @@
+additionalProperties: false
+type: object
+description: 'An object describing a schema.'
+required:
+  - name
+  - resourceType
+  - jsonSchema
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  name:
+    $ref: '#/components/schemas/NameField'
+  resourceType:
+    type: string
+    description: 'The type of resource this schema applies to.'
+    enum:
+      - thngs
+      - thng_properties
+      - thng_property_key
+      - thng_actions
+  jsonSchema:
+    type: object
+    description: 'The JSON Schema description of the objects this schema will validate.'
+  product:
+    description: 'The product ID filter applied to Thngs compared to this schema. If `null`, the product ID filter is not applied.'

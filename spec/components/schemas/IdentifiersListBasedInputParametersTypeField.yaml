@@ -1,0 +1,4 @@
+type: string
+description: 'The IDENTIFIERS_LIST_BASED task type.'
+enum:
+  - IDENTIFIERS_LIST_BASED

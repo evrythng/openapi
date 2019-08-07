@@ -1,0 +1,13 @@
+additionalProperties: false
+type: object
+description: 'A single image scan result.'
+properties:
+  product:
+    $ref: '#/components/schemas/ProductDocument'
+  thng:
+    $ref: '#/components/schemas/ThngDocument'
+  redirections:
+    type: array
+    items:
+      type: string
+    readOnly: true

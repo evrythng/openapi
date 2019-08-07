@@ -1,0 +1,42 @@
+additionalProperties: false
+type: object
+description: 'An object representing a Platform batch.'
+required:
+  - name
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  name:
+    $ref: '#/components/schemas/NameField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  status:
+    type: string
+    description: 'The status of the batch.'
+    enum:
+      - EMPTY
+      - IN_PROGRESS
+      - COMPLETE
+      - SEALED
+    readOnly: true
+  resourceCountsByProduct:
+    type: object
+    description: 'Count of resources, grouped by product ID. Those with no product come under `NO_PRODUCT`.'
+    readOnly: true
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - createdAt
+  - identifiers.<key>
+  - name
+  - tags

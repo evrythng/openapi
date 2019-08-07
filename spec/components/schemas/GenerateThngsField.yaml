@@ -1,0 +1,2 @@
+type: boolean
+description: 'Whether Thngs will be created as part of the task.'

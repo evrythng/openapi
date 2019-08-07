@@ -1,0 +1,44 @@
+additionalProperties: false
+type: object
+description: 'Metadata about the scan.'
+properties:
+  method:
+    type: string
+    description: 'The scan method'
+    enum:
+      - ocr
+      - ir
+      - 1d
+      - 2d
+    readOnly: true
+  score:
+    type: integer
+    description: 'The scanning score.'
+    readOnly: true
+  type:
+    type: string
+    description: 'The scanning code type.'
+    enum:
+      - text
+      - image
+      - codabar
+      - code_11
+      - code_39
+      - code_93
+      - code_128
+      - ean_8
+      - ean_13
+      - industr_25
+      - itf
+      - rss_14
+      - rss_expanded
+      - rss_limited
+      - upc_a
+      - upc_e
+      - dm
+      - qr_code
+    readOnly: true
+  value:
+    type: string
+    description: 'The encoded value.'
+    readOnly: true

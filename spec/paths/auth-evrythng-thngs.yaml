@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Thngs
+  summary: 'Create a Device API Key'
+  description: 'Create a Device API key for a Thng to manage its own data. A Device API key can only be created by Application Users or Operators. If called multiple times for the same Thng, the existing API key will be returned (a new one will not be generated). If you want to create a new API key for a Thng, you must delete the existing one first.'
+  responses:
+    '201':
+      description: 'The Device API key was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthThngDocument'
+          example:
+            thngId: UkNCRED7BDPaQKRRwhAnPaQn
+            thngApiKey: iAmmxHByiwvkSOAlvYxAFGNomeofe54lWgYarilw...
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AuthThngDocument'
+        example:
+          thngId: UnXf5gsUMGPEEMwRwF3WcGgd
+    description: 'The request body for creating a Device key.'
+    required: true

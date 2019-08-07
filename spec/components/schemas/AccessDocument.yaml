@@ -1,0 +1,26 @@
+additionalProperties: false
+type: object
+description: 'An object representing an account''s access record.'
+properties:
+  account:
+    type: string
+    description: 'The account ID.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  apiKey:
+    type: string
+    description: 'The account''s Operator API key.'
+    readOnly: true
+    pattern: '^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]{80}$'
+  id:
+    $ref: '#/components/schemas/IdField'
+  operator:
+    type: string
+    description: 'The account''s user ID.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  role:
+    type: string
+    description: 'The ID of the currently assigned role.'
+    minLength: 4
+    maxLength: 24

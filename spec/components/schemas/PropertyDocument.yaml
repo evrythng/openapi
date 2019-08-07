@@ -1,0 +1,18 @@
+additionalProperties: false
+type: object
+description: 'An object representing a single property update. The `value` property may be a string or integer.'
+properties:
+  key:
+    type: string
+    description: 'The property key-value key.'
+  value:
+    description: 'The property key-value value.'
+  timestamp:
+    type: integer
+    description: 'The timestamp of the property update.'
+    readOnly: true
+    minimum: 0
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+x-filterable-fields:
+  - timestamp

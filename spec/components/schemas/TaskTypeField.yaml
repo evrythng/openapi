@@ -1,0 +1,5 @@
+type: string
+description: 'The type of task to perform.'
+enum:
+  - POPULATING
+  - SHORT_ID_GENERATION

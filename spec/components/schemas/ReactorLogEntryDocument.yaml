@@ -1,0 +1,35 @@
+additionalProperties: false
+type: object
+description: 'A Reactor log entry.'
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  app:
+    type: string
+    description: 'The ID of the application.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  logLevel:
+    type: string
+    description: 'The level of the log message.'
+    enum:
+      - trace
+      - debug
+      - info
+      - warn
+      - error
+    readOnly: true
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  timestamp:
+    type: integer
+    description: 'When the log entry appeared'
+    readOnly: true
+  message:
+    type: string
+    description: 'The content of the log entry.'
+    readOnly: true
+x-filterable-fields:
+  - app
+  - logLevel
+  - timestamp

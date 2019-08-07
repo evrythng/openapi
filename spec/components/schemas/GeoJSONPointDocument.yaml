@@ -1,0 +1,18 @@
+type: object
+description: 'A GeoJSON Point object. The coordinate order is longitude, then latitude.'
+required:
+  - type
+  - coordinates
+properties:
+  type:
+    type: string
+    description: 'The type of the point.'
+    enum:
+      - Point
+  coordinates:
+    type: array
+    description: 'The point coordinates'
+    items:
+      type: number
+      minimum: -180
+      maximum: 180

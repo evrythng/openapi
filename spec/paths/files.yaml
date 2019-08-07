@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Files
+  summary: 'Create a file'
+  description: 'Create remote file metadata. This operation is the basis for a remote file upload. A successful HTTP `POST` will create a `FileDocument` record with a unique ID and a transient `uploadUrl` field. This signed `uploadUrl` can then be used by a client with an HTTP `PUT` request to do the actual upload to remote storage. The `uploadUrl` will expire after 30 minutes. The input payload to this endpoint should also contain a setting for the `privateAccess` field to indicate whether the file should have ''private'' or ''public'' access on remote storage.'
+  responses:
+    '201':
+      description: 'The file metadata was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileDocument'
+          example:
+            id: UkPeHkqmeD8wtKawwDMdnxnf
+            createdAt: 1491380425930
+            updatedAt: 1491380425930
+            uploadUrl: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UFNCRXfCVM87QNawaE8rrKqc/my_file1.txt?AWSAccessKeyId=AKIAID2MOF7RYNLLMH7Q&Expires=1491382225&Signature=3ejA8lyO%2BE8Lmlr%2BDScYIwj%2FhI8%3D'
+            name: my_file1.txt
+            type: text/plain
+            privateAccess: true
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/FileDocument'
+        example:
+          name: my_file1.txt
+          type: text/plain
+          privateAccess: true
+    description: 'The request body for creating a new file metadata.'
+    required: true
+get:
+  tags:
+    - Files
+  summary: 'Read all files'
+  description: 'Read all remote file metadata items.'
+  responses:
+    '200':
+      description: 'An array of all available remote file metadata items.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/FileDocument'
+          example:
+            -
+              id: UkPeHkqmeD8wtKawwDMdnxnf
+              createdAt: 1491380425930
+              updatedAt: 1491380425930
+              uploadUrl: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UFNCRXfCVM87QNawaE8rrKqc/my_file1.txt?AWSAccessKeyId=AKIAID2MOF7RYNLLMH7Q&Expires=1491382548&Signature=fzT9tMYjYO%2FIW4tS5XDJKLa6ZLM%3D'
+              contentUrl: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UFNCRXfCVM87QNawaE8rrKqc/my_file1.txt?AWSAccessKeyId=AKIAID2MOF7RYNLLMH7Q&Expires=1491382548&Signature=80vZzPVpo%2F83yCKfbRA0Sbunhpo%3D'
+              name: my_file1.txt
+              type: text/plain
+              privateAccess: true
+  x-api-keys:
+    - Operator

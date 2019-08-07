@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Files
+  summary: 'Read a file'
+  description: 'Read a single remote file metadata item by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/fileId'
+  responses:
+    '200':
+      description: 'The remote file metadata item, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileDocument'
+          example:
+            id: UkPeHkqmeD8wtKawwDMdnxnf
+            createdAt: 1491380425930
+            updatedAt: 1491380425930
+            uploadUrl: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UFNCRXfCVM87QNawaE8rrKqc/my_file1.txt?AWSAccessKeyId=AKIAID2MOF7RYNLLMH7Q&Expires=1491383003&Signature=sUVXcEsNDwfxaPCJ63Tj%2FCgbHEE%3D'
+            contentUrl: 'https://s3.amazonaws.com/evtcdn_02/2/uf/UFNCRXfCVM87QNawaE8rrKqc/my_file1.txt?AWSAccessKeyId=AKIAID2MOF7RYNLLMH7Q&Expires=1491383004&Signature=zlQMxyrcfj%2Bbs7ftVVtunQI3np0%3D'
+            name: my_file1.txt
+            type: text/plain
+            privateAccess: true
+  x-api-keys:
+    - Operator
+delete:
+  tags:
+    - Files
+  summary: 'Delete a file'
+  description: 'Delete a single remote file metadata item by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/fileId'
+  responses:
+    '200':
+      description: 'The remote file metadata item was deleted.'
+  x-api-keys:
+    - Operator

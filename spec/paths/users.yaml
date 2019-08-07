@@ -1,0 +1,27 @@
+get:
+  tags:
+    - 'Application Users'
+  summary: 'Read all Application Users'
+  description: 'Read all visible application users.'
+  responses:
+    '200':
+      description: 'An array of all visible Application Users.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationUserDocument'
+          example:
+            -
+              id: Uka3sDEB6B7SyCDqqYDNHdfs
+              createdAt: 1477043828768
+              updatedAt: 1477043893319
+              email: testuser@test.com
+              firstName: Test
+              lastName: User
+              project: Uh5qRBqc4DcmbNbAANtMnrYm
+              app: Uh6GfhFnmgScpnxwMsqmbbBk
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Collections
+  summary: 'Create a collection'
+  description: 'Create a new collection. Resources can then be added to that collection with further `PUT` requests specifying the collection ID.'
+  responses:
+    '201':
+      description: 'The collection was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CollectionDocument'
+          example:
+            id: UF7MqQQsVXPatpaawYgnnbqh
+            createdAt: 1490866174655
+            updatedAt: 1490866174655
+            name: 'Test collection'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/CollectionDocument'
+        example:
+          name: 'Test collection'
+    description: 'The request body for creating a collection.'
+    required: true
+get:
+  tags:
+    - Collections
+  summary: 'Read all collections'
+  description: 'Read all collections available in an account.'
+  responses:
+    '200':
+      description: 'A list of all visible collections.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CollectionDocument'
+          example:
+            -
+              id: UhQqMkEnymeMe3xUBWcKAmwk
+              createdAt: 1476184186458
+              updatedAt: 1476184186458
+              name: 'A collection'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'

@@ -1,0 +1,5 @@
+type: string
+description: 'The type of input or results file.'
+enum:
+  - CSV
+  - ZIP

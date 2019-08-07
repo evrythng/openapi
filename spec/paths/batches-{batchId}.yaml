@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Batches
+  summary: 'Read a batch'
+  description: 'Read a single batch by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+  responses:
+    '200':
+      description: 'The requested batch, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BatchDocument'
+          example:
+            id: UkPd3QayMmPEhMawwgaVrwbm
+            createdAt: 1491312386545
+            updatedAt: 1491312386545
+            name: PermaBatch
+            status: EMPTY
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Batches
+  summary: 'Update a batch'
+  description: 'Update a batch by ID. Nested fields such as `tags` are replaced with the new value in the payload.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+  responses:
+    '200':
+      description: 'The batch was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BatchDocument'
+          example:
+            id: UkPd3QayMmPEhMawwgaVrwbm
+            createdAt: 1491312386545
+            updatedAt: 1491312386545
+            name: 'Updated Batch'
+            status: EMPTY
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BatchDocument'
+        example:
+          name: 'Example Batch'
+          description: 'Example Batch description.'
+    description: 'The payload used to create a batch.'
+    required: true
+delete:
+  tags:
+    - Batches
+  summary: 'Delete a batch'
+  description: 'Delete a batch by ID. Deleting the batch will not delete the tasks and Thngs in it, which must be deleted separately.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+  responses:
+    '200':
+      description: 'The batch was deleted successfully.'
+  x-api-keys:
+    - Operator

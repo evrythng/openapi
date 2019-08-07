@@ -1,0 +1,39 @@
+additionalProperties: false
+type: object
+description: 'An object representing a short ID generation task on a batch.'
+required:
+  - type
+properties:
+  type:
+    type: string
+    description: 'The type of ShortIdTemplateDocument.'
+    enum:
+      - SEQUENTIAL
+      - PSEUDO_RANDOM
+  length:
+    type: integer
+    description: 'Full length of the short ID. Including separators, prefix, and suffix.'
+  start:
+    type: integer
+    description: 'Value of the core of the first code generated.'
+  increment:
+    type: integer
+    description: 'Increment of the core for subsequent codes generated.'
+  padding:
+    type: string
+    description: 'How to pad the sequence, in order to keep a fixed length.'
+    enum:
+      - ZERO
+      - CHAR
+  paddingChar:
+    type: string
+    description: 'Single character used to pad, if `padding` is `CHAR`.'
+  prefix:
+    type: string
+    description: 'Prefix in the short ID pattern.'
+  suffix:
+    type: string
+    description: 'Suffix in the short ID pattern.'
+  separator:
+    type: string
+    description: 'Separator between prefix and core, and core and suffix in the short ID pattern.'

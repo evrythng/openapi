@@ -1,0 +1,2 @@
+type: string
+description: 'The URL for the generated redirections. `{evrythngId}` can substitute the appropriate resource ID.'

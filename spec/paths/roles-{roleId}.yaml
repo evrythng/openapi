@@ -1,0 +1,77 @@
+get:
+  tags:
+    - Roles
+  summary: 'Read a role'
+  description: 'Read a single role by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'The requested role, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserRoleDocument'
+          example:
+            id: 58f8773ffc7c042800fda32b
+            version: 2
+            type: userInApp
+            name: 'Test Role'
+            description: 'A role for the purposes of testing.'
+            customFields:
+              test: true
+            createdAt: 1492678463423
+            updatedAt: 1492678463423
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Roles
+  summary: 'Update a role'
+  description: 'Update a role by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'The role was updated successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplicationUserRoleDocument'
+          example:
+            id: 58f8773ffc7c042800fda32b
+            version: 2
+            type: userInApp
+            name: 'Test Role'
+            description: 'A role for the purposes of testing.'
+            customFields:
+              test: true
+            createdAt: 1492678463423
+            updatedAt: 1492678725176
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserRoleDocument'
+        example:
+          name: 'Updated Engineer Role'
+          description: 'Engineer authorized to perform device repairs'
+    description: 'The request body for updating a role.'
+    required: true
+delete:
+  tags:
+    - Roles
+  summary: 'Delete a role'
+  description: 'Delete a role by ID. The predefined `none` role will be assigned to all the users currently having the role about to be removed. A `userInApp` role cannot be deleted until all users with that role have been assigned a different role.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'The role was deleted successfully.'
+  x-api-keys:
+    - Operator

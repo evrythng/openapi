@@ -1,0 +1,49 @@
+additionalProperties: false
+type: object
+description: 'An object representing a street address.'
+properties:
+  extension:
+    type: string
+    description: 'The extension of the address.'
+  street:
+    type: string
+    description: 'The street of the address.'
+  postalCode:
+    type: string
+    description: 'The postal code of the address.'
+  city:
+    type: string
+    description: 'The city of the address.'
+  county:
+    type: string
+    description: 'The county of the address.'
+  state:
+    type: string
+    description: 'The state of the address.'
+  country:
+    type: string
+    description: 'The country of the address.'
+  countryCode:
+    type: string
+    description: 'The country code of the address.'
+  district:
+    type: string
+    description: 'The district of the address.'
+  buildingName:
+    type: string
+    description: 'The building name of the address.'
+  buildingFloor:
+    type: string
+    description: 'The building floor of the address.'
+  buildingRoom:
+    type: string
+    description: 'The building room of the address.'
+  buildingZone:
+    type: string
+    description: 'The building zone of the address.'
+  crossing1:
+    type: string
+    description: 'The first crossing of the address.'
+  crossing2:
+    type: string
+    description: 'The second crossing of the address.'

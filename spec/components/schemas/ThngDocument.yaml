@@ -1,0 +1,55 @@
+additionalProperties: false
+type: object
+description: 'An object representing a Thng.'
+required:
+  - name
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  activatedAt:
+    type: integer
+    description: 'Timestamp when the Thng was activated.'
+    readOnly: true
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  product:
+    type: string
+    description: 'The Platform ID of a product this Thng is a class of.'
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  location:
+    $ref: '#/components/schemas/LocationDocument'
+  properties:
+    type: object
+    description: 'A JSON object with key-value pairs describing properties of the Thng.'
+    readOnly: true
+  collections:
+    description: 'An array of collection IDs of any collections this Thng belongs to.'
+    type: array
+    items:
+      type: string
+      pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  createdByTask:
+    $ref: '#/components/schemas/IdField'
+  batch:
+    $ref: '#/components/schemas/IdField'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - collections
+  - createdAt
+  - identifiers.<key>
+  - name
+  - product
+  - tags

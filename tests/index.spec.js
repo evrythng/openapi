@@ -15,11 +15,15 @@ describe('evrythng-swagger', () => {
     expect(spec.paths).to.be.be.an('object');
   });
 
-  it('Contains \'definitions\'', () => {
-    expect(spec.definitions).to.be.be.an('object');
+  it('Contains \'components\'', () => {
+    expect(spec.components).to.be.be.an('object');
   });
 
   it('Contains \'parameters\'', () => {
-    expect(spec.parameters).to.be.be.an('object');
+    expect(spec.components.parameters).to.be.be.an('object');
+  });
+
+  it('Contains \'schemas\'', () => {
+    expect(spec.components.schemas).to.be.be.an('object');
   });
 });

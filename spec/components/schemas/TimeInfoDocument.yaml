@@ -1,0 +1,9 @@
+additionalProperties: false
+type: object
+description: 'Object describing the current time, with timezone info.'
+properties:
+  timestamp:
+    type: integer
+    description: 'Number of milliseconds since the Epoch.'
+    minimum: 1508749759486
+    readOnly: true

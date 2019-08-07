@@ -1,0 +1,18 @@
+additionalProperties: false
+type: object
+description: 'Object describing an actor.'
+properties:
+  id:
+    type: string
+    description: 'ID of the actor'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  type:
+    type: string
+    description: 'Type of actor.'
+    enum:
+      - operator
+      - userInApp
+      - app
+      - device
+    readOnly: true

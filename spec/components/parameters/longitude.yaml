@@ -1,0 +1,5 @@
+name: lon
+in: query
+description: 'The longitude of the query.'
+schema:
+  type: number

@@ -1,0 +1,7 @@
+name: propertyKey
+in: path
+required: true
+description: 'A property key.'
+example: '{propertyKey}'
+schema:
+  type: string

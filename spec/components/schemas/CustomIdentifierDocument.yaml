@@ -1,0 +1,12 @@
+additionalProperties: false
+type: object
+description: 'Object describing the custom identifier values for a single key.'
+properties:
+  key:
+    type: string
+    description: 'The custom identifier key.'
+  values:
+    type: array
+    description: 'The array of custom identifier values.'
+    items:
+      type: string

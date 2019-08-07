@@ -1,0 +1,11 @@
+additionalProperties: false
+type: object
+description: 'Object describing the account and actor associated with a key'
+properties:
+  account:
+    type: string
+    description: 'Account ID for this key'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  actor:
+    $ref: '#/components/schemas/ActorDocument'

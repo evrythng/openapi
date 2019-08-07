@@ -1,0 +1,75 @@
+get:
+  tags:
+    - Products
+  summary: 'Read a product'
+  description: 'Read a single product.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The product was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductDocument'
+          example:
+            id: UFrPSfP3M9QBEsRaaXtEBAca
+            createdAt: 1490949609559
+            updatedAt: 1490949609559
+            fn: 'Test product'
+            name: 'Test product'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'
+put:
+  tags:
+    - Products
+  summary: 'Update a product'
+  description: 'Update a product by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The product was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductDocument'
+          example:
+            id: UFNPxXxwVDPRQpaRwYPttarb
+            createdAt: 1490949648401
+            updatedAt: 1490950974202
+            description: 'Updated description'
+            fn: Permaproduct
+            name: Permaproduct
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ProductDocument'
+        example:
+          description: 'Test updated description'
+    description: 'The request body for updating a product.'
+    required: true
+delete:
+  tags:
+    - Products
+  summary: 'Delete a product'
+  description: 'Delete a product by ID. Deleting a product resource will remove its reference from all Thngs that point to it. This cannot be reversed!'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+  responses:
+    '200':
+      description: 'The product was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

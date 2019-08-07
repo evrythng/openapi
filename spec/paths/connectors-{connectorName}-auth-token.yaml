@@ -1,0 +1,23 @@
+post:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Authenticate with an existing token'
+  description: 'Authenticate with the connector service using an existing OAuth token.'
+  parameters:
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '202':
+      description: 'The request was accepted.'
+  x-api-keys:
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/OAuthTokenDocument'
+        example:
+          access_token: c.Kd7ahAwGn9wcZfRKEFqKlTpNU3ouQAwuujhJAGkVOBvlXCpOIyWacgi1zzsdjFeGbZivn6tVlSn856UpVMdTh8llKJLM8taMO4Hwr7YZB0Cm85uvOy0jQ7SOTnWJLEf5pFif51iGVJ8SKSBM
+          expires_in: 315360000
+    description: 'The request body to log in to a connector with an existing OAuth token.'
+    required: true

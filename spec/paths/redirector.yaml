@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Redirector
+  summary: 'Read the account Redirector'
+  description: 'Read the account-level Redirector.'
+  responses:
+    '200':
+      description: 'The account''s Redirector, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountRedirectorRulesDocument'
+          example:
+            id: Uk7CRnXRwqWxeshgVgTq9n7g
+            createdAt: 1490356832220
+            updatedAt: 1491207910634
+            rules:
+              -
+                match: thng.name=TestThng
+                name: TestRule
+                redirectUrl: 'https://google.com'
+                delegates:
+                  -
+                    app: Uk7KFKGKBXPwQKawwDYF9bPr
+                    project: UF7HfFU5q9QVEsRaaDAmbsEk
+                constants:
+                  test: value
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Redirector
+  summary: 'Update the account Redirector'
+  description: 'Update the account Redirector. Created if it does not exist.'
+  responses:
+    '200':
+      description: 'The account Redirector was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountRedirectorRulesDocument'
+          example:
+            id: Uk7CRnXRwqWxeshgVgTq9n7g
+            createdAt: 1490356832220
+            updatedAt: 1491208179520
+            rules:
+              -
+                match: thng.name=test
+                delegates:
+                  -
+                    app: Uk7KFKGKBXPwQKawwDYF9bPr
+                    project: UF7HfFU5q9QVEsRaaDAmbsEk
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccountRedirectorRulesDocument'
+        example:
+          rules:
+            -
+              match: thng.name=test
+              delegates:
+                -
+                  app: Uk7KFKGKBXPwQKawwDYF9bPr
+                  project: UF7HfFU5q9QVEsRaaDAmbsEk
+    description: 'The AccountRedirectorRulesDocument to update.'
+    required: true

@@ -1,0 +1,9 @@
+additionalProperties: false
+type: object
+description: 'Input parameters for a Short ID Generation Task.'
+properties:
+  quantity:
+    type: integer
+    description: 'Amount of short IDs to generate.'
+  shortIdTemplate:
+    $ref: '#/components/schemas/ShortIdTemplateDocument'

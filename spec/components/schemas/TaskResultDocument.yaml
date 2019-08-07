@@ -1,0 +1,42 @@
+additionalProperties: false
+type: object
+description: 'Description of the result of a batch task.'
+properties:
+  totalCount:
+    type: integer
+    description: 'The total count of generated resources.'
+    readOnly: true
+  totalThngsCreated:
+    type: integer
+    description: 'The total count of generated Thngs.'
+    readOnly: true
+  totalUrlBindingsCreated:
+    type: integer
+    description: 'The total count of generated redirections.'
+    readOnly: true
+  location:
+    type: string
+    description: 'The URL of the result file.'
+    readOnly: true
+  format:
+    $ref: '#/components/schemas/OutputParametersFormatField'
+  headers:
+    type: object
+    description: 'Key-value set of HTTP headers.'
+    readOnly: true
+  error:
+    type: string
+    description: 'The error message describing what went wrong.'
+    readOnly: true
+  failedOperationsAmount:
+    type: integer
+    description: 'Total number of failed operations.'
+    readOnly: true
+  type:
+    type: string
+    description: 'The type of result.'
+    enum:
+      - SHORT_ID_GENERATION
+      - POPULATING
+      - ERROR
+    readOnly: true

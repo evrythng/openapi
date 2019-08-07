@@ -1,0 +1,62 @@
+post:
+  tags:
+    - Actions
+  summary: 'Create an action type'
+  description: 'Create a new action type.'
+  responses:
+    '201':
+      description: 'The newly created action type.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionTypeDocument'
+          example:
+            id: Uk7WdgFAMQtehsRawgdwEkCn
+            createdAt: 1490368131932
+            updatedAt: 1490368131932
+            name: _custom
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ActionTypeDocument'
+        example:
+          name: _Example
+          description: 'A description of this action type'
+    description: 'A action type to create.'
+    required: true
+get:
+  tags:
+    - Actions
+  summary: 'Read all action types'
+  description: 'Read all action types.  The action types are returned with the built-in types coming first, followed by the custom types sorted by descending creation date.'
+  responses:
+    '200':
+      description: 'All available action types.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActionTypeDocument'
+          example:
+            -
+              name: checkins
+            -
+              name: implicitScans
+            -
+              name: scans
+            -
+              name: shares
+            -
+              id: Uk7WdgFAMQtehsRawgdwEkCn
+              createdAt: 1490368131932
+              updatedAt: 1490368131932
+              name: _custom
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'

@@ -1,0 +1,9 @@
+name: clientId
+in: path
+required: true
+description: 'An OAuth client ID.'
+example: '{clientId}'
+schema:
+  type: string
+  minLength: 45
+  maxLength: 45

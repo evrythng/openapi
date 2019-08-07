@@ -1,0 +1,7 @@
+name: connectorName
+in: path
+required: true
+description: 'A connector name.'
+example: '{connectorName}'
+schema:
+  type: string

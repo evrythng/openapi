@@ -1,0 +1,5 @@
+name: lat
+in: query
+description: 'The latitude of the query.'
+schema:
+  type: number

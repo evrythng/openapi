@@ -1,0 +1,10 @@
+type: string
+description: 'The status of the task.'
+enum:
+  - PENDING
+  - EXECUTING
+  - EXECUTED
+  - CANCELLING
+  - FAILED
+  - EXECUTED_WITH_FAILURES
+readOnly: true

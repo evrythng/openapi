@@ -1,0 +1,47 @@
+post:
+  tags:
+    - Batches
+  summary: 'Create a batch'
+  description: 'Create a batch.'
+  responses:
+    '201':
+      description: 'The batch was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BatchDocument'
+          example:
+            id: UFsd3nVC6tQBEsRwwDngYcfb
+            createdAt: 1491311173775
+            updatedAt: 1491311173775
+            name: 'Batch # R1-5 | 03-2015'
+            description: 'Batch # R1-5 | 03-2015. LEDs for bulbs.'
+            status: EMPTY
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BatchDocument'
+        example:
+          name: 'Example Batch'
+          description: 'Example Batch description.'
+    description: 'The payload used to create a batch.'
+    required: true
+get:
+  tags:
+    - Batches
+  summary: 'Read all batches'
+  description: 'Read all available batches. Use a filter to retrieve a subset of all batches created.'
+  responses:
+    '200':
+      description: 'An array of all available batches, paginated as necessary.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BatchDocument'
+  x-api-keys:
+    - Operator

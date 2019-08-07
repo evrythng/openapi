@@ -1,0 +1,49 @@
+post:
+  tags:
+    - 'Identifier Recognition'
+  summary: 'Identify from an image'
+  description: 'Identify a 1D or 2D barcode from an uploaded image.'
+  parameters:
+    -
+      $ref: '#/components/parameters/filter'
+  responses:
+    '200':
+      description: 'The request was accepted, and results may be returned.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ScanImageResultsDocument'
+  x-api-keys:
+    - 'Trusted Application'
+    - Application
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ScanImageContentDocument'
+        example:
+          image: 'data:image/png;base64,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'
+    description: 'The request body for uploading an image in Base 64 encoding format.'
+    required: true
+get:
+  tags:
+    - 'Identifier Recognition'
+  summary: 'Read an identifier'
+  description: 'Read a known identifier for its resource.'
+  parameters:
+    -
+      $ref: '#/components/parameters/filter'
+  responses:
+    '200':
+      description: 'The request was accepted, and results may be returned.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ScanImageResultsDocument'
+  x-api-keys:
+    - 'Trusted Application'
+    - Application

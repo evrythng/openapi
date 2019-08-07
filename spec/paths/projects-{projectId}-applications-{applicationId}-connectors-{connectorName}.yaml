@@ -1,0 +1,105 @@
+get:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Read an app connector'
+  description: 'Read a single connector by name within an application.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '200':
+      description: 'The requested connector, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            name: nest
+            displayName: Nest
+            url: 'http://www.nest.com'
+            image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+            authUrl: 'http://api.evrythng.com/connectors/nest/auth'
+            model:
+              structures:
+                name: 'Structure Name'
+              devices:
+                thermostats:
+                  name: 'Thermostat Name'
+                smoke_co_alarms:
+                  name: 'Smoke Alarm Name'
+            auth:
+              type: oauth
+              oAuthUrl: 'https://home.nest.com/login/oauth2'
+              tokenUrl: 'https://api.home.nest.com/oauth2/access_token'
+              clientId: 8573df3d-4434-443b-b43a-756a9a7e58c6
+              clientSecret: 8593DgGp232BaB8GFHVmACBCB
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Update a connector'
+  description: 'Update a single connector by name. Not all the fields of a connector can be updated. If the authentication parameters changed, this is considered to be a new connector and it must to be created separately as a new resource.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '200':
+      description: 'The connector was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConnectorDocument'
+          example:
+            name: nest
+            displayName: Nest
+            url: 'http://www.nest.com'
+            image: 'http://file.answcdn.com/answ-cld/image/upload/v1/tk/brand_image/c7d3fadd/c71c29fef0dd6c56a9b2777906bcf3245960c403.png'
+            authUrl: 'http://api.evrythng.com/connectors/pest/auth'
+            model:
+              structures:
+                name: 'New Structure Name'
+            auth:
+              type: oauth
+              oAuthUrl: 'https://home.nest.com/login/oauth2'
+              tokenUrl: 'https://api.home.nest.com/oauth2/access_token'
+              clientId: 8573df3d-4434-443b-b43a-756a9a7e58c6
+              clientSecret: 8593DgGp493BaB8GFHVmACBCB
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ConnectorDocument'
+        example:
+          model:
+            structures:
+              name: 'New Structure Name'
+    description: 'The request body for updating a connector.'
+    required: true
+delete:
+  tags:
+    - 'Cloud 2 Cloud'
+  summary: 'Delete a connector'
+  description: 'Delete a single connector by name. Deleting a connector for an application will delete all the Thngs that were imported from the third party cloud.'
+  parameters:
+    -
+      $ref: '#/components/parameters/projectId'
+    -
+      $ref: '#/components/parameters/applicationId'
+    -
+      $ref: '#/components/parameters/connectorName'
+  responses:
+    '200':
+      description: 'The connector was deleted successfully.'
+  x-api-keys:
+    - Operator

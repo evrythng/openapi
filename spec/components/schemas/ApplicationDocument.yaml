@@ -1,0 +1,48 @@
+additionalProperties: false
+type: object
+description: 'An object describing a platform application.'
+required:
+  - name
+  - socialNetworks
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  socialNetworks:
+    type: object
+    description: 'An array of social networks that this application will support.'
+    default: {}
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  project:
+    type: string
+    description: 'ID of the platform project this application belongs to.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  defaultUrl:
+    type: string
+    description: 'The URL where the default client app for this application is deployed.'
+  appApiKey:
+    type: string
+    description: 'The API key available to the application.'
+    readOnly: true
+    pattern: '^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789]{80}$'
+  defaultRole:
+    type: string
+    description: 'The default Application User role new Application Users created in this application will be given.'
+    minLength: 13
+    maxLength: 24
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - name
+  - project

@@ -1,0 +1,56 @@
+post:
+  tags:
+    - Schemas
+  summary: 'Create a schema'
+  description: 'Create a new schema resource.'
+  responses:
+    '201':
+      description: 'The schema was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SchemaDocument'
+          example:
+            id: UmVykKBSBXPaQpRwaECrCfWa
+            createdAt: 1497533249389
+            updatedAt: 1497533249389
+            name: 'Test Schema'
+            resourceType: thngs
+            jsonSchema: {}
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/SchemaDocument'
+        example:
+          name: 'Test Schema'
+          resourceType: thngs
+          jsonSchema: {}
+    description: 'The request body for creating a schema.'
+    required: true
+get:
+  tags:
+    - Schemas
+  summary: 'Read all schemas'
+  description: 'Read all schemas.'
+  responses:
+    '200':
+      description: 'A list of all available schemas.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchemaDocument'
+          example:
+            -
+              id: UGVyGdYaeDPaQ5awRhf7ffWc
+              createdAt: 1497535344363
+              updatedAt: 1497535344363
+              name: 'Test Schema'
+              resourceType: thngs
+              jsonSchema: {}
+  x-api-keys:
+    - Operator

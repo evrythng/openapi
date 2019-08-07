@@ -1,0 +1,73 @@
+get:
+  tags:
+    - Collections
+  summary: 'Read a collection'
+  description: 'Read a single collection by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The collection requested, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CollectionDocument'
+          example:
+            id: UF7MqQQsVXPatpaawYgnnbqh
+            createdAt: 1490866174655
+            updatedAt: 1490866174655
+            name: 'Test collection'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+put:
+  tags:
+    - Collections
+  summary: 'Update a collection'
+  description: 'Update a collection by ID. Nested fields such as `tags` are replaced with the new version in the payload. There is a limit of 10,000 Thngs updated per API call on collections. If your collection contains more than 10,000 elements you should consider an iterative solution.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The collection was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CollectionDocument'
+          example:
+            id: U2a4AsGtqerbcWD6qhYGfb5d
+            createdAt: 1477066399168
+            updatedAt: 1490867727562
+            name: 'Test collection'
+            description: 'test description'
+  x-api-keys:
+    - Operator
+    - 'Application User'
+    - 'Trusted Application'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/CollectionDocument'
+        example:
+            name: 'Test collection name'
+            description: 'Test collection description'
+    description: 'The request body for updating a collection.'
+    required: true
+delete:
+  tags:
+    - Collections
+  summary: 'Delete a collection'
+  description: 'Delete a collection by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/collectionId'
+  responses:
+    '200':
+      description: 'The collection was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

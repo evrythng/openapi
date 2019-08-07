@@ -1,0 +1,36 @@
+additionalProperties: false
+type: object
+description: 'Object containing contextual data about the action creator.'
+properties:
+  ipAddress:
+    type: string
+    description: 'The geolocation IP address of the action.'
+    readOnly: true
+  city:
+    type: string
+    description: 'The geolocation city of the action, based on the IP address.'
+    readOnly: true
+  region:
+    type: string
+    description: 'The wider region of the action.'
+    readOnly: true
+  countryCode:
+    type: string
+    description: 'The country of the action.'
+    readOnly: true
+  userAgentName:
+    type: string
+    description: 'The user agent name of the action creator''s browser or other client.'
+    readOnly: true
+  userAgent:
+    type: string
+    description: 'The user agent of the action creator''s browser or other client.'
+    readOnly: true
+  operatingSystemName:
+    type: string
+    description: 'Name of the action creator''s client operating system.'
+    readOnly: true
+  timeZone:
+    type: string
+    description: 'The timezone string, such as Europe/Paris'
+    readOnly: true

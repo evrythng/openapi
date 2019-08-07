@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Domains
+  summary: 'Read account domains'
+  description: 'Read all domains available to an account.'
+  parameters:
+    -
+      $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: 'An array of the account''s domains.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/DomainDocument'
+          example:
+            -
+              createdAt: 1519385011833
+              updatedAt: 1519385011833
+              id: 5a8ff9b3a1b3f60013492de7
+              accountId: UnFQtmpUMtQBY8wRaEystb5h
+              domain: 6rt0s.v.tn.gg
+  x-api-keys:
+    - Operator

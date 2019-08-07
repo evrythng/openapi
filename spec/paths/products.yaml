@@ -1,0 +1,57 @@
+post:
+  tags:
+    - Products
+  summary: 'Create a product'
+  description: 'Create a new product. The ID returned can be then stored in the `product` field of any Thng in the platform, which denotes that that Thng is a unique instance of this particular product.'
+  responses:
+    '201':
+      description: 'The product was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProductDocument'
+          example:
+            id: UF7sxeAnMmsEhMaRaEDPcBee
+            createdAt: 1490949178881
+            updatedAt: 1490949178881
+            fn: 'Test product'
+            name: 'Test product'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ProductDocument'
+        example:
+          name: 'Test product'
+    description: 'The request body for creating a product.'
+    required: true
+get:
+  tags:
+    - Products
+  summary: 'Read all products'
+  description: 'Read all products in the account.'
+  responses:
+    '200':
+      description: 'An array of all products available.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProductDocument'
+          example:
+            -
+              id: UFNPxXxwVDPRQpaRwYPttarb
+              createdAt: 1490949648401
+              updatedAt: 1490949648401
+              fn: Permaproduct
+              name: Permaproduct
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'

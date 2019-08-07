@@ -1,0 +1,36 @@
+additionalProperties: false
+type: object
+description: 'An object representing a Platform collection, which can contain groups of Thngs.'
+required:
+  - name
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  collections:
+    description: 'An array of collection IDs of any collections this collection belongs to.'
+    type: array
+    items:
+      type: string
+      pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    readOnly: true
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - collections
+  - identifiers
+  - name
+  - tags

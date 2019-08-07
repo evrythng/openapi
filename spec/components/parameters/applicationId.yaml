@@ -1,0 +1,8 @@
+name: applicationId
+in: path
+required: true
+description: 'An application ID.'
+example: '{applicationId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

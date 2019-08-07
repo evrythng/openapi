@@ -1,0 +1,8 @@
+name: placeId
+in: path
+required: true
+description: 'A place ID.'
+example: '{placeId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

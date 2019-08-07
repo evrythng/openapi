@@ -1,0 +1,57 @@
+get:
+  tags:
+    - 'Role Permissions'
+  summary: 'Read an Application User role''s permissions'
+  description: 'Read an array of paths and access types that an Application User with the specified role can access.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'The role''s permitted paths and types of operations permitted.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+          example:
+            -
+              path: /thngs
+              access: cru
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - 'Role Permissions'
+  summary: 'Update role permissions'
+  description: 'Update the set of permissions for a role with a new set. The payload replaces the old set of permissions for this role. This must include any existing permissions, otherwise they will be deleted if not present in the new payload. To remove a permission, simply omit it in the payload after reading from the role initially.'
+  parameters:
+    -
+      $ref: '#/components/parameters/roleId'
+  responses:
+    '200':
+      description: 'The permissions were set successfully.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+          example:
+            -
+              path: /thngs
+              access: cru
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+        example:
+          -
+            path: /thngs
+            access: cru
+    description: 'The ApplicationUserRolePermissionDocument to set new permissions.'
+    required: true

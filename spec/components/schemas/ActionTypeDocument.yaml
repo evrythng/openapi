@@ -1,0 +1,25 @@
+additionalProperties: false
+type: object
+description: 'An object describing a custom action type.'
+required:
+  - name
+properties:
+  name:
+    type: string
+    description: 'The name of the action type. Custom action types must begin with an underscore.'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - name

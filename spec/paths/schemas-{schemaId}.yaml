@@ -1,0 +1,70 @@
+get:
+  tags:
+    - Schemas
+  summary: 'Read a schema'
+  description: 'Read a single schema by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/schemaId'
+  responses:
+    '200':
+      description: 'The requested schema, if available.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SchemaDocument'
+          example:
+            id: UGVyGdYaeDPaQ5awRhf7ffWc
+            createdAt: 1497535344363
+            updatedAt: 1497535344363
+            name: 'Test Schema'
+            resourceType: thngs
+            jsonSchema: {}
+  x-api-keys:
+    - Operator
+put:
+  tags:
+    - Schemas
+  summary: 'Update a schema'
+  description: 'Update a single schema by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/schemaId'
+  responses:
+    '200':
+      description: 'The schema was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SchemaDocument'
+          example:
+            id: UGVyGdYaeDPaQ5awRhf7ffWc
+            createdAt: 1497535344363
+            updatedAt: 1497535344363
+            name: 'New Test Schema Name'
+            resourceType: thngs
+            jsonSchema: {}
+  x-api-keys:
+    - Operator
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/SchemaDocument'
+        example:
+          name: 'New Test Schema Name'
+    description: 'The request body for updating a schema.'
+    required: true
+delete:
+  tags:
+    - Schemas
+  summary: 'Delete a schema'
+  description: 'Delete a single schema by ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/schemaId'
+  responses:
+    '204':
+      description: 'The schema was deleted successfully.'
+  x-api-keys:
+    - Operator

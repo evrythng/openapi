@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Thngs
+  summary: 'Read a Device API Key'
+  description: 'Retrieve a Device API key with a Thng''s ID.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Device API key for this Thng, if it exists.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthThngDocument'
+          example:
+            thngId: UkNCRED7BDPaQKRRwhAnPaQn
+            thngApiKey: iAmmxHByiwvkSOAlvYxAFGNomeofe54lWgYarilw...
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+delete:
+  tags:
+    - Thngs
+  summary: 'Delete a Device API Key'
+  description: 'Delete a Device API key to revoke access.'
+  parameters:
+    -
+      $ref: '#/components/parameters/thngId'
+  responses:
+    '200':
+      description: 'The Device API key was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'

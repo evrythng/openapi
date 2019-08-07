@@ -1,0 +1,94 @@
+get:
+  tags:
+    - Properties
+  summary: 'Read a product property'
+  description: 'Read a single product property. By default, all the updates of this property are returned using pagination in a reverse history fashion (the first element of the returned array is the latest update). For accessing only a subset of all the updates to a single property, you can specify a time range using `?from=Timestamp` and `?to=Timestamp` to specify respectively the beginning and end of the time window. You will receive an array of all the property updates during this time.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+    -
+      $ref: '#/components/parameters/propertyKey'
+    -
+      $ref: '#/components/parameters/from'
+    -
+      $ref: '#/components/parameters/to'
+  responses:
+    '200':
+      description: 'The property was read successfully.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PropertyDocument'
+          example:
+            -
+              createdAt: 1490956152587
+              timestamp: 1490956152587
+              value: 33
+            -
+              createdAt: 1490956151587
+              timestamp: 1490956151587
+              value: 38
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - Application
+    - 'Application User'
+put:
+  tags:
+    - Properties
+  summary: 'Update a product property'
+  description: 'Update a single property by `key`.'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+    -
+      $ref: '#/components/parameters/propertyKey'
+  responses:
+    '200':
+      description: 'The single property update was applied successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PropertiesDocument'
+          example:
+            -
+              createdAt: 1490956159587
+              timestamp: 1490956159587
+              key: temperature_celcius
+              value: 33
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PropertiesDocument'
+        example:
+          -
+            key: test_key
+            value: 33
+    description: 'The request body for updating a single property.'
+    required: true
+delete:
+  tags:
+    - Properties
+  summary: 'Delete a product property'
+  description: 'Delete a product property. Property updates are not uniquely identified (do not have their own URL). Therefore, the only way to delete data points is to append the `?to=Timestamp` URL query parameter to specify a point in time before which all the data points will be removed. If the `?to=` parameter is not specified, ALL updates of this property will be deleted!'
+  parameters:
+    -
+      $ref: '#/components/parameters/productId'
+    -
+      $ref: '#/components/parameters/propertyKey'
+    -
+      $ref: '#/components/parameters/to'
+  responses:
+    '200':
+      description: 'The property was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'

@@ -1,0 +1,37 @@
+additionalProperties: false
+type: object
+description: 'An object describing a real physical place with an address.'
+properties:
+  name:
+    $ref: '#/components/schemas/NameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  position:
+    $ref: '#/components/schemas/GeoJSONPointDocument'
+  icon:
+    type: string
+    description: 'URL to an image representing the place.'
+  address:
+    $ref: '#/components/schemas/AddressDocument'
+  longitude:
+    $ref: '#/components/schemas/LongitudeField'
+  latitude:
+    $ref: '#/components/schemas/LatitudeField'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - name
+  - identifiers
+  - tags

@@ -1,0 +1,67 @@
+additionalProperties: false
+type: object
+description: 'An object describing an Application User.'
+required:
+  - firstName
+  - lastName
+  - email
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  email:
+    type: string
+    description: 'E-mail address of the user. Unique within the app.'
+  firstName:
+    type: string
+    description: 'User''s first name.'
+  lastName:
+    type: string
+    description: 'User''s last name.'
+  password:
+    type: string
+    description: 'The user''s password.'
+    minLength: 8
+    maxLength: 30
+  birthday:
+    $ref: '#/components/schemas/BirthdayDocument'
+  gender:
+    type: string
+    description: 'User''s gender.'
+    enum:
+      - male
+      - female
+  timezone:
+    type: string
+    description: 'The current timezone for the user. For example: `Pacific/Honolulu` or `Europe/Uzhgorod`).'
+  locale:
+    type: string
+    description: 'The default language tag for the user, complied with RFC 5646.'
+  photo:
+    type: string
+    description: 'URL of the user''s photo.'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  tags:
+    $ref: '#/components/schemas/TagsField'
+  project:
+    type: string
+    description: 'The project ID of the application this user belongs to.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  app:
+    type: string
+    description: 'The ID of the application this user belongs to.'
+    readOnly: true
+    pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  access:
+    $ref: '#/components/schemas/ApplicationUserAccessDocument'
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'
+x-filterable-fields:
+  - email
+  - firstName
+  - lastName

@@ -1,0 +1,10 @@
+additionalProperties: false
+type: object
+description: 'Description of the task progress in terms of individual contributions.'
+properties:
+  contributions:
+    $ref: '#/components/schemas/ContributionsDocument'
+  totalAmount:
+    type: integer
+    description: 'The total amount of generated resources so far.'
+    readOnly: true

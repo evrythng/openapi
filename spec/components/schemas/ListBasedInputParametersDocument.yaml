@@ -1,0 +1,28 @@
+additionalProperties: false
+type: object
+description: 'Specification of the task input parameters for the `LIST_BASED` type.'
+required:
+  - type
+  - generateThngs
+  - generateRedirections
+  - defaultRedirectUrl
+  - thngTemplate
+  - shortDomain
+  - inputData
+properties:
+  type:
+    $ref: '#/components/schemas/ListBasedInputParametersTypeField'
+  generateThngs:
+    $ref: '#/components/schemas/GenerateThngsField'
+  generateRedirections:
+    $ref: '#/components/schemas/GenerateRedirectionsField'
+  defaultRedirectUrl:
+    $ref: '#/components/schemas/DefaultRedirectUrlField'
+  thngTemplate:
+    $ref: '#/components/schemas/ThngDocument'
+  shortDomain:
+    $ref: '#/components/schemas/ShortDomainField'
+  inputData:
+    type: array
+    items:
+      $ref: '#/components/schemas/RedirectionResourceDocument'

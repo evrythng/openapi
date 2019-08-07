@@ -1,0 +1,5 @@
+name: maxDist
+in: query
+description: 'The maximum distance from the query origin in kilometers.'
+schema:
+  type: integer

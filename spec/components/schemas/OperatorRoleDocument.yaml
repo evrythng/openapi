@@ -1,0 +1,12 @@
+additionalProperties: false
+type: object
+description: 'Object representing an Operator role.'
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  name:
+    $ref: '#/components/schemas/NameField'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'

@@ -1,0 +1,8 @@
+name: accessId
+in: path
+description: 'An access ID.'
+required: true
+example: '{accessId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

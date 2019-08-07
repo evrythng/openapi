@@ -1,0 +1,26 @@
+additionalProperties: false
+type: object
+description: 'An object representing a Platform account.'
+properties:
+  name:
+    $ref: '#/components/schemas/AccountNameField'
+  id:
+    $ref: '#/components/schemas/IdField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  imageUrl:
+    type: string
+    description: 'The account Dashboard logo.'
+  tfaRequired:
+    type: boolean
+    description: 'Whether two-factor authentication is required for this account.'
+    readOnly: true
+  defaultUrl:
+    type: string
+    description: 'Invalid GS1 scans will redirect to this URL.'
+x-filterable-fields:
+  - name

@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Tasks
+  summary: 'Read task error logs'
+  description: 'Read the error logs, if any, for a given task. If not errors occured, there will be no logs.'
+  parameters:
+    -
+      $ref: '#/components/parameters/batchId'
+    -
+      $ref: '#/components/parameters/taskId'
+  responses:
+    '200':
+      description: 'The requested task logs, if any errors occured.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TaskLogDocument'
+          example:
+            -
+              jobId: UnNtxsSSeXPwtpaRa2NqVqKk
+              payload:
+                shortId: IDF20170004
+                thng: Un7tb8bdMGPEY6wwahscxh6m
+                thngIdentifier:
+                  key: shortId
+                  value: IDF20170004
+                urlBinding: UnNtbsbAM3shY6aawhsyShMn
+              type: ERROR
+              message: 'Failed to generate UrlBinding for [{shortId=''IDF20170004'', thng=''Un7tb8bdMGPEY6wwahscxh6m'', urlBinding=''UnNtbsbAM3shY6aawhsyShMn''}]: uniqueness constraint violated.'
+  x-api-keys:
+    - Operator
