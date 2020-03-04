@@ -98,6 +98,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ApplicationUserAccessDocument'
+              example:
+                -
+                  id: 5d5d3d37a47f8500331b2c6b
+                  project: UNBEtGtxyw4ABpRRwmpfcrCg
+                  app: UNeht3QSKtVgPnaaRtBbcNpc
+                  user: UNCNd7AYrkD6sEwwwGbeUcyr
+                  actor: UNCNd7AYrkD6sEwwwGbeUcyr
+                  apiKey: Bj9XmUdjFcYVszKLX1...
       x-api-keys:
         - 'Application User'
   '/accounts/{accountId}/accesses/{accessId}':
@@ -155,10 +163,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountDocument'
+              $ref: '#/components/schemas/AccessDocument'
             example:
               role: admin
-        description: 'The AccountDocument containing the role to create/update.'
+        description: 'The AccessDocument containing the role to create/update.'
         required: true
   '/accounts/{accountId}/accesses':
     get:
@@ -178,6 +186,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AccessDocument'
+              example:
+                -
+                  id: 5aa7f5e7f6c02e003006ace0
+                  account: UHHEQWPYeg8RtpaawkFrksDp
+                  operator: UH4YtfsYBD8wQpwwRktfsrRg
+                  apiKey: lw7dzUvfLGmdTzvv...
+                  role: admin
+                -
+                  id: 5aa7f64b6ca8b70030800024
+                  account: UHHEQWPYeg8RtpaawkFrksDp
+                  operator: UEp4rDGsnpCAF6xABbys5Amc
+                  apiKey: VBBFEv9os46i0xqm...
+                  role: admin
       x-api-keys:
         - Operator
   '/accounts/{accountId}/domains':
@@ -577,6 +598,291 @@ paths:
         - Operator
         - 'Application User'
         - 'Trusted Application'
+  '/adis/orders/{adiOrderId}/events/{orderEventId}':
+    get:
+      tags:
+        - 'ADI Orders'
+      summary: 'Read an ADI Order event'
+      description: 'Retrieve a single ADI order event by its ID.'
+      parameters:
+        -
+          $ref: '#/components/parameters/adiOrderId'
+        -
+          $ref: '#/components/parameters/orderEventId'
+        -
+          $ref: '#/components/parameters/withErrors'
+        -
+          $ref: '#/components/parameters/withIds'
+      responses:
+        '200':
+          description: 'The order event was read successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADIOrderEventDocument'
+              example:
+                id: UNTrNKg2BMsNt7wRwYymrGhm
+                status:
+                  state: pending
+                  requested: 2
+                  events:
+                    created: 0
+                    pending: 1
+                    errorsCount: 1
+                    errors:
+                      ABSDFAFQQRQ: 'Failed to create an action'
+                metadata:
+                  type: encodings
+                  tags:
+                    - example
+                ids:
+                  - serial1
+                  - serial2
+                customFields:
+                  internalId: X7JF
+                tags:
+                  - X7JF
+        '404':
+          description: "- ADI Order is not found\n- ADI Order Event is not found\n"
+      x-api-keys:
+        - Operator
+  '/adis/orders/{adiOrderId}/events':
+    post:
+      tags:
+        - 'ADI Orders'
+      summary: 'Create an ADI Order event'
+      description: 'Creates an event for actions on the ADIs (Thngs) in the specified ADI Order. This request should include the IDs to use when creating the actions.'
+      parameters:
+        -
+          $ref: '#/components/parameters/adiOrderId'
+      requestBody:
+        description: 'The details of the order event.'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ADIOrderEventDocument'
+            example:
+              metadata: null
+              type: encodings
+              tags:
+                - example
+              ids:
+                - serial1
+                - serial2
+              customFields:
+                internalId: X7JF
+      responses:
+        '201':
+          description: 'The order event was created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADIOrderEventDocument'
+              example:
+                metadata:
+                  type: encodings
+                  tags:
+                    - example
+                ids:
+                  - serial1
+                  - serial2
+                customFields:
+                  internalId: X7JF
+                tags:
+                  - X7JF
+        '400':
+          description: "Unsupported character set.\nID array length is greater than allowed.\nGiven account was not found.\nThe action type doesn't exist in account/targetAccount.\nThere are IDs which were not specified in IDs array of the ADI order.\n"
+        '415':
+          description: 'The payload must be valid JSON and the ''Content-type: application/json'' header set.'
+        '423':
+          description: 'Adi Order has not been finished yet'
+      x-api-keys:
+        - Operator
+    get:
+      tags:
+        - 'ADI Orders'
+      summary: 'Read all ADI Order events'
+      description: 'Retrieves all ADI Order events belonging to the specified ADI Order'
+      parameters:
+        -
+          $ref: '#/components/parameters/adiOrderId'
+      responses:
+        '200':
+          description: 'List of ADI order events'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ADIOrderEventDocument'
+              example:
+                -
+                  metadata: null
+                  type: encodings
+                  tags:
+                    - example
+                  ids:
+                    - serial1
+                    - serial2
+                  customFields:
+                    internalId: X7JF
+        '404':
+          description: 'ADI order not found'
+      x-api-keys:
+        - Operator
+  '/adis/orders/{adiOrderId}':
+    get:
+      tags:
+        - 'ADI Orders'
+      summary: 'Read an ADI Order'
+      description: 'Retrieve a single ADI order by its ID.'
+      parameters:
+        -
+          $ref: '#/components/parameters/adiOrderId'
+        -
+          $ref: '#/components/parameters/withErrors'
+        -
+          $ref: '#/components/parameters/withIds'
+      responses:
+        '200':
+          description: 'The order was read successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADIOrderDocument'
+              example:
+                id: UNTrNKg2BMsNt7wRwYymrGhm
+                status:
+                  state: pending
+                  requested: 2
+                  created: 0
+                  pending: 0
+                  errorsCount: 0
+                purchaseOrder: '234567890'
+                metadata:
+                  identifierKey: 'gs1:21'
+                  customFields:
+                    factory: '0400321'
+                  product: 'gs1:01:9780345418913'
+                  tags:
+                    - 'factory:0400321'
+                  shortDomain: tn.gg
+                  defaultRedirectUrl: 'https://evrythng.com?id={shortId}'
+                identifiers:
+                  internalId: X7JF
+                tags:
+                  - X7JF
+        '404':
+          description: 'The order was not found'
+      x-api-keys:
+        - Operator
+  /adis/orders:
+    post:
+      tags:
+        - 'ADI Orders'
+      summary: 'Create an ADI Order'
+      description: 'Create an order for new ADI (Thngs). This order should include the IDs to use when generating the ADIs.'
+      requestBody:
+        description: 'The details of the order.'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ADIOrderDocument'
+            example:
+              ids:
+                - serial1
+                - serial2
+              purchaseOrder: '234567890'
+              metadata:
+                identifierKey: 'gs1:21'
+                customFields:
+                  factory: '0400321'
+                product: 'gs1:01:9780345418913'
+                tags:
+                  - 'factory:0400321'
+                shortDomain: tn.gg
+                defaultRedirectUrl: 'https://evrythng.com?id={shortId}'
+              identifiers:
+                internalId: X7JF
+              tags:
+                - X7JF
+        required: true
+      responses:
+        '201':
+          description: 'The order was placed successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ADIOrderDocument'
+              example:
+                id: UNTrNKg2BMsNt7wRwYymrGhm
+                status:
+                  state: pending
+                  requested: 2
+                  created: 0
+                  pending: 0
+                  errorsCount: 0
+                purchaseOrder: '234567890'
+                metadata:
+                  identifierKey: 'gs1:21'
+                  customFields:
+                    factory: '0400321'
+                  product: 'gs1:01:9780345418913'
+                  tags:
+                    - 'factory:0400321'
+                  shortDomain: tn.gg
+                  defaultRedirectUrl: 'https://evrythng.com?id={shortId}'
+                identifiers:
+                  internalId: X7JF
+                tags:
+                  - X7JF
+        '400':
+          description: "Unsupported character set.\nToo many ADIs to be created.\nGiven account was not found.\n"
+        '415':
+          description: 'The payload must be valid JSON and the ''Content-type: application/json'' header set.'
+      x-api-keys:
+        - Operator
+    get:
+      tags:
+        - 'ADI Orders'
+      summary: 'Read all ADI Orders'
+      description: 'Retrieve a list of ADI Orders.'
+      parameters:
+        -
+          $ref: '#/components/parameters/perPage'
+        -
+          $ref: '#/components/parameters/nextPageToken'
+      responses:
+        '200':
+          description: 'The request was successfull.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ADIOrderDocument'
+              example:
+                -
+                  id: UNTrNKg2BMsNt7wRwYymrGhm
+                  purchaseOrder: '234567890'
+                  metadata:
+                    identifierKey: 'gs1:21'
+                    customFields:
+                      factory: '0400321'
+                    product: 'gs1:01:9780345418913'
+                    tags:
+                      - 'factory:0400321'
+                    shortDomain: tn.gg
+                    defaultRedirectUrl: 'https://evrythng.com?id={shortId}'
+                  identifiers:
+                    internalId: X7JF
+                  tags:
+                    - X7JF
+        '400':
+          description: 'Bad request. Query parameters provided are incorrect.'
+      x-api-keys:
+        - Operator
   /applications/me:
     get:
       tags:
@@ -1133,6 +1439,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/BatchDocument'
+              example:
+                -
+                  id: UNfMKGGf7kgMsERwwm3bqafe
+                  createdAt: 1566357909459
+                  updatedAt: 1566357918733
+                  name: 'Test Batch'
+                  status: COMPLETE
       x-api-keys:
         - Operator
   '/collections/{collectionId}/actions/{actionType}/{actionId}':
@@ -1307,8 +1620,8 @@ paths:
               type: array
               items:
                 type: string
-              example:
-                - Ukr6sEY7Bg8w9pRawDUgYDdh
+            example:
+              - Ukr6sEY7Bg8w9pRawDUgYDdh
         description: 'A list of collection IDs to add to the collection.'
         required: true
     get:
@@ -1408,8 +1721,8 @@ paths:
               type: array
               items:
                 type: string
-              example:
-                - UkNCRED7BDPaQKRRwhAnPaQn
+            example:
+              - UkNCRED7BDPaQKRRwhAnPaQn
         description: 'A list of Thng IDs to add to the collection.'
         required: true
     get:
@@ -1912,7 +2225,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LocationDocument'
+              $ref: '#/components/schemas/PlaceDocument'
             example:
               name: 'Evrythng London Office'
               position:
@@ -1928,8 +2241,6 @@ paths:
                 countryCode: GB
               description: 'London HQ'
               icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
-        description: 'The LocationDocument containing the fields to create.'
-        required: true
     get:
       tags:
         - Places
@@ -2219,9 +2530,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PropertyDocument'
+                $ref: '#/components/schemas/PropertiesDocument'
               example:
                 -
                   createdAt: 1490953506826
@@ -2257,9 +2566,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PropertyDocument'
+                $ref: '#/components/schemas/PropertiesDocument'
               example:
                 -
                   createdAt: 1490955243760
@@ -3258,7 +3565,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/SecretKeyDocument'
               example:
                 secretApiKey: oEdxM3LcE351wLg1Zb2co6KmCLGIIUDmUNVKqbjb...
       x-api-keys:
@@ -3544,6 +3851,350 @@ paths:
                     - tn.gg
       x-api-keys:
         - Operator
+  '/purchaseOrders/{purchaseOrderId}':
+    get:
+      summary: 'Read a purchase order'
+      description: 'Read a purchase order resource.'
+      tags:
+        - 'Purchase Orders'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/purchaseOrderId'
+      responses:
+        '200':
+          description: 'The purchase order was found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderDocument'
+              example:
+                id: '1234567890'
+                evrythngId: UsStxg3pkgabqngdmrecpfeb
+                status: open
+                type: stand-alone
+                description: 'A purchase order for 100 items'
+                issueDate: '2019-02-14'
+                parties:
+                  -
+                    id: 'gs1:414:943234'
+                    type: supplier
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    id: 'gs1:414:NA0193'
+                    type: ship-to
+                lines:
+                  -
+                    id: '00010'
+                    quantity: 100
+                    product: 'gs1:01:00000123456789'
+                    exportDate: '2019-02-17'
+                    deliveryDate: '2019-02-20'
+                version: '1'
+                createdAt: 1550143360591
+                updatedAt: 1550143360591
+        '404':
+          description: 'The purchase order was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 404
+                errors:
+                  - 'The requested resource was not found.'
+                code: 16842752
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752'
+    put:
+      summary: 'Update a purchase order'
+      description: 'Update a purchase order resource by ID.'
+      tags:
+        - 'Purchase Orders'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/purchaseOrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderDocument'
+            example:
+              id: '234567890'
+              status: open
+              type: stand-alone
+              description: 'A purchase order for 100 items'
+              issueDate: '2019-02-14'
+              parties:
+                -
+                  id: 'gs1:414:943234'
+                  type: supplier
+                -
+                  id: 'gs1:414:01251'
+                  type: ship-from
+                -
+                  id: 'gs1:414:NA0193'
+                  type: ship-to
+              lines:
+                -
+                  id: '00010'
+                  quantity: 100
+                  product: 'gs1:01:00000123456789'
+                  exportDate: '2019-02-17'
+                  deliveryDate: '2019-02-20'
+      responses:
+        '200':
+          description: 'The Purchase Order was updated.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderDocument'
+              example:
+                id: '1234567890'
+                evrythngId: UsStxg3pkgabqngdmrecpfeb
+                status: open
+                type: stand-alone
+                description: 'A purchase order for 100 items'
+                issueDate: '2019-02-14'
+                parties:
+                  -
+                    id: 'gs1:414:943234'
+                    type: supplier
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    id: 'gs1:414:NA0193'
+                    type: ship-to
+                lines:
+                  -
+                    id: '00010'
+                    quantity: 100
+                    product: 'gs1:01:00000123456789'
+                    exportDate: '2019-02-17'
+                    deliveryDate: '2019-02-20'
+                version: '1'
+                createdAt: 1550143360591
+                updatedAt: 1550143456043
+        '400':
+          description: 'Purchase order update payload did not validate.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 400
+                errors:
+                  - 'Purchase order id in request body does not match id in url.'
+                code: 50593792
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792'
+        '404':
+          description: 'The Purchase Order was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 404
+                errors:
+                  - 'The requested resource was not found.'
+                code: 16842752
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752'
+    delete:
+      summary: 'Delete a purchase order'
+      description: 'Delete a purchase order resource by ID.'
+      tags:
+        - 'Purchase Orders'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/purchaseOrderId'
+      responses:
+        '204':
+          description: 'The Purchase Order was deleted.'
+        '404':
+          description: 'The Purchase Order was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 404
+                errors:
+                  - 'The purchase order does not exist.'
+                code: 16842752
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752'
+  /purchaseOrders:
+    post:
+      summary: 'Create a purchase order'
+      description: 'Create a new purchase order resource.'
+      tags:
+        - 'Purchase Orders'
+      x-api-keys:
+        - Operator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderDocument'
+            example:
+              id: '234567890'
+              status: open
+              type: stand-alone
+              description: 'A purchase order for 100 items'
+              issueDate: '2019-02-14'
+              parties:
+                -
+                  id: 'gs1:414:943234'
+                  type: supplier
+                -
+                  id: 'gs1:414:01251'
+                  type: ship-from
+                -
+                  id: 'gs1:414:NA0193'
+                  type: ship-to
+              lines:
+                -
+                  id: '00010'
+                  quantity: 100
+                  product: 'gs1:01:00000123456789'
+                  exportDate: '2019-02-17'
+                  deliveryDate: '2019-02-20'
+      responses:
+        '201':
+          description: 'The purchase order was successfully created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderDocument'
+              example:
+                id: '234567890'
+                evrythngId: U8xtbEasDmbnhagkfsbgbpdr
+                status: open
+                type: stand-alone
+                description: 'A purchase order for 100 items'
+                issueDate: '2019-02-14'
+                parties:
+                  -
+                    id: 'gs1:414:943234'
+                    type: supplier
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    id: 'gs1:414:NA0193'
+                    type: ship-to
+                lines:
+                  -
+                    id: '00010'
+                    quantity: 100
+                    product: 'gs1:01:00000123456789'
+                    exportDate: '2019-02-17'
+                    deliveryDate: '2019-02-20'
+                version: '1'
+                createdAt: 1550143360591
+                updatedAt: 1550143360591
+        '400':
+          description: 'A purchase order was not created because the request was invalid.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 400
+                errors:
+                  - 'PurchaseOrder should have required property ''type'''
+                code: 50331648
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50331648'
+        '409':
+          description: 'A purchase order was not created because one with the same ID already exists.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 409
+                errors:
+                  - 'The purchase order already exists'
+                code: 67239936
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-67239936'
+    get:
+      summary: 'Read all purchase orders'
+      description: 'List purchase orders in an account'
+      tags:
+        - 'Purchase Orders'
+      x-api-keys:
+        - Operator
+      responses:
+        '200':
+          description: 'A list of purchase orders'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseOrderDocument'
+              example:
+                -
+                  id: '234567890'
+                  evrythngId: U8xtbEasDmbnhagkfsbgbpdr
+                  status: open
+                  type: stand-alone
+                  description: 'A purchase order for 100 items'
+                  issueDate: '2019-02-14'
+                  parties:
+                    -
+                      id: 'gs1:414:943234'
+                      type: supplier
+                    -
+                      id: 'gs1:414:01251'
+                      type: ship-from
+                    -
+                      id: 'gs1:414:NA0193'
+                      type: ship-to
+                  lines:
+                    -
+                      id: '00010'
+                      quantity: 100
+                      product: 'gs1:01:00000123456789'
+                      exportDate: '2019-02-17'
+                      deliveryDate: '2019-02-20'
+                  version: '1'
+                  createdAt: 1550143360591
+                  updatedAt: 1550143360591
+                -
+                  id: '234567891'
+                  evrythngId: UsStxg3pkgabqngdmrecpfeb
+                  status: open
+                  type: stand-alone
+                  description: 'A purchase order for 10 items'
+                  issueDate: '2019-02-01'
+                  parties:
+                    -
+                      id: 'gs1:414:92431223'
+                      type: supplier
+                    -
+                      id: 'gs1:414:9382392'
+                      type: ship-from
+                    -
+                      id: 'gs1:414:NA0193'
+                      type: ship-to
+                  lines:
+                    -
+                      id: '00010'
+                      quantity: 10
+                      product: 'gs1:01:00000123456789'
+                      exportDate: '2019-02-10'
+                      deliveryDate: '2019-02-13'
+                  createdAt: 1550143360594
+                  updatedAt: 1550143360594
   /rateLimits:
     get:
       tags:
@@ -3667,9 +4318,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+                $ref: '#/components/schemas/ApplicationUserRolePermissionsDocument'
               example:
                 -
                   path: /thngs
@@ -3690,9 +4339,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+                $ref: '#/components/schemas/ApplicationUserRolePermissionsDocument'
               example:
                 -
                   path: /thngs
@@ -3703,7 +4350,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
+              $ref: '#/components/schemas/ApplicationUserRolePermissionsDocument'
             example:
               -
                 path: /thngs
@@ -3981,6 +4628,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ScanImageResultsDocument'
+              example:
+                -
+                  results:
+                    -
+                      redirections:
+                        - 'https://tn.gg/yyZZ1nAh'
+                      product:
+                        id: UYKNDMGcswyFBdf6wr7M5Erm
+                        properties: {}
+                        name: 'Box of Cereals'
+                        identifiers: {}
+                  meta:
+                    method: 2d
+                    score: 100
+                    value: 'https://tn.gg/yyZZ1nAh'
+                    type: qr_code
       x-api-keys:
         - 'Trusted Application'
         - Application
@@ -4010,6 +4673,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ScanImageResultsDocument'
+              example:
+                -
+                  results:
+                    -
+                      redirections:
+                        - 'https://tn.gg/Q9Wqcg4w'
+                      product:
+                        id: UYKNDMGcswyFBdf6wr7M5Erm
+                        properties: {}
+                        name: 'Box of Cereals'
+                        identifiers: {}
+                  meta:
+                    method: 2d
+                    score: 100
+                    value: 'https://tn.gg/Q9Wqcg4w'
+                    type: qr_code
       x-api-keys:
         - 'Trusted Application'
         - Application
@@ -4139,6 +4818,537 @@ paths:
                   name: 'Test Schema'
                   resourceType: thngs
                   jsonSchema: {}
+      x-api-keys:
+        - Operator
+  '/shipmentNotices/{shipmentNoticeId}':
+    get:
+      x-api-status: Beta
+      summary: 'Read a shipment notice'
+      description: 'Read a shipment notice resource.'
+      tags:
+        - 'Shipment Notices'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/shipmentNoticeId'
+      responses:
+        '200':
+          description: 'The shipment notice was found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentNoticeDocument'
+              example:
+                id: Un9MbDrTBXsatpawwkbDRHdb
+                asnId: '9827429837429823828273'
+                version: '1'
+                purchaseOrderId: '4700990774'
+                issueDate: '2019-06-19T16:39:57-08:00'
+                transportation: 'Expedited Freight'
+                parties:
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    name: 'The Landmark, Shop No. G14'
+                    type: ship-to
+                    address:
+                      street: '113-114, Central'
+                      city: 'Hong Kong'
+                tags:
+                  - ongoing
+                  - important
+                  - access-all
+                createdAt: 1550143360591
+                updatedAt: 1550143360591
+        '404':
+          description: 'The shipment notice was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 404
+                errors:
+                  - 'The requested resource was not found.'
+                code: 16842752
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752'
+    put:
+      x-api-status: Beta
+      summary: 'Update a shipment notice'
+      description: 'Update a shipment notice resource.'
+      tags:
+        - 'Shipment Notices'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/shipmentNoticeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentNoticeDocument'
+            example:
+              asnId: '9827429837429823828273'
+              version: '2'
+              purchaseOrderId: '4700990774'
+              issueDate: '2019-06-19T16:39:57-08:00'
+              transportation: 'Expedited Freight'
+              parties:
+                -
+                  id: 'gs1:414:01251'
+                  type: ship-from
+                -
+                  name: 'The Landmark, Shop No. G14'
+                  type: ship-to
+                  address:
+                    street: '113-114, Central'
+                    city: 'Hong Kong'
+              tags:
+                - ongoing
+                - important
+                - access-all
+      responses:
+        '200':
+          description: 'The shipment notice was updated.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentNoticeDocument'
+              example:
+                id: Un9MbDrTBXsatpawwkbDRHdb
+                asnId: '9827429837429823828273'
+                version: '2'
+                purchaseOrderId: '4700990774'
+                issueDate: '2019-06-19T16:39:57-08:00'
+                transportation: 'Expedited Freight'
+                parties:
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    name: 'The Landmark, Shop No. G14'
+                    type: ship-to
+                    address:
+                      street: '113-114, Central'
+                      city: 'Hong Kong'
+                tags:
+                  - ongoing
+                  - important
+                  - access-all
+                createdAt: 1550143360591
+                updatedAt: 1550143860591
+        '400':
+          description: 'Shipment notice update payload did not validate.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 400
+                errors:
+                  - 'Shipment notice should have at least two parties.'
+                code: 50593792
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792'
+        '404':
+          description: 'The shipment notice was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 404
+                errors:
+                  - 'The requested resource was not found.'
+                code: 16842752
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752'
+    delete:
+      x-api-status: Beta
+      summary: 'Delete a shipment notice'
+      description: 'Delete a shipment notice resource.'
+      tags:
+        - 'Shipment Notices'
+      x-api-keys:
+        - Operator
+      parameters:
+        -
+          $ref: '#/components/parameters/shipmentNoticeId'
+      responses:
+        '204':
+          description: 'The shipment notice was deleted.'
+  /shipmentNotices:
+    post:
+      x-api-status: Beta
+      summary: 'Create a shipment notice'
+      description: 'Create a new shipment notice resource.'
+      tags:
+        - 'Shipment Notices'
+      x-api-keys:
+        - Operator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentNoticeDocument'
+            example:
+              asnId: '9827429837429823828273'
+              version: '1'
+              purchaseOrderId: '4700990774'
+              issueDate: '2019-06-19T16:39:57-08:00'
+              transportation: 'Expedited Freight'
+              parties:
+                -
+                  id: 'gs1:414:01251'
+                  type: ship-from
+                -
+                  name: 'The Landmark, Shop No. G14'
+                  type: ship-to
+                  address:
+                    street: '113-114, Central'
+                    city: 'Hong Kong'
+              contents:
+                -
+                  product: 'gs1:01:00001254563898'
+                  quantity: 250
+                -
+                  product: 'gs1:01:00283679123844'
+                  quantity: 42
+              tags:
+                - ongoing
+                - important
+                - access-all
+      responses:
+        '201':
+          description: 'The shipment notice was successfully created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentNoticeDocument'
+              example:
+                id: Un9MbDrTBXsatpawwkbDRHdb
+                asnId: '9827429837429823828273'
+                version: '1'
+                purchaseOrderId: '4700990774'
+                issueDate: '2019-06-19T16:39:57-08:00'
+                transportation: 'Expedited Freight'
+                parties:
+                  -
+                    id: 'gs1:414:01251'
+                    type: ship-from
+                  -
+                    name: 'The Landmark, Shop No. G14'
+                    type: ship-to
+                    address:
+                      street: '113-114, Central'
+                      city: 'Hong Kong'
+                contents:
+                  -
+                    product: 'gs1:01:00001254563898'
+                    quantity: 250
+                  -
+                    product: 'gs1:01:00283679123844'
+                    quantity: 42
+                tags:
+                  - ongoing
+                  - important
+                  - access-all
+                createdAt: 1550143360591
+                updatedAt: 1550143360591
+        '400':
+          description: 'A shipment notice was not created because the request was invalid.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 400
+                errors:
+                  - 'Shipment notice should have required property ''id'''
+                code: 50331648
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50331648'
+        '409':
+          description: 'A shipment notice was not created because one with the same ID already exists.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+              example:
+                status: 409
+                errors:
+                  - 'The shipment notice already exists'
+                code: 67239936
+                moreInfo: 'https://developers.evrythng.com/docs/http-verbs-errors#client-errors-67239936'
+    get:
+      x-api-status: Beta
+      summary: 'Read all shipment notices'
+      description: 'Read all shipment notices in an account'
+      tags:
+        - 'Shipment Notices'
+      x-api-keys:
+        - Operator
+      x-filterable-fields:
+        - tags
+        - status
+        - purchaseOrderId
+      responses:
+        '200':
+          description: 'A list of shipment notices was returned successfully'
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 'List of shipment notices returned'
+                items:
+                  $ref: '#/components/schemas/ShipmentNoticeDocument'
+              example:
+                -
+                  asnId: '9827429837429823828273'
+                  id: Un9MbDrTBXsatpawwkbDRHdb
+                  version: '1'
+                  purchaseOrderId: '4700990774'
+                  issueDate: '2019-06-19T16:39:57-08:00'
+                  transportation: 'Expedited Freight'
+                  parties:
+                    -
+                      id: 'gs1:414:01251'
+                      type: ship-from
+                    -
+                      name: 'The Landmark, Shop No. G14'
+                      type: ship-to
+                      address:
+                        street: '113-114, Central'
+                        city: 'Hong Kong'
+                  tags:
+                    - ongoing
+                    - important
+                    - access-all
+                  createdAt: 1550143360591
+                  updatedAt: 1550143360591
+                -
+                  asnId: 'ASN:39842734:FASSLK'
+                  id: UrVeSHdrBD8a9pwwRpHVAnYf
+                  version: '12'
+                  purchaseOrderId: '5230917486'
+                  issueDate: '2018-05-13T12:00:00-03:00'
+                  transportation: Truckload
+                  createdAt: 1550143360591
+                  updatedAt: 1550143360591
+                  parties:
+                    -
+                      id: 'factory:23048273'
+                      type: ship-from
+                    -
+                      name: 'GREOLE HUB'
+                      type: ship-to
+                      address:
+                        country: CN
+                        latitude: 43.493847983
+                        longitude: 56.342948273
+                    -
+                      name: 'GREOLE TRST. Co.'
+                      type: bill-to
+                      address:
+                        country: CN
+                        latitude: 43.837298364
+                        longitude: 56.4998243
+  '/thngs/{thngIdentifier}/actions/commissions':
+    post:
+      tags:
+        - Commissioning
+      summary: 'Commission a Thng'
+      description: 'Assign a product to a Thng and create and action of type commissions.'
+      parameters:
+        -
+          $ref: '#/components/parameters/thngIdentifier'
+      requestBody:
+        description: 'Details of the commissioning action.'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommissionDocument'
+            example:
+              product: 'gs1:01:05000157089908'
+              purchaseOrder: '2300003783'
+              occurredAt: '2019-01-25T09:19:00Z'
+              factoryMetadata:
+                factory: 'gs1:414:87923487'
+              location:
+                position:
+                  type: Point
+                  coordinates:
+                    - -0.08005
+                    - 51.527668
+      responses:
+        '200':
+          description: 'The commissions action was successfully created.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionDocument'
+              example:
+                id: UqV4N2FwpQWbRUwwRmkRwxfm
+                createdAt: 1548408960778
+                customFields:
+                  purchaseOrder: '2300003783'
+                  factory: 'gs1:414:87923487'
+                timestamp: 1548408960778
+                type: commissions
+                location:
+                  latitude: 51.527668
+                  longitude: -0.08005
+                  position:
+                    type: Point
+                    coordinates:
+                      - -0.08005
+                      - 51.527668
+                locationSource: unknown
+                context:
+                  ipAddress: 141.0.154.202
+                  city: 'City of London'
+                  region: England
+                  countryCode: GB
+                  userAgent: ReactorNetty/0.8.4.RELEASE
+                  timeZone: Europe/London
+                thng: UMen7ds4s6HKsBRRarB4FArq
+                product: U5sHN4k8CynCtcwRwGTXGsVp
+        '400':
+          description: 'One of dependent resources (product, Factory place or Purchase Order) was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '404':
+          description: 'The target Thng was not found.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '409':
+          description: "Thng has not been encoded yet or has already been commissioned\nThe Factory is not specified while the Thng requires it\nThe Factory is specified but differs with the Factory of the Thng\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+      x-api-keys:
+        - Operator
+  '/thngs/{thngIdentifier}/actions/decommissions':
+    post:
+      tags:
+        - Commissioning
+      summary: 'Decommission a Thng'
+      description: 'Removes the product assignment from a Thng and creates an action of type decommissions.'
+      parameters:
+        -
+          $ref: '#/components/parameters/thngIdentifier'
+      requestBody:
+        description: 'Details of the decommission event.'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecommissionDocument'
+            example:
+              occurredAt: '2019-01-26T09:19:00Z'
+              factoryMetadata:
+                factory: 'gs1:414:87923487'
+              location:
+                position:
+                  type: Point
+                  coordinates:
+                    - -0.08005
+                    - 51.527668
+      responses:
+        '200':
+          description: 'Decommission was successful'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionDocument'
+              example:
+                id: UMBnPhMes6n5PewRa7frwqXn
+                createdAt: 1548412868140
+                timestamp: 1548412868140
+                type: decommissions
+                customFields:
+                  factory: 'gs1:414:87923487'
+                location:
+                  latitude: 51.527668
+                  longitude: -0.08005
+                  position:
+                    type: Point
+                    coordinates:
+                      - -0.08005
+                      - 51.527668
+                locationSource: unknown
+                context:
+                  ipAddress: 141.0.154.202
+                  city: 'City of London'
+                  region: England
+                  countryCode: GB
+                  userAgent: ReactorNetty/0.8.4.RELEASE
+                  timeZone: Europe/London
+                thng: UMen7ds4s6HKsBRRarB4FArq
+        '400':
+          description: 'One of the dependent resources (Place, Factory) was not found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '404':
+          description: 'The target Thng was not found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '409':
+          description: "The Thng has already been decommissioned or has never been commissioned\nThe Factory is not specified while the Thng requires it\nThe Factory is specified but differs with the Factory of the Thng\n"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+      x-api-keys:
+        - Operator
+  '/thngs/{thngIdentifier}/commissionState':
+    get:
+      tags:
+        - Commissioning
+      summary: 'Read Thng commissioning state'
+      description: 'Returns the commissioning state of a Thng'
+      parameters:
+        -
+          $ref: '#/components/parameters/thngIdentifier'
+      responses:
+        '200':
+          description: 'Commissioning state of the Thng was successfully returned'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateDocument'
+              example:
+                state: commissioned
+        '400':
+          description: 'Invalid filter value'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '409':
+          description: 'More than one Thng was found for the specified identifier.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
+        '500':
+          description: 'Failed to get state of the Thng'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDocument'
       x-api-keys:
         - Operator
   '/thngs/{thngId}/actions/{actionType}/{actionId}':
@@ -4349,20 +5559,20 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/LocationDocument'
-              example:
-                -
-                  position:
-                    type: Point
-                    coordinates:
-                      - -17.3
-                      - 36
-                -
-                  timestamp: 1347028945711
-                  position:
-                    type: Point
-                    coordinates:
-                      - -179.3
-                      - -37
+            example:
+              -
+                position:
+                  type: Point
+                  coordinates:
+                    - -17.3
+                    - 36
+              -
+                timestamp: 1347028945711
+                position:
+                  type: Point
+                  coordinates:
+                    - -179.3
+                    - -37
         description: 'The LocationDocument to update the Thng''s location.'
         required: true
     delete:
@@ -4396,9 +5606,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PropertyDocument'
+                $ref: '#/components/schemas/PropertiesDocument'
               example:
                 -
                   createdAt: 1490956159587
@@ -4441,9 +5649,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PropertyDocument'
+                $ref: '#/components/schemas/PropertiesDocument'
               example:
                 -
                   createdAt: 1490956159587
@@ -4487,9 +5693,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PropertyDocument'
+                $ref: '#/components/schemas/PropertiesDocument'
               example:
                 -
                   createdAt: 1490953506826
@@ -4836,7 +6040,7 @@ paths:
     get:
       tags:
         - 'Application Users'
-      summary: 'Read an Application User''s activation status.'
+      summary: 'Read an Application User''s activation status'
       description: 'Read a single Application User''s activation status but their `evrythngUser` ID.'
       parameters:
         -
@@ -5015,6 +6219,15 @@ components:
       example: '{actionType}'
       schema:
         type: string
+    adiOrderId:
+      name: adiOrderId
+      in: path
+      required: true
+      description: 'A 24 character EVRYTHNG resource ID for the ADI Order.'
+      example: U5DBbKK5mXQBVeaaa4xqpp2t
+      schema:
+        type: string
+        pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
     applicationId:
       name: applicationId
       in: path
@@ -5099,6 +6312,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    ids:
+      name: ids
+      in: query
+      description: 'Comma-separated list of resource ids to return.'
+      example: 'UNEdEQ5nFdMYPPyQxTcNqfnb,UNEdEQ6nFdMYPPyQxTcNqfnb'
+      schema:
+        type: string
     latitude:
       name: lat
       in: query
@@ -5117,6 +6337,29 @@ components:
       description: 'The maximum distance from the query origin in kilometers.'
       schema:
         type: integer
+    nextPageToken:
+      in: query
+      name: nextPageToken
+      description: 'The pagination parameter used to address the next page of results.'
+      required: false
+      schema:
+        type: string
+    orderEventId:
+      name: orderEventId
+      in: path
+      required: true
+      description: 'A 24 character EVRYTHNG resource ID for the ADI Order event.'
+      example: U5DBbKK5mXQBVeaaa4xqpp2t
+      schema:
+        type: string
+        pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    perPage:
+      in: query
+      name: perPage
+      description: 'The pagination parameter specifying the number of resources to return in one response.'
+      required: false
+      schema:
+        type: number
     placeId:
       name: placeId
       in: path
@@ -5161,6 +6404,17 @@ components:
       example: '{propertyKey}'
       schema:
         type: string
+    purchaseOrderId:
+      name: purchaseOrderId
+      in: path
+      description: 'The unique purchase order identifier. May also be the evrythngId from the purchase order.'
+      example: '1234567890'
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 32
+        pattern: '^[a-zA-Z0-9_+-.@]+$'
     roleId:
       name: roleId
       in: path
@@ -5188,6 +6442,20 @@ components:
       schema:
         type: string
         pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    shipmentNoticeId:
+      name: shipmentNoticeId
+      in: path
+      required: true
+      description: 'The shipment notice ID.'
+      schema:
+        type: string
+    sortOrder:
+      name: sortOrder
+      in: query
+      description: 'The pagination parameter specifying the order of sorting of resources to return. The descending order is used by default, but ascending is also available. To specify a preference, use with a value of DESCENDING or ASCENDING.'
+      example: DESCENDING
+      schema:
+        type: string
     taskId:
       name: taskId
       in: path
@@ -5206,6 +6474,14 @@ components:
       schema:
         type: string
         pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
+    thngIdentifier:
+      name: thngIdentifier
+      in: path
+      description: 'Any valid Thng ID or identifier string separated by '':''.'
+      required: true
+      example: 'gs1:21:02374837684278'
+      schema:
+        type: string
     to:
       name: to
       in: query
@@ -5213,6 +6489,20 @@ components:
       schema:
         type: integer
         minimum: 0
+    withErrors:
+      in: query
+      name: withErrors
+      description: 'If set to true the response will contain status with error details.'
+      required: false
+      schema:
+        type: boolean
+    withIds:
+      in: query
+      name: withIds
+      description: 'If set to true, the response will contain a list of IDs in the ADI order or ADI order event.'
+      required: false
+      schema:
+        type: boolean
   requestBodies: {}
   securitySchemes:
     Authorization:
@@ -5220,6 +6510,231 @@ components:
       name: Authorization
       in: header
   schemas:
+    ADIOrderDocument:
+      description: 'Object describing the order of ADIs to generate.'
+      type: object
+      required:
+        - metadata
+        - purchaseOrder
+      properties:
+        id:
+          $ref: '#/components/schemas/IdField'
+        status:
+          $ref: '#/components/schemas/ADIOrderStatusDocument'
+        result:
+          type: string
+          description: 'The result of the order once it has been completed.'
+          enum:
+            - SUCCEEDED
+            - FAILED
+            - SUCCEEDED_WITH_FAILURES
+        metadata:
+          $ref: '#/components/schemas/ADIOrderMetadataDocument'
+        purchaseOrder:
+          type: string
+          description: 'ID of the associated purchase order.'
+          example: 7328468
+        ids:
+          type: array
+          description: 'Array of string IDs to be used for each generated ADI.'
+          items:
+            type: string
+          uniqueItems: true
+          example:
+            - 827bd8a2
+            - 897c9a7d
+            - 90ab78a6
+        customFields:
+          $ref: '#/components/schemas/CustomFieldsDocument'
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersDocument'
+        tags:
+          $ref: '#/components/schemas/TagsDocument'
+        idGeneration:
+          $ref: '#/components/schemas/ADIOrderIDGenerationDocument'
+    ADIOrderErrorDetailsDocument:
+      type: object
+      description: 'Details of the error of the particular identifier processing.'
+      properties:
+        code:
+          type: number
+          description: 'The code of the error.'
+          example: 80300010
+        error:
+          type: string
+          description: 'The error message.'
+          example: 'An identity with that Identifier and ADI order already exists for that same account'
+    ADIOrderErrorsDocument:
+      type: object
+      description: 'The list of errors. Key - the identifier value, the value - ADIOrderErrorDetailsDocument.'
+    ADIOrderEventDocument:
+      description: 'Object containing action details and IDs of ADIs to create actions for.'
+      type: object
+      required:
+        - metadata
+        - ids
+      properties:
+        id:
+          type: string
+          description: 'id of adi order event'
+          example: U7x9gTmMRFEaSHxMC5g8bqSd
+        status:
+          $ref: '#/components/schemas/ADIOrderEventStatusDocument'
+        result:
+          type: string
+          description: 'adi order event processing result'
+          enum:
+            - succeeded
+            - failed
+            - succeeded_with_failures
+        metadata:
+          $ref: '#/components/schemas/ActionDocument'
+        ids:
+          type: array
+          items:
+            type: string
+          description: 'array of ADIs'' ids to create actions for'
+          example:
+            - ad76as8d7ga
+            - ad87ad6fg8a7f
+        customFields:
+          type: object
+          description: 'Object of case-sensititve key-value pairs of custom fields associated with the resource.'
+        identifiers:
+          type: object
+          description: 'Various identifiers (EPC, ISBN, etc.) as a JSON object with one or more key-value pairs.'
+        tags:
+          type: array
+          description: 'Array of string tags associated with this resource.'
+          items:
+            type: string
+    ADIOrderEventStatusDocument:
+      type: object
+      description: 'Object describing the status of an ADI order event'
+      properties:
+        state:
+          type: string
+          description: 'The state of the order event.'
+          enum:
+            - pending
+            - in_progress
+            - completed
+        requested:
+          type: integer
+          description: 'Number of actions requested for identifiers of adi order.'
+        events:
+          $ref: '#/components/schemas/ADIOrderProgressDocument'
+    ADIOrderIDGenerationDocument:
+      type: object
+      description: 'Metadata of the set of IDs for generation.'
+      required:
+        - length
+        - quantity
+      properties:
+        prefix:
+          type: string
+          example: xz1
+          description: 'The prefix of every ID to be generated.'
+        suffix:
+          type: string
+          example: xz2
+          description: 'The suffix of every ID to be generated.'
+        characterSet:
+          type: string
+          description: 'The character set to be used for ID generation. Default value is ''AN-47''.'
+          example: AN-47
+          enum:
+            - GS1-64w
+            - AN-47
+        length:
+          type: number
+          description: 'The length of ID part which is going to be generated. Does not include ''prefix'' and ''suffix'' if were set. Allowed values are in range 8..20'
+          example: 8
+        quantity:
+          type: number
+          description: 'The quantity of IDs to be generated. Maximal allowed value is 20000.'
+          example: 10000
+    ADIOrderMetadataDocument:
+      type: object
+      description: 'Metadata describing data to include in the created Thngs and their redirections.'
+      required:
+        - identifierKey
+      properties:
+        targetAccount:
+          type: string
+          example: UfwwwypHPeKwYNbCXN1N5wcp
+          description: 'The ID of the account for which the ADIs were created.'
+        identifierKey:
+          type: string
+          example: 'gs1:21'
+          description: 'The key which will be used in the `identifiers` object on the `Thng` to store the ID. For example, `gs1:21`.'
+        product:
+          type: string
+          description: 'Identifier string for the product to which the created ADI (Thng) will be associated. Can be either a product ID  (e.g: ''U4tqeXsDe6sN9NawR3ywFgYn'') or colon separated identfier (e.g: ''gs1:01:12345678901234'').'
+          example: 'gs1:01:12345678901234'
+        identifiers:
+          type: object
+          description: 'Key-value pairs of custom additional identifiers to include on the Thngs.'
+          example:
+            internalOrderId: '123456'
+        customFields:
+          type: object
+          description: 'Key-value pairs of custom fields to include on the Thngs.'
+          example:
+            color: red
+        tags:
+          description: 'Array of string tags to be added to include on the Thng.'
+          type: array
+          items:
+            type: string
+          example:
+            - shipped
+            - received
+        shortDomain:
+          type: string
+          example: tn.gg
+          description: 'Short domain use in creating Thng redirections.'
+        defaultRedirectUrl:
+          type: string
+          example: 'https://evrythng.com?thng={evrythngId}'
+          description: 'Default URL to redirect to. Placeholders can be used: {evrythngId} for the Thng ID or {shortId} for the short ID.'
+        project:
+          type: string
+          description: 'If specified, the Thngs created will be scoped to the project with this ID.'
+          example: U5gBSMUHxpwHEsawaFdrnbkf
+          minLength: 24
+          maxLength: 24
+    ADIOrderProgressDocument:
+      type: object
+      description: 'Creation progress and errors'
+      properties:
+        created:
+          type: integer
+          description: 'Number of actions created.'
+        pending:
+          type: integer
+          description: 'Number of actions waiting for creation.'
+        errorsCount:
+          type: integer
+          description: 'Number of errors occurred.'
+        errors:
+          $ref: '#/components/schemas/ADIOrderErrorsDocument'
+    ADIOrderStatusDocument:
+      type: object
+      description: 'Object describing the status of an ADI order. Returned only when a single order is read by ID.'
+      properties:
+        state:
+          type: string
+          description: 'The state of the order.'
+          enum:
+            - pending
+            - in_progress
+            - completed
+        requested:
+          type: integer
+          description: 'Number of requested identifiers.'
+        adis:
+          $ref: '#/components/schemas/ADIOrderProgressDocument'
     AccessDocument:
       additionalProperties: false
       type: object
@@ -5273,7 +6788,11 @@ components:
           type: string
           description: 'Invalid GS1 scans will redirect to this URL.'
       x-filterable-fields:
-        - name
+        -
+          name: name
+          type: string
+          operators:
+            - '='
     AccountNameField:
       type: string
       description: 'Friendly name of this resource. Must be between 1 and 30 characters.'
@@ -5306,6 +6825,8 @@ components:
       additionalProperties: false
       type: object
       description: 'An object representing the account''s Redirector rules'
+      required:
+        - rules
       properties:
         rules:
           description: 'The rules set up for a Redirector.'
@@ -5420,23 +6941,67 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         reactions:
           type: array
           description: 'An array of Redirector reactions that occured from this action.'
           items:
             $ref: '#/components/schemas/ReactionDocument'
+        url:
+          type: string
+          description: 'The URL to the triggering scan, added in some cases.'
       x-filterable-fields:
-        - timestamp
-        - identifiers.<key>
-        - tags
-        - type
-        - user
-        - context.city
-        - context.countryCode
-        - thng
-        - product
-        - collection
+        -
+          name: timestamp
+          type: number
+          operators:
+            - '>'
+            - '<'
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
+        -
+          name: user
+          type: string
+          operators:
+            - '='
+        -
+          name: context.city
+          type: string
+          operators:
+            - '='
+        -
+          name: context.countryCode
+          type: string
+          operators:
+            - '='
+        -
+          name: thng
+          type: string
+          operators:
+            - '='
+        -
+          name: product
+          type: string
+          operators:
+            - '='
+        -
+          name: collection
+          type: string
+          operators:
+            - '='
     ActionTypeDocument:
       additionalProperties: false
       type: object
@@ -5456,13 +7021,17 @@ components:
         description:
           $ref: '#/components/schemas/DescriptionField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - name
+        -
+          name: name
+          type: string
+          operators:
+            - '='
     ActivationCodeDocument:
       additionalProperties: false
       type: object
@@ -5602,7 +7171,7 @@ components:
         updatedAt:
           $ref: '#/components/schemas/UpdatedAtField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         description:
@@ -5628,8 +7197,16 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - name
-        - project
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: project
+          type: string
+          operators:
+            - '='
     ApplicationRedirectorRuleDocument:
       additionalProperties: false
       type: object
@@ -5754,6 +7331,7 @@ components:
         - firstName
         - lastName
         - email
+        - password
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -5791,7 +7369,7 @@ components:
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         project:
           type: string
           description: 'The project ID of the application this user belongs to.'
@@ -5811,9 +7389,21 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - email
-        - firstName
-        - lastName
+        -
+          name: email
+          type: string
+          operators:
+            - '='
+        -
+          name: firstName
+          type: string
+          operators:
+            - '='
+        -
+          name: lastName
+          type: string
+          operators:
+            - '='
     ApplicationUserLoggedInDocument:
       additionalProperties: false
       type: object
@@ -5847,6 +7437,9 @@ components:
       additionalProperties: false
       type: object
       description: 'An object representing an Application User login request.'
+      required:
+        - email
+        - password
       properties:
         email:
           type: string
@@ -5920,6 +7513,12 @@ components:
           type: boolean
           description: '`true` for default permissions.'
           readOnly: true
+    ApplicationUserRolePermissionsDocument:
+      additionalProperties: false
+      type: array
+      description: 'List of Application User role permissions.'
+      items:
+        $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'
     ApplicationUserStatusDocument:
       additionalProperties: false
       type: object
@@ -5952,6 +7551,9 @@ components:
       additionalProperties: false
       type: object
       description: 'The minimum fields for any of the specific types of task.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -5966,7 +7568,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         completedAt:
@@ -5983,9 +7585,21 @@ components:
           type: object
           description: 'One of the following types of `inputParameters`: `FixedAmountInputParametersDocument`, `FileBasedInputParametersDocument`, `ListBasedInputParametersDocument`, or `IdentifiersListBasedInputParametersDocument`.'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     BatchDocument:
       additionalProperties: false
       type: object
@@ -6019,16 +7633,33 @@ components:
         identifiers:
           $ref: '#/components/schemas/IdentifiersDocument'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - createdAt
-        - identifiers.<key>
-        - name
-        - tags
+        -
+          name: createdAt
+          type: number
+          operators:
+            - '>'
+            - '<'
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
     BatchField:
       type: string
       description: 'The ID of the batch of this task.'
@@ -6045,14 +7676,20 @@ components:
       properties:
         day:
           type: integer
+          description: 'The day of the birthday.'
+          example: 1
           minimum: 1
           maximum: 31
         month:
           type: integer
+          description: 'The month of the birthday.'
+          example: 12
           minimum: 1
           maximum: 12
         year:
           type: integer
+          description: 'The year of the birthday.'
+          example: 2018
           minimum: 1900
     CollectionDocument:
       additionalProperties: false
@@ -6074,7 +7711,7 @@ components:
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         identifiers:
           $ref: '#/components/schemas/IdentifiersDocument'
         collections:
@@ -6087,10 +7724,49 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - collections
-        - identifiers
-        - name
-        - tags
+        -
+          name: collections
+          type: string
+          operators:
+            - '='
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
+    CommissionDocument:
+      type: object
+      description: 'Object describing a commissioning event.'
+      required:
+        - product
+        - location
+        - occurredAt
+      properties:
+        product:
+          type: string
+          description: 'Any valid product identifier separated from its value by '':''.'
+          example: 'gs1:01:02374837684278'
+        location:
+          $ref: '#/components/schemas/LocationDocument'
+        purchaseOrder:
+          type: string
+          description: 'Purchase order for which the commission happened'
+        occurredAt:
+          description: 'Date and time of commission in ISO8601 format with time offset'
+          type: string
+          format: date-time
+        factoryMetadata:
+          $ref: '#/components/schemas/FactoryMetadataDocument'
     ConnectorDocument:
       additionalProperties: false
       type: object
@@ -6156,6 +7832,21 @@ components:
           description: 'The array of custom identifier values.'
           items:
             type: string
+    DecommissionDocument:
+      type: object
+      description: 'Object describing a decommissioning event.'
+      required:
+        - location
+        - occurredAt
+      properties:
+        location:
+          $ref: '#/components/schemas/LocationDocument'
+        occurredAt:
+          description: 'Date and time of commission in ISO8601 format with time offset'
+          type: string
+          format: date-time
+        factoryMetadata:
+          $ref: '#/components/schemas/FactoryMetadataDocument'
     DefaultRedirectUrlField:
       type: string
       description: 'The URL for the generated redirections. `{evrythngId}` can substitute the appropriate resource ID.'
@@ -6196,6 +7887,31 @@ components:
         domain:
           type: string
           description: 'The domain URL.'
+    ErrorResponseDocument:
+      type: object
+      description: 'An HTTP error response object, including error code and reasons.'
+      additionalProperties: false
+      properties:
+        status:
+          type: number
+          description: 'The error HTTP status code.'
+          example: 404
+        errors:
+          description: 'List of error reasons.'
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 1
+          example: 'The requested resource was not found.'
+        code:
+          description: 'Internal error code.'
+          type: string
+          example: 348946894
+        moreInfo:
+          type: string
+          description: 'Where to find more information.'
+          example: 'https://developers.evrythng.com'
     FacebookAccessDocument:
       additionalProperties: false
       type: object
@@ -6234,6 +7950,24 @@ components:
         token:
           type: string
           description: 'The Facebook access token'
+    FactoryMetadataDocument:
+      type: object
+      description: 'Object describing information about the factory.'
+      required:
+        - factory
+      properties:
+        factory:
+          description: 'Identifier of a factory. This value should match "identifiers.factory" of the place referenced in "location.place" field and match "customFields.factory" value of a Thng.'
+          type: string
+          example: 123141414
+        supplier:
+          description: 'ID of a supplier'
+          type: string
+          example: 574574363
+        zone:
+          description: 'Name of the zone within the factory'
+          type: string
+          example: 'Line 65'
     FileBasedInputParametersDocument:
       additionalProperties: false
       type: object
@@ -6281,6 +8015,9 @@ components:
       additionalProperties: false
       type: object
       description: 'A task for batch creation of Thngs with type `FILE_BASED`.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -6297,7 +8034,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
@@ -6311,9 +8048,21 @@ components:
         inputParameters:
           $ref: '#/components/schemas/FileBasedInputParametersDocument'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     FileDocument:
       additionalProperties: false
       type: object
@@ -6330,7 +8079,9 @@ components:
         updatedAt:
           $ref: '#/components/schemas/UpdatedAtField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
+        customFields:
+          $ref: '#/components/schemas/CustomFieldsDocument'
         uploadUrl:
           type: string
           description: 'The URL to upload file data to with an HTTP `PUT` request. Will expire after 30 mins.'
@@ -6355,8 +8106,16 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - name
-        - tags
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
     FixedAmountInputParametersDocument:
       additionalProperties: false
       type: object
@@ -6386,7 +8145,7 @@ components:
         quantity:
           $ref: '#/components/schemas/QuantityField'
         shortIdTemplate:
-          $ref: '#/components/schemas/ShortIdTemplateField'
+          $ref: '#/components/schemas/ShortIdFormatDocument'
     FixedAmountInputParametersTypeField:
       type: string
       description: 'The FIXED_AMOUNT task type.'
@@ -6396,6 +8155,9 @@ components:
       additionalProperties: false
       type: object
       description: 'A task for batch creation of Thngs with type `FIXED_AMOUNT`.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -6412,7 +8174,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
@@ -6426,9 +8188,21 @@ components:
         inputParameters:
           $ref: '#/components/schemas/FixedAmountInputParametersDocument'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     GenerateRedirectionsField:
       type: boolean
       description: 'Whether redirections will be created as part of the task.'
@@ -6459,9 +8233,16 @@ components:
       description: 'The ID of this resource.'
       pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'
       readOnly: true
+    IdentifierField:
+      type: string
+      description: 'Colon separated identifier with format of ''type:value'''
+      example: 'gs1:01:0200010901'
+      minLength: 3
+      maxLength: 128
+      pattern: '^[A-Za-z0-9._:-]+:[A-Za-z0-9._-]+$'
     IdentifiersDocument:
       type: object
-      description: 'Various identifiers (EPC, ISBN, etc.) as a JSON object with one or more key-value pairs.'
+      description: 'Various identifiers (EPC, GTIN, etc.) as a JSON object with one or more key-value pairs.'
     IdentifiersListBasedInputParametersDocument:
       additionalProperties: false
       type: object
@@ -6492,6 +8273,9 @@ components:
       additionalProperties: false
       type: object
       description: 'A task for batch creation of Thngs with type `IDENTIFIERS_LIST_BASED`.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -6508,7 +8292,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
@@ -6522,9 +8306,21 @@ components:
         inputParameters:
           $ref: '#/components/schemas/IdentifiersListBasedInputParametersDocument'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     KeyAccessDocument:
       additionalProperties: false
       type: object
@@ -6540,6 +8336,50 @@ components:
     LatitudeField:
       type: number
       description: 'The latitude.'
+    LineItemDocument:
+      description: 'A purchase order Line Item.'
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - quantity
+        - product
+        - exportDate
+        - deliveryDate
+      properties:
+        id:
+          description: 'The purchase order Line number.'
+          type: string
+          example: '00010'
+          minLength: 2
+          maxLength: 64
+        quantity:
+          description: 'The quantity of products to be manufactured.'
+          type: number
+          example: 100
+          minimum: 1
+        unitOfMeasure:
+          description: 'The unit of measure for the line item such as "each".'
+          type: string
+          minLength: 1
+          maxLength: 64
+          default: each
+        product:
+          description: 'A colon separated identifier string referencing an EVRYTHNG product.'
+          type: string
+          example: 'gs1:01:00000123456789'
+          minLength: 3
+          maxLength: 128
+        exportDate:
+          description: 'The date the line item is expected to be exported on, in YYYY-MM-DD format.'
+          type: string
+          example: '2019-02-14'
+          format: date
+        deliveryDate:
+          description: 'The date the line item is expected to be delivered on, in YYYY-MM-DD format.'
+          type: string
+          example: '2019-02-18'
+          format: date
     ListBasedInputParametersDocument:
       additionalProperties: false
       type: object
@@ -6567,8 +8407,16 @@ components:
           $ref: '#/components/schemas/ShortDomainField'
         inputData:
           type: array
+          description: 'List of objects detailing the short IDs to use'
           items:
             $ref: '#/components/schemas/RedirectionResourceDocument'
+          example:
+            -
+              shortId: serial1
+            -
+              shortId: serial2
+            -
+              shortId: serial3
     ListBasedInputParametersTypeField:
       type: string
       description: 'The LIST_BASED task type.'
@@ -6578,6 +8426,9 @@ components:
       additionalProperties: false
       type: object
       description: 'A task for batch creation of Thngs with type `LIST_BASED`.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -6594,7 +8445,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
@@ -6608,13 +8459,25 @@ components:
         inputParameters:
           $ref: '#/components/schemas/ListBasedInputParametersDocument'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     LocationDocument:
       additionalProperties: false
       type: object
-      description: 'An object representing a location.'
+      description: 'An object representing a location. Either ''position'' or ''place'' us required.'
       properties:
         position:
           $ref: '#/components/schemas/GeoJSONPointDocument'
@@ -6635,7 +8498,12 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - timestamp
+        -
+          name: timestamp
+          type: number
+          operators:
+            - '<'
+            - '>'
     LongitudeField:
       type: number
       description: 'The longitude.'
@@ -6732,6 +8600,8 @@ components:
       additionalProperties: false
       type: object
       description: 'Object representing an Operator role.'
+      required:
+        - name
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -6743,7 +8613,7 @@ components:
           $ref: '#/components/schemas/CustomFieldsDocument'
     OperatorRolePermissionDocument:
       additionalProperties: false
-      type: string
+      type: object
       description: 'Object describing Operator role permissions'
       required:
         - name
@@ -6814,7 +8684,7 @@ components:
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         identifiers:
           $ref: '#/components/schemas/IdentifiersDocument'
         createdAt:
@@ -6835,9 +8705,21 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - name
-        - identifiers
-        - tags
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
     PolicyDocument:
       additionalProperties: false
       type: object
@@ -6869,6 +8751,8 @@ components:
       additionalProperties: false
       type: object
       description: 'An object representing a platform product.'
+      required:
+        - name
       properties:
         name:
           $ref: '#/components/schemas/NameField'
@@ -6903,7 +8787,7 @@ components:
           type: object
           description: 'A JSON object with key-value pairs describing properties of the product.'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         fn:
@@ -6916,13 +8800,34 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - name
-        - identifiers.<key>
-        - tags
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
+    ProductIdentifierField:
+      type: string
+      description: 'The product identifier. Colon separated identifier with format of ''type:value'''
+      example: 'gs1:01:0200010901'
+      minLength: 3
+      maxLength: 128
+      pattern: '^[A-Za-z0-9._:-]+:[A-Za-z0-9._-]+$'
     ProjectDocument:
       additionalProperties: false
       type: object
       description: 'An object describing a platform project.'
+      required:
+        - name
       properties:
         name:
           $ref: '#/components/schemas/NameField'
@@ -6933,7 +8838,7 @@ components:
         updatedAt:
           $ref: '#/components/schemas/UpdatedAtField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         description:
           $ref: '#/components/schemas/DescriptionField'
         startsAt:
@@ -6957,9 +8862,21 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - identifiers.<key>
-        - name
-        - tags
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
     PropertiesDocument:
       additionalProperties: false
       type: array
@@ -6970,24 +8887,178 @@ components:
       additionalProperties: false
       type: object
       description: 'An object representing a single property update. The `value` property may be a string or integer.'
+      required:
+        - key
+        - value
       properties:
         key:
           type: string
           description: 'The property key-value key.'
+          example: temperature_celsius
         value:
           description: 'The property key-value value.'
+          example: 32
         timestamp:
           type: integer
           description: 'The timestamp of the property update.'
           readOnly: true
           minimum: 0
+          example: 1566209345528
         createdAt:
           $ref: '#/components/schemas/CreatedAtField'
       x-filterable-fields:
-        - timestamp
+        -
+          name: timestamp
+          type: number
+          operators:
+            - '<'
+            - '>'
+    PurchaseOrderDocument:
+      description: 'An object representing a purchase order.'
+      type: object
+      required:
+        - id
+        - status
+        - type
+        - issueDate
+        - parties
+        - lines
+      properties:
+        id:
+          type: string
+          description: 'The purchase order ID.'
+        evrythngId:
+          type: string
+          description: 'Standard 24 character EVRYTHNG ID of this purchase order.'
+          readOnly: true
+        createdAt:
+          $ref: '#/components/schemas/CreatedAtField'
+        updatedAt:
+          $ref: '#/components/schemas/UpdatedAtField'
+        version:
+          description: 'The latest version of the purchase order.'
+          type: string
+          example: '1'
+          minLength: 1
+          maxLength: 32
+        status:
+          description: 'The status of the purchase order, such as ''open'' or ''cancelled''.'
+          type: string
+          example: open
+          minLength: 2
+          maxLength: 256
+        purchaser:
+          description: 'The name of the purchasing party.'
+          type: string
+          minLength: 2
+          maxLength: 32
+        description:
+          $ref: '#/components/schemas/DescriptionField'
+        type:
+          description: 'The type of purchase order determines how the manufacturer interprets the Order, such as ''stand-alone'', ''reorder'', ''direct-ship''.'
+          type: string
+          example: stand-alone
+          minLength: 2
+          maxLength: 32
+        issueDate:
+          description: 'The date the purchase order was issued, in YYYY-MM-DD format.'
+          type: string
+          example: '2019-02-10'
+          format: date
+        parties:
+          description: 'The parties involved in the purchase order. Must contain one item for each of ''ship-from'', ''ship-to'', and ''supplier''.'
+          type: array
+          example:
+            -
+              id: 'gs1:414:943234'
+              type: supplier
+            -
+              id: 'gs1:414:01251'
+              type: ship-from
+            -
+              id: 'gs1:414:NA0193'
+              type: ship-to
+          items:
+            $ref: '#/components/schemas/PurchaseOrderPartyDocument'
+          minItems: 2
+          maxItems: 13
+        lines:
+          description: 'Line Items outlining the products, quantities and dates included in the purchase order.'
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDocument'
+          minItems: 1
+          maxItems: 500
+        tags:
+          $ref: '#/components/schemas/TagsDocument'
+        customFields:
+          $ref: '#/components/schemas/CustomFieldsDocument'
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersDocument'
+      x-filterable-fields:
+        -
+          name: shipFrom
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: status
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: type
+          type: 'list of string'
+          operators:
+            - '='
+    PurchaseOrderPartyDocument:
+      description: 'A party involved in the purchase order.'
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - type
+      properties:
+        id:
+          description: 'Colon separated identifer, referencing a place.'
+          type: string
+          example: 'gs1:414:01251'
+          minLength: 2
+          maxLength: 64
+        type:
+          description: 'The role the party has in the purchase order, such as ''ship-from'', ''ship-to'', ''supplier'', ''mark-for''.'
+          type: string
+          enum:
+            - ship-from
+            - ship-to
+            - supplier
+            - mark-for
+          example: ship-from
     QuantityField:
       type: integer
       description: 'The number of resources.'
+    RateLimitLimitDocument:
+      additionalProperties: false
+      type: object
+      description: 'The rate limit limits.'
+      properties:
+        rate:
+          type: string
+          description: 'The rate limit rate type.'
+        timeFrame:
+          type: number
+          description: 'The time frame of the rate limit.'
+        warningMaxHits:
+          type: number
+          description: 'The warning maximum hits.'
+        blockingMaxHits:
+          type: number
+          description: 'The blocking maximum hits.'
     RateLimitLimitField:
       additionalProperties: false
       type: object
@@ -7015,8 +9086,20 @@ components:
           description: 'The name of the rate limit type.'
         rateLimits:
           type: array
+          description: 'Array of applicable rate limit information'
           items:
-            $ref: '#/components/schemas/SingleRateLimitField'
+            $ref: '#/components/schemas/SingleRateLimitDocument'
+    RateLimitsUrlDocument:
+      additionalProperties: false
+      type: object
+      description: 'Information on rate limit URL'
+      properties:
+        path:
+          type: string
+          description: 'The rate limit path'
+        depth:
+          type: number
+          description: 'The rate limit path URL depth'
     RateLimitsUrlField:
       additionalProperties: false
       type: object
@@ -7093,9 +9176,22 @@ components:
           description: 'The content of the log entry.'
           readOnly: true
       x-filterable-fields:
-        - app
-        - logLevel
-        - timestamp
+        -
+          name: app
+          type: string
+          operators:
+            - '='
+        -
+          name: logLevel
+          type: string
+          operators:
+            - '='
+        -
+          name: timestamp
+          type: number
+          operators:
+            - '<'
+            - '>'
     ReactorProductPropertiesChangedDocument:
       additionalProperties: false
       type: object
@@ -7128,7 +9224,9 @@ components:
     ReactorScheduleDocument:
       additionalProperties: false
       type: object
-      description: 'An object describing a Reactor schedule.'
+      description: 'An object describing a Reactor schedule. Either ''cron'' or ''executeAt'' is required.'
+      required:
+        - event
       properties:
         event:
           type: object
@@ -7161,6 +9259,8 @@ components:
       additionalProperties: false
       type: object
       description: 'Object containing a Reactor script and associated metadata.'
+      required:
+        - script
       properties:
         createdAt:
           $ref: '#/components/schemas/CreatedAtField'
@@ -7212,6 +9312,8 @@ components:
       additionalProperties: false
       type: object
       description: 'A redirection on a resource.'
+      required:
+        - defaultRedirectUrl
       properties:
         createdAt:
           $ref: '#/components/schemas/CreatedAtField'
@@ -7267,6 +9369,8 @@ components:
       additionalProperties: false
       type: object
       description: 'Object representing an image recognition reference image.'
+      required:
+        - name
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -7286,6 +9390,9 @@ components:
       additionalProperties: false
       type: object
       description: 'The roles and projects scopes this role is scoped to.'
+      required:
+        - roles
+        - projects
       properties:
         roles:
           type: array
@@ -7301,6 +9408,8 @@ components:
       additionalProperties: false
       type: object
       description: 'An object containing image data in Base 64 encoding.'
+      required:
+        - image
       properties:
         image:
           type: string
@@ -7361,6 +9470,7 @@ components:
           $ref: '#/components/schemas/ThngDocument'
         redirections:
           type: array
+          description: 'Array of redirections for the resource'
           items:
             type: string
           readOnly: true
@@ -7373,6 +9483,7 @@ components:
           $ref: '#/components/schemas/ScanImageMetadataDocument'
         results:
           type: array
+          description: 'Array of individual results'
           items:
             $ref: '#/components/schemas/ScanImageResultDocument'
     SchemaDocument:
@@ -7409,6 +9520,9 @@ components:
       additionalProperties: false
       type: object
       description: 'Project and user scopes arrays.'
+      required:
+        - users
+        - projects
       properties:
         users:
           type: array
@@ -7420,13 +9534,189 @@ components:
           description: 'An array of project IDs this resource is scoped to.'
           items:
             $ref: '#/components/schemas/IdField'
+    SecretKeyDocument:
+      additionalProperties: false
+      type: object
+      description: 'Object containing an application''s Secret Key'
+      properties:
+        secretApiKey:
+          type: string
+          description: 'The Trusted Application API Key'
+    ShipmentNoticeContentDocument:
+      description: 'A product included in this shipment notice.'
+      type: object
+      additionalProperties: false
+      required:
+        - product
+        - quantity
+      properties:
+        product:
+          $ref: '#/components/schemas/ProductIdentifierField'
+        quantity:
+          type: integer
+          description: 'The quantity of this product included in this shipment.'
+          minimum: 1
+          maximum: 9999999
+          example: 250
+    ShipmentNoticeDocument:
+      description: 'An object representing a shipment notice.'
+      type: object
+      required:
+        - asnId
+        - status
+        - issueDate
+        - parties
+      properties:
+        id:
+          $ref: '#/components/schemas/IdField'
+        asnId:
+          type: string
+          description: 'ID of the associated shipment notice.'
+          minLength: 1
+          maxLength: 64
+          pattern: '^[A-Za-z0-9._:+-]+$'
+          example: '9827429837429823828273'
+        description:
+          $ref: '#/components/schemas/DescriptionField'
+        createdAt:
+          $ref: '#/components/schemas/CreatedAtField'
+        updatedAt:
+          $ref: '#/components/schemas/UpdatedAtField'
+        tags:
+          $ref: '#/components/schemas/TagsDocument'
+        customFields:
+          $ref: '#/components/schemas/CustomFieldsDocument'
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersDocument'
+        version:
+          description: 'Identifies the current version of the shipment, the default value is ''1'''
+          type: string
+          minLength: 1
+          maxLength: 32
+          default: 1
+          example: '1'
+        status:
+          type: string
+          description: 'The status of the shipment'
+          enum:
+            - open
+            - closed
+            - cancelled
+          default: open
+          example: open
+        purchaseOrderId:
+          description: 'A reference to an associated purchase order'
+          type: string
+          minLength: 1
+          maxLength: 64
+          pattern: '^[a-zA-Z0-9:_+.@-]+$'
+          example: '4700990774'
+        issueDate:
+          description: 'The date the shipment was issued on'
+          type: string
+          format: date-time
+          example: '2016-12-19T16:39:57-08:00'
+        deliveryDate:
+          description: 'The date the shipment is due to be delivered'
+          type: string
+          format: date-time
+          example: '2013-04-12T23:20:50.52Z'
+        transportation:
+          type: string
+          description: 'The type of transportation'
+          minLength: 1
+          maxLength: 32
+          example: Air
+        parties:
+          type: array
+          description: 'The parties involved in the shipment'
+          minItems: 2
+          maxItems: 3
+          items:
+            $ref: '#/components/schemas/ShipmentNoticePartyDocument'
+          example:
+            -
+              id: 'gs1:414:01251'
+              type: ship-from
+            -
+              name: 'The Landmark, Shop No. G14'
+              type: ship-to
+              address:
+                street: '113-114, Central'
+                city: 'Hong Kong'
+        contents:
+          type: array
+          description: 'Array of products in the shipment and their quantites.'
+          items:
+            $ref: '#/components/schemas/ShipmentNoticeContentDocument'
+          minItems: 1
+          maxItems: 1000
+          example:
+            -
+              product: 'gs1:01:00001254563898'
+              quantity: 250
+            -
+              product: 'gs1:01:00283679123844'
+              quantity: 42
+      x-filterable-fields:
+        -
+          name: purchaseOrderId
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: status
+          type: 'list of string'
+          operators:
+            - '='
+    ShipmentNoticePartyDocument:
+      description: 'A party involved in this shipment notice.'
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/IdentifierField'
+        name:
+          type: string
+          description: 'Display name for the party'
+          minLength: 2
+          maxLength: 128
+        type:
+          type: string
+          description: 'The party type defines what involvement the identified party has in this shipment notice'
+          enum:
+            - ship-from
+            - ship-to
+            - bill-to
+          example: ship-from
+        identifiers:
+          $ref: '#/components/schemas/IdentifiersDocument'
+        address:
+          $ref: '#/components/schemas/AddressDocument'
     ShortDomainField:
       type: string
       description: 'The short domain used for generated redirections.'
+    ShortIdFormatDocument:
+      type: object
+      description: 'The template of the short ID format. Contains one field ''type'' with only one permitted value ''THNG_ID''.'
+      properties:
+        type:
+          type: string
+          description: 'The type of template. Can only be ''THNG_ID'''
+          enum:
+            - THNG_ID
     ShortIdGenerationInputParametersDocument:
       additionalProperties: false
       type: object
       description: 'Input parameters for a Short ID Generation Task.'
+      required:
+        - quantity
+        - shortIdTemplate
       properties:
         quantity:
           type: integer
@@ -7437,6 +9727,9 @@ components:
       additionalProperties: false
       type: object
       description: 'A task for batch creation of short IDs.'
+      required:
+        - type
+        - inputParameters
       properties:
         id:
           $ref: '#/components/schemas/IdField'
@@ -7453,7 +9746,7 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatusField'
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         customFields:
           $ref: '#/components/schemas/CustomFieldsDocument'
         scopes:
@@ -7463,9 +9756,21 @@ components:
         inputParameters:
           $ref: '#/components/schemas/ShortIdGenerationInputParametersDocument'
       x-filterable-fields:
-        - batch
-        - status
-        - type
+        -
+          name: batch
+          type: string
+          operators:
+            - '='
+        -
+          name: status
+          type: string
+          operators:
+            - '='
+        -
+          name: type
+          type: string
+          operators:
+            - '='
     ShortIdGenerationTaskTypeField:
       type: string
       description: 'The type of task to perform.'
@@ -7519,6 +9824,27 @@ components:
           type: string
           enum:
             - THNG_ID
+    SingleRateLimitDocument:
+      additionalProperties: false
+      type: object
+      description: 'A single set of rate limit information'
+      properties:
+        url:
+          $ref: '#/components/schemas/RateLimitsUrlDocument'
+        access:
+          type: string
+          description: 'The rate limit access type.'
+        limit:
+          $ref: '#/components/schemas/RateLimitLimitDocument'
+        hits:
+          type: number
+          description: 'The number of hits so far since reset.'
+        hitsRemaining:
+          type: number
+          description: 'The remaining number of hits until reset.'
+        reset:
+          type: number
+          description: 'Number of seconds until rate limit reset.'
     SingleRateLimitField:
       additionalProperties: false
       type: object
@@ -7540,6 +9866,28 @@ components:
         reset:
           type: number
           description: 'Number of seconds until rate limit reset.'
+    StateDocument:
+      type: object
+      description: 'Object containing the commissioning state.'
+      properties:
+        state:
+          type: string
+          description: 'Commissioning state of a Thng.'
+          enum:
+            - commissioned
+            - decommissioned
+            - not_commissioned
+          readOnly: true
+        occurredAt:
+          description: 'Date and time of the commission/decommission event in ISO8601 format (UTC). It is shown only for commissioned and decommissioned states.'
+          type: string
+          format: date-time
+    TagsDocument:
+      type: array
+      description: 'Array of string tags associated with this resource.'
+      items:
+        type: string
+        maxLength: 60
     TagsField:
       type: array
       description: 'Array of string tags associated with this resource.'
@@ -7681,7 +10029,7 @@ components:
           description: 'Timestamp when the Thng was activated.'
           readOnly: true
         tags:
-          $ref: '#/components/schemas/TagsField'
+          $ref: '#/components/schemas/TagsDocument'
         description:
           $ref: '#/components/schemas/DescriptionField'
         customFields:
@@ -7711,12 +10059,37 @@ components:
         scopes:
           $ref: '#/components/schemas/ScopesDocument'
       x-filterable-fields:
-        - collections
-        - createdAt
-        - identifiers.<key>
-        - name
-        - product
-        - tags
+        -
+          name: collections
+          type: 'list of string'
+          operators:
+            - '='
+        -
+          name: createdAt
+          type: number
+          operators:
+            - '<'
+            - '>'
+        -
+          name: identifiers.<key>
+          type: string
+          operators:
+            - '='
+        -
+          name: name
+          type: string
+          operators:
+            - '='
+        -
+          name: product
+          type: string
+          operators:
+            - '='
+        -
+          name: tags
+          type: 'list of string'
+          operators:
+            - '='
     TimeInfoDocument:
       additionalProperties: false
       type: object
