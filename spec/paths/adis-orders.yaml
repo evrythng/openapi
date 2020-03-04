@@ -1,0 +1,105 @@
+post:
+  tags:
+    - 'ADI Orders'
+  summary: 'Create an ADI Order'
+  description: 'Create an order for new ADI (Thngs). This order should include the IDs to use when generating the ADIs.'
+  requestBody:
+    description: 'The details of the order.'
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ADIOrderDocument'
+        example:
+          ids:
+          - serial1
+          - serial2
+          purchaseOrder: '234567890'
+          metadata:
+            identifierKey: gs1:21
+            customFields:
+              factory: '0400321'
+            product: gs1:01:9780345418913
+            tags:
+            - factory:0400321
+            shortDomain: tn.gg
+            defaultRedirectUrl: https://evrythng.com?id={shortId}
+          identifiers:
+            internalId: X7JF
+          tags:
+          - X7JF
+    required: true
+  responses:
+    '201':
+      description: 'The order was placed successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ADIOrderDocument'
+          example:
+            id: UNTrNKg2BMsNt7wRwYymrGhm
+            status:
+              state: pending
+              requested: 2
+              created: 0
+              pending: 0
+              errorsCount: 0
+            purchaseOrder: '234567890'
+            metadata:
+              identifierKey: gs1:21
+              customFields:
+                factory: '0400321'
+              product: gs1:01:9780345418913
+              tags:
+              - factory:0400321
+              shortDomain: tn.gg
+              defaultRedirectUrl: https://evrythng.com?id={shortId}
+            identifiers:
+              internalId: X7JF
+            tags:
+            - X7JF
+    '400':
+      description: |
+        Unsupported character set.
+        Too many ADIs to be created.
+        Given account was not found.
+    '415':
+      description: 'The payload must be valid JSON and the ''Content-type: application/json'' header set.'
+  x-api-keys:
+    - Operator
+get:
+  tags:
+    - 'ADI Orders'
+  summary: Read all ADI Orders
+  description: Retrieve a list of ADI Orders.
+  parameters:
+    - $ref: '#/components/parameters/perPage'
+    - $ref: '#/components/parameters/nextPageToken'
+  responses:
+    '200':
+      description: The request was successfull.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ADIOrderDocument'
+          example:
+            - id: UNTrNKg2BMsNt7wRwYymrGhm
+              purchaseOrder: '234567890'
+              metadata:
+                identifierKey: gs1:21
+                customFields:
+                  factory: '0400321'
+                product: gs1:01:9780345418913
+                tags:
+                - factory:0400321
+                shortDomain: tn.gg
+                defaultRedirectUrl: https://evrythng.com?id={shortId}
+              identifiers:
+                internalId: X7JF
+              tags:
+              - X7JF
+    '400':
+      description: Bad request. Query parameters provided are incorrect.
+  x-api-keys:
+    - Operator

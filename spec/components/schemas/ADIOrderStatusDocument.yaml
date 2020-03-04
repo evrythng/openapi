@@ -1,0 +1,16 @@
+type: object
+description: 'Object describing the status of an ADI order. Returned only when a single order is read by ID.'
+properties:
+  state:
+    type: string
+    description: 'The state of the order.'
+    enum:
+      - pending
+      - in_progress
+      - completed
+  requested:
+    type: integer
+    description: 'Number of requested identifiers.'
+  adis:
+    $ref: '#/components/schemas/ADIOrderProgressDocument'
+

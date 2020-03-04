@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Commissioning
+  summary: 'Read Thng commissioning state'
+  description: 'Returns the commissioning state of a Thng'
+  parameters:
+    - $ref: '#/components/parameters/thngIdentifier'
+  responses:
+    '200':
+      description: 'Commissioning state of the Thng was successfully returned'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StateDocument'
+          example:
+            state: commissioned
+    '400':
+      description: 'Invalid filter value'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+    '409':
+      description: 'More than one Thng was found for the specified identifier.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+    '500':
+      description: 'Failed to get state of the Thng'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+  x-api-keys:
+    - Operator

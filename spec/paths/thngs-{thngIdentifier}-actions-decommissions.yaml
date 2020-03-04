@@ -1,0 +1,78 @@
+post:
+  tags:
+    - Commissioning
+  summary: 'Decommission a Thng'
+  description: 'Removes the product assignment from a Thng and creates an action of type decommissions.'
+  parameters:
+    - $ref: '#/components/parameters/thngIdentifier'
+  requestBody:
+    description: 'Details of the decommission event.'
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/DecommissionDocument'
+        example:
+          occurredAt: '2019-01-26T09:19:00Z'
+          factoryMetadata:
+            factory: gs1:414:87923487
+          location:
+            position:
+              type: Point
+              coordinates:
+              - -0.08005
+              - 51.527668
+  responses:
+    '200':
+      description: 'Decommission was successful'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActionDocument'
+          example:
+            id: UMBnPhMes6n5PewRa7frwqXn
+            createdAt: 1548412868140
+            timestamp: 1548412868140
+            type: decommissions
+            customFields:
+              factory: gs1:414:87923487
+            location:
+              latitude: 51.527668
+              longitude: -0.08005
+              position:
+                type: Point
+                coordinates:
+                - -0.08005
+                - 51.527668
+            locationSource: unknown
+            context:
+              ipAddress: 141.0.154.202
+              city: City of London
+              region: England
+              countryCode: GB
+              userAgent: ReactorNetty/0.8.4.RELEASE
+              timeZone: Europe/London
+            thng: UMen7ds4s6HKsBRRarB4FArq
+    '400':
+      description: One of the dependent resources (Place, Factory) was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+    '404':
+      description: The target Thng was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+    '409':
+      description: |
+        The Thng has already been decommissioned or has never been commissioned
+        The Factory is not specified while the Thng requires it
+        The Factory is specified but differs with the Factory of the Thng
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+  x-api-keys:
+    - Operator

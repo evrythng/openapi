@@ -1,0 +1,15 @@
+type: object
+description: Object containing the commissioning state.
+properties:
+  state:
+    type: string
+    description: 'Commissioning state of a Thng.'
+    enum:
+      - commissioned
+      - decommissioned
+      - not_commissioned
+    readOnly: true
+  occurredAt:
+    description: 'Date and time of the commission/decommission event in ISO8601 format (UTC). It is shown only for commissioned and decommissioned states.'
+    type: string
+    format: date-time

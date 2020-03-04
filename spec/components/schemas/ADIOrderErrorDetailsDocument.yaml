@@ -1,0 +1,11 @@
+type: object
+description: 'Details of the error of the particular identifier processing.'
+properties:
+  code:
+    type: number
+    description: 'The code of the error.'
+    example: 80300010
+  error:
+    type: string
+    description: 'The error message.'
+    example: "An identity with that Identifier and ADI order already exists for that same account"

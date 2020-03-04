@@ -1,0 +1,7 @@
+name: thngIdentifier
+in: path
+description: 'Any valid Thng ID or identifier string separated by '':''.'
+required: true
+example: 'gs1:21:02374837684278'
+schema:
+  type: string

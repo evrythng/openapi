@@ -1,0 +1,6 @@
+in: query
+name: withIds
+description: 'If set to true, the response will contain a list of IDs in the ADI order or ADI order event.'
+required: false
+schema:
+  type: boolean

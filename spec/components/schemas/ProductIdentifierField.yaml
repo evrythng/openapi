@@ -1,0 +1,6 @@
+type: string
+description: The product identifier. Colon separated identifier with format of 'type:value'
+example: 'gs1:01:0200010901'
+minLength: 3
+maxLength: 128
+pattern: '^[A-Za-z0-9._:-]+:[A-Za-z0-9._-]+$'

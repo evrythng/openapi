@@ -24,5 +24,13 @@ properties:
     $ref: '#/components/schemas/ShortDomainField'
   inputData:
     type: array
+    description: 'List of objects detailing the short IDs to use'
     items:
       $ref: '#/components/schemas/RedirectionResourceDocument'
+    example:
+      -
+        shortId: serial1
+      -
+        shortId: serial2
+      -
+        shortId: serial3

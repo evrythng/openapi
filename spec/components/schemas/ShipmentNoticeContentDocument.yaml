@@ -1,0 +1,15 @@
+description: A product included in this shipment notice.
+type: object
+additionalProperties: false
+required:
+  - product
+  - quantity
+properties:
+  product:
+    $ref: '#/components/schemas/ProductIdentifierField'
+  quantity:
+    type: integer
+    description: The quantity of this product included in this shipment.
+    minimum: 1
+    maximum: 9999999
+    example: 250

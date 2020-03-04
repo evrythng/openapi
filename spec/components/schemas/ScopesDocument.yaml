@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'Project and user scopes arrays.'
+required:
+  - users
+  - projects
 properties:
   users:
     type: array

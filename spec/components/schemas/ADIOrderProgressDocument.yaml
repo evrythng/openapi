@@ -1,0 +1,14 @@
+type: object
+description: 'Creation progress and errors'
+properties:
+  created:
+    type: integer
+    description: 'Number of actions created.'
+  pending:
+    type: integer
+    description: 'Number of actions waiting for creation.'
+  errorsCount:
+    type: integer
+    description: 'Number of errors occurred.'
+  errors:
+    $ref: '#/components/schemas/ADIOrderErrorsDocument'

@@ -1,0 +1,24 @@
+type: object
+description: An HTTP error response object, including error code and reasons.
+additionalProperties: false
+properties:
+  status:
+    type: number
+    description: The error HTTP status code.
+    example: 404
+  errors:
+    description: List of error reasons.
+    type: array
+    items:
+      type: string
+    minItems: 1
+    maxItems: 1
+    example: 'The requested resource was not found.'
+  code:
+    description: Internal error code.
+    type: string
+    example: 348946894
+  moreInfo:
+    type: string
+    description: Where to find more information.
+    example: https://developers.evrythng.com

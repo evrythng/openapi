@@ -52,8 +52,8 @@ put:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/AccountDocument'
+          $ref: '#/components/schemas/AccessDocument'
         example:
           role: admin
-    description: 'The AccountDocument containing the role to create/update.'
+    description: 'The AccessDocument containing the role to create/update.'
     required: true

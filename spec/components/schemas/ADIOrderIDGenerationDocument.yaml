@@ -1,0 +1,29 @@
+type: object
+description: 'Metadata of the set of IDs for generation.'
+required:
+- length
+- quantity
+properties:
+  prefix:
+    type: string
+    example: xz1
+    description: 'The prefix of every ID to be generated.'
+  suffix:
+    type: string
+    example: xz2
+    description: 'The suffix of every ID to be generated.'
+  characterSet:
+    type: string
+    description: The character set to be used for ID generation. Default value is 'AN-47'.
+    example: 'AN-47'
+    enum:
+    - 'GS1-64w'
+    - 'AN-47'
+  length:
+    type: number
+    description: The length of ID part which is going to be generated. Does not include 'prefix' and 'suffix' if were set. Allowed values are in range 8..20
+    example: 8
+  quantity:
+    type: number
+    description: 'The quantity of IDs to be generated. Maximal allowed value is 20000.'
+    example: 10000

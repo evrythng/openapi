@@ -1,0 +1,16 @@
+additionalProperties: false
+type: object
+description: 'The rate limit limits.'
+properties:
+  rate:
+    type: string
+    description: 'The rate limit rate type.'
+  timeFrame:
+    type: number
+    description: 'The time frame of the rate limit.'
+  warningMaxHits:
+    type: number
+    description: 'The warning maximum hits.'
+  blockingMaxHits:
+    type: number
+    description: 'The blocking maximum hits.'

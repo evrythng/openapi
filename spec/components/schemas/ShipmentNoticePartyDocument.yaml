@@ -1,0 +1,23 @@
+description: A party involved in this shipment notice.
+type: object
+additionalProperties: false
+properties:
+  id:
+    $ref: '#/components/schemas/IdentifierField'
+  name:
+    type: string
+    description: Display name for the party
+    minLength: 2
+    maxLength: 128
+  type:
+    type: string
+    description: The party type defines what involvement the identified party has in this shipment notice
+    enum:
+      - 'ship-from'
+      - 'ship-to'
+      - 'bill-to'
+    example: 'ship-from'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  address:
+    $ref: '#/components/schemas/AddressDocument'

@@ -30,6 +30,16 @@ properties:
     description: 'The content of the log entry.'
     readOnly: true
 x-filterable-fields:
-  - app
-  - logLevel
-  - timestamp
+  - name: 'app'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'logLevel'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'timestamp'
+    type: 'number'
+    operators:
+      - '<'
+      - '>'

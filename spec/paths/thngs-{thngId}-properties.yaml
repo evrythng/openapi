@@ -12,9 +12,7 @@ post:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/PropertyDocument'
+            $ref: '#/components/schemas/PropertiesDocument'
           example:
             -
               createdAt: 1490953506826

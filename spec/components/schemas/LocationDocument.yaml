@@ -1,6 +1,6 @@
 additionalProperties: false
 type: object
-description: 'An object representing a location.'
+description: 'An object representing a location. Either ''position'' or ''place'' us required.'
 properties:
   position:
     $ref: '#/components/schemas/GeoJSONPointDocument'
@@ -21,4 +21,8 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - timestamp
+  - name: 'timestamp'
+    type: 'number'
+    operators:
+      - '<'
+      - '>'

@@ -1,0 +1,95 @@
+description: An object representing a purchase order.
+type: object
+required:
+  - id
+  - status
+  - type
+  - issueDate
+  - parties
+  - lines
+properties:
+  id:
+    type: string
+    description: The purchase order ID.
+  evrythngId:
+    type: string
+    description: Standard 24 character EVRYTHNG ID of this purchase order.
+    readOnly: true
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  version:
+    description: The latest version of the purchase order.
+    type: string
+    example: '1'
+    minLength: 1
+    maxLength: 32
+  status:
+    description: The status of the purchase order, such as 'open' or 'cancelled'.
+    type: string
+    example: open
+    minLength: 2
+    maxLength: 256
+  purchaser:
+    description: The name of the purchasing party.
+    type: 'string'
+    minLength: 2
+    maxLength: 32
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  type:
+    description: The type of purchase order determines how the manufacturer interprets the Order, such as 'stand-alone', 'reorder', 'direct-ship'.
+    type: string
+    example: 'stand-alone'
+    minLength: 2
+    maxLength: 32
+  issueDate:
+    description: The date the purchase order was issued, in YYYY-MM-DD format.
+    type: string
+    example: '2019-02-10'
+    format: date
+  parties:
+    description: The parties involved in the purchase order. Must contain one item for each of 'ship-from', 'ship-to', and 'supplier'.
+    type: array
+    example:
+      - id: 'gs1:414:943234'
+        type: 'supplier'
+      - id: 'gs1:414:01251'
+        type: 'ship-from'
+      - id: 'gs1:414:NA0193'
+        type: 'ship-to'
+    items:
+      $ref: '#/components/schemas/PurchaseOrderPartyDocument'
+    minItems: 2
+    maxItems: 13
+  lines:
+    description: Line Items outlining the products, quantities and dates included in the purchase order.
+    type: array
+    items:
+      $ref: '#/components/schemas/LineItemDocument'
+    minItems: 1
+    maxItems: 500
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+x-filterable-fields:
+  - name: 'shipFrom'
+    type: 'list of string'
+    operators:
+      - '='
+  - name: 'status'
+    type: 'list of string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='
+  - name: 'type'
+    type: 'list of string'
+    operators:
+      - '='

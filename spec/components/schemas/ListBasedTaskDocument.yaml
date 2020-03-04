@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'A task for batch creation of Thngs with type `LIST_BASED`.'
+required:
+  - type
+  - inputParameters
 properties:
   id:
     $ref: '#/components/schemas/IdField'
@@ -17,7 +20,7 @@ properties:
   status:
     $ref: '#/components/schemas/TaskStatusField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   scopes:
@@ -31,6 +34,15 @@ properties:
   inputParameters:
     $ref: '#/components/schemas/ListBasedInputParametersDocument'
 x-filterable-fields:
-  - batch
-  - status
-  - type
+  - name: 'batch'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'status'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'type'
+    type: 'string'
+    operators:
+      - '='

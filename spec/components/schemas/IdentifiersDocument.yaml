@@ -1,2 +1,2 @@
 type: object
-description: 'Various identifiers (EPC, ISBN, etc.) as a JSON object with one or more key-value pairs.'
+description: 'Various identifiers (EPC, GTIN, etc.) as a JSON object with one or more key-value pairs.'

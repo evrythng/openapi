@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'An object representing an Application User login request.'
+required:
+  - email
+  - password
 properties:
   email:
     type: string

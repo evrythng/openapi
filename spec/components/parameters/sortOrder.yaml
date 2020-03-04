@@ -1,0 +1,6 @@
+name: sortOrder
+in: query
+description: The pagination parameter specifying the order of sorting of resources to return. The descending order is used by default, but ascending is also available. To specify a preference, use with a value of DESCENDING or ASCENDING.
+example: 'DESCENDING'
+schema:
+  type: string

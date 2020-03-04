@@ -1,0 +1,49 @@
+type: object
+description: 'Metadata describing data to include in the created Thngs and their redirections.'
+required:
+  - identifierKey
+properties:
+  targetAccount:
+    type: string
+    example: UfwwwypHPeKwYNbCXN1N5wcp
+    description: 'The ID of the account for which the ADIs were created.'
+  identifierKey:
+    type: string
+    example: 'gs1:21'
+    description: 'The key which will be used in the `identifiers` object on the `Thng` to store the ID. For example, `gs1:21`.'
+  product:
+    type: string
+    description: 'Identifier string for the product to which the created ADI (Thng) will be associated. Can be either a product ID  (e.g: ''U4tqeXsDe6sN9NawR3ywFgYn'') or colon separated identfier (e.g: ''gs1:01:12345678901234'').'
+    example: 'gs1:01:12345678901234'
+  identifiers:
+    type: object
+    description: 'Key-value pairs of custom additional identifiers to include on the Thngs.'
+    example:
+      internalOrderId: '123456'
+  customFields:
+    type: object
+    description: 'Key-value pairs of custom fields to include on the Thngs.'
+    example:
+      color: red
+  tags:
+    description: 'Array of string tags to be added to include on the Thng.'
+    type: array
+    items:
+      type: string
+    example:
+      - shipped
+      - received
+  shortDomain:
+    type: string
+    example: tn.gg
+    description: 'Short domain use in creating Thng redirections.'
+  defaultRedirectUrl:
+    type: string
+    example: 'https://evrythng.com?thng={evrythngId}'
+    description: 'Default URL to redirect to. Placeholders can be used: {evrythngId} for the Thng ID or {shortId} for the short ID.'
+  project:
+    type: string
+    description: If specified, the Thngs created will be scoped to the project with this ID.
+    example: U5gBSMUHxpwHEsawaFdrnbkf
+    minLength: 24
+    maxLength: 24

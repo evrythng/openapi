@@ -1,0 +1,15 @@
+type: object
+description: 'Object describing the status of an ADI order event'
+properties:
+  state:
+    type: string
+    description: 'The state of the order event.'
+    enum:
+      - pending
+      - in_progress
+      - completed
+  requested:
+    type: integer
+    description: 'Number of actions requested for identifiers of adi order.'
+  events:
+    $ref: '#/components/schemas/ADIOrderProgressDocument'

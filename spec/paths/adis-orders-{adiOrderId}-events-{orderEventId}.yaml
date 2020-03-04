@@ -1,0 +1,45 @@
+get:
+  tags:
+    - 'ADI Orders'
+  summary: 'Read an ADI Order event'
+  description: 'Retrieve a single ADI order event by its ID.'
+  parameters:
+    - $ref: '#/components/parameters/adiOrderId'
+    - $ref: '#/components/parameters/orderEventId'
+    - $ref: '#/components/parameters/withErrors'
+    - $ref: '#/components/parameters/withIds'
+  responses:
+    '200':
+      description: 'The order event was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ADIOrderEventDocument'
+          example:
+            id: UNTrNKg2BMsNt7wRwYymrGhm
+            status:
+              state: pending
+              requested: 2
+              events:
+                created: 0
+                pending: 1
+                errorsCount: 1
+                errors:
+                  ABSDFAFQQRQ: 'Failed to create an action'
+            metadata:
+              type: encodings
+              tags:
+              - example
+            ids:
+            - serial1
+            - serial2
+            customFields:
+              internalId: X7JF
+            tags:
+            - X7JF
+    '404':
+      description: |
+        - ADI Order is not found
+        - ADI Order Event is not found
+  x-api-keys:
+    - Operator

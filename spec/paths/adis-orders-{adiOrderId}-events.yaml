@@ -1,0 +1,90 @@
+post:
+  tags:
+    - 'ADI Orders'
+  summary: 'Create an ADI Order event'
+  description: 'Creates an event for actions on the ADIs (Thngs) in the specified ADI Order. This request should include the IDs to use when creating the actions.'
+  parameters:
+    - $ref: '#/components/parameters/adiOrderId'
+  requestBody:
+    description: 'The details of the order event.'
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ADIOrderEventDocument'
+        example:
+          metadata:
+          type: encodings
+          tags:
+          - example
+          ids:
+          - serial1
+          - serial2
+          customFields:
+            internalId: X7JF
+          tags:
+          - X7JF
+  responses:
+    '201':
+      description: 'The order event was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ADIOrderEventDocument'
+          example:
+            metadata:
+              type: encodings
+              tags:
+              - example
+            ids:
+            - serial1
+            - serial2
+            customFields:
+              internalId: X7JF
+            tags:
+            - X7JF
+    '400':
+      description: |
+        Unsupported character set.
+        ID array length is greater than allowed.
+        Given account was not found.
+        The action type doesn't exist in account/targetAccount.
+        There are IDs which were not specified in IDs array of the ADI order.
+    '423':
+      description: 'Adi Order has not been finished yet'
+    '415':
+      description: 'The payload must be valid JSON and the ''Content-type: application/json'' header set.'
+  x-api-keys:
+    - Operator
+get:
+  tags:
+    - 'ADI Orders'
+  summary: 'Read all ADI Order events'
+  description: 'Retrieves all ADI Order events belonging to the specified ADI Order'
+  parameters:
+    - $ref: '#/components/parameters/adiOrderId'
+  responses:
+    '200':
+      description: 'List of ADI order events'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ADIOrderEventDocument'
+          example:
+            - metadata:
+              type: encodings
+              tags:
+                - example
+              ids:
+                - serial1
+                - serial2
+              customFields:
+                internalId: X7JF
+              tags:
+                - X7JF
+    '404':
+      description: 'ADI order not found'
+  x-api-keys:
+    - Operator

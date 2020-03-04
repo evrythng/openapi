@@ -1,7 +1,7 @@
 get:
   tags:
     - 'Application Users'
-  summary: 'Read an Application User''s activation status.'
+  summary: 'Read an Application User''s activation status'
   description: 'Read a single Application User''s activation status but their `evrythngUser` ID.'
   parameters:
     -

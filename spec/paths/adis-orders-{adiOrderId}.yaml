@@ -1,0 +1,42 @@
+get:
+  tags:
+    - 'ADI Orders'
+  summary: 'Read an ADI Order'
+  description: 'Retrieve a single ADI order by its ID.'
+  parameters:
+    - $ref: '#/components/parameters/adiOrderId'
+    - $ref: '#/components/parameters/withErrors'
+    - $ref: '#/components/parameters/withIds'
+  responses:
+    '200':
+      description: 'The order was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ADIOrderDocument'
+          example:
+            id: UNTrNKg2BMsNt7wRwYymrGhm
+            status:
+              state: pending
+              requested: 2
+              created: 0
+              pending: 0
+              errorsCount: 0
+            purchaseOrder: '234567890'
+            metadata:
+              identifierKey: gs1:21
+              customFields:
+                factory: '0400321'
+              product: gs1:01:9780345418913
+              tags:
+              - factory:0400321
+              shortDomain: tn.gg
+              defaultRedirectUrl: https://evrythng.com?id={shortId}
+            identifiers:
+              internalId: X7JF
+            tags:
+            - X7JF
+    '404':
+      description: 'The order was not found'
+  x-api-keys:
+    - Operator

@@ -1,0 +1,20 @@
+additionalProperties: false
+type: object
+description: 'A single set of rate limit information'
+properties:
+  url:
+    $ref: '#/components/schemas/RateLimitsUrlDocument'
+  access:
+    type: string
+    description: 'The rate limit access type.'
+  limit:
+    $ref: '#/components/schemas/RateLimitLimitDocument'
+  hits:
+    type: number
+    description: 'The number of hits so far since reset.'
+  hitsRemaining:
+    type: number
+    description: 'The remaining number of hits until reset.'
+  reset:
+    type: number
+    description: 'Number of seconds until rate limit reset.'

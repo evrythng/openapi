@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'The minimum fields for any of the specific types of task.'
+required:
+  - type
+  - inputParameters
 properties:
   id:
     $ref: '#/components/schemas/IdField'
@@ -15,7 +18,7 @@ properties:
   status:
     $ref: '#/components/schemas/TaskStatusField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   completedAt:
@@ -32,6 +35,15 @@ properties:
     type: object
     description: 'One of the following types of `inputParameters`: `FixedAmountInputParametersDocument`, `FileBasedInputParametersDocument`, `ListBasedInputParametersDocument`, or `IdentifiersListBasedInputParametersDocument`.'
 x-filterable-fields:
-  - batch
-  - status
-  - type
+  - name: 'batch'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'status'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'type'
+    type: 'string'
+    operators:
+      - '='

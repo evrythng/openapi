@@ -16,10 +16,13 @@ properties:
   description:
     $ref: '#/components/schemas/DescriptionField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - name
+  - name: name
+    type: 'string'
+    operators:
+      - '='

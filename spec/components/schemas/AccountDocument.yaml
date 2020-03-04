@@ -23,4 +23,7 @@ properties:
     type: string
     description: 'Invalid GS1 scans will redirect to this URL.'
 x-filterable-fields:
-  - name
+  - name: name
+    type: string
+    operators:
+      - '='

@@ -43,5 +43,11 @@ get:
             type: array
             items:
               $ref: '#/components/schemas/BatchDocument'
+          example:
+            - id: UNfMKGGf7kgMsERwwm3bqafe
+              createdAt: 1566357909459
+              updatedAt: 1566357918733
+              name: Test Batch
+              status: COMPLETE
   x-api-keys:
     - Operator

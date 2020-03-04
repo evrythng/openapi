@@ -1,0 +1,22 @@
+type: object
+description: Object describing a commissioning event.
+required:
+  - product
+  - location
+  - occurredAt
+properties:
+  product:
+    type: string
+    description: 'Any valid product identifier separated from its value by '':''.'
+    example: 'gs1:01:02374837684278'
+  location:
+    $ref: '#/components/schemas/LocationDocument'
+  purchaseOrder:
+    type: string
+    description: 'Purchase order for which the commission happened'
+  occurredAt:
+    description: 'Date and time of commission in ISO8601 format with time offset'
+    type: string
+    format: date-time
+  factoryMetadata:
+    $ref: '#/components/schemas/FactoryMetadataDocument'

@@ -1,0 +1,5 @@
+additionalProperties: false
+type: array
+description: 'List of Application User role permissions.'
+items:
+  $ref: '#/components/schemas/ApplicationUserRolePermissionDocument'

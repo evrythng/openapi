@@ -1,0 +1,2 @@
+type: object
+description: 'The list of errors. Key - the identifier value, the value - ADIOrderErrorDetailsDocument.'

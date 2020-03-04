@@ -5,6 +5,7 @@ required:
   - firstName
   - lastName
   - email
+  - password
 properties:
   id:
     $ref: '#/components/schemas/IdField'
@@ -42,7 +43,7 @@ properties:
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   project:
     type: string
     description: 'The project ID of the application this user belongs to.'
@@ -62,6 +63,15 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - email
-  - firstName
-  - lastName
+  - name: 'email'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'firstName'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'lastName'
+    type: 'string'
+    operators:
+      - '='

@@ -1,0 +1,6 @@
+name: ids
+in: query
+description: Comma-separated list of resource ids to return.
+example: 'UNEdEQ5nFdMYPPyQxTcNqfnb,UNEdEQ6nFdMYPPyQxTcNqfnb'
+schema:
+  type: string
