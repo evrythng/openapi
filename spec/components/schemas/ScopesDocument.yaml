@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'Project and user scopes arrays.'
+required:
+  - users
+  - projects
 properties:
   users:
     type: array
@@ -11,4 +14,4 @@ properties:
     type: array
     description: 'An array of project IDs this resource is scoped to.'
     items:
-      $ref: '#/components/schemas/IdField'
+      type: 'string'

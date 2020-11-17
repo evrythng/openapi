@@ -1,0 +1,88 @@
+get:
+  tags:
+    - Redirections
+  summary: 'Read a redirection'
+  description: 'Read a redirection.'
+  servers:
+    - url: 'https://tn.gg'
+  parameters:
+    -
+      $ref: '#/components/parameters/shortId'
+  responses:
+    '200':
+      description: 'The redirection, if it exists.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496664729327
+            updatedAt: 1496664729327
+            defaultRedirectUrl: 'https://google.com'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 39aZNy4g
+            type: 'thng'
+            evrythngId: 'UP73aanFqN6WnsAfF4fQ7a4e'
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+    - Device
+put:
+  tags:
+    - Redirections
+  summary: 'Update a redirection'
+  description: 'Update a redirection.'
+  servers:
+    - url: 'https://tn.gg'
+  parameters:
+    -
+      $ref: '#/components/parameters/shortId'
+  responses:
+    '200':
+      description: 'The redirection was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: 799yeEi4qp
+            type: 'thng'
+            evrythngId: 'UP73aanFqN6WnsAfF4fQ7a4e'
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{shortId}'
+    description: 'The request body for creating a or updating a redirection.'
+    required: true
+delete:
+  tags:
+    - Redirections
+  summary: 'Delete a redirection'
+  description: 'Delete a redirection.'
+  servers:
+    - url: 'https://tn.gg'
+  parameters:
+    -
+      $ref: '#/components/parameters/shortId'
+  responses:
+    '200':
+      description: 'The redirection was deleted successfully.'
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'

@@ -1,0 +1,44 @@
+additionalProperties: false
+type: object
+description: 'An object representing a service access.'
+readOnly: true
+required:
+  - name
+  - conditions
+  - policies
+properties:
+  name:
+    description: The name of the access token.
+    type: string
+    example: 'operator@email.com'
+    minLength: 5
+    maxLength: 128
+  description:
+    description: The description of the access token.  Which services this token might be applied to.
+    type: string
+    maxLength: 256
+  policies:
+    description: An array of policy IDs
+    type: array
+    items:
+      type: string
+      minLength: 24
+      maxLength: 24
+    uniqueItems: true
+    maxItems: 100
+  conditions:
+    description: A conditions array.
+    type: array
+    items:
+      type: string
+      minLength: 3
+      maxLength: 128
+      pattern: '^[A-Za-z0-9_-]+:[A-Za-z0-9_-]+$'
+    maxItems: 256
+    uniqueItems: true
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'

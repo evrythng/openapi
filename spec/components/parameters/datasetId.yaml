@@ -1,0 +1,9 @@
+description: 'The ID of the dataset'
+required: true
+schema:
+  title: Datasetid
+  type: string
+  description: 'The ID of the dataset'
+  example: 4aba66f95b8d410c9c510867d6533844
+name: datasetId
+in: path

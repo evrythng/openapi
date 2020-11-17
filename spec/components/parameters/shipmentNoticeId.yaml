@@ -1,0 +1,6 @@
+name: shipmentNoticeId
+in: path
+required: true
+description: The shipment notice ID.
+schema:
+  type: string

@@ -1,0 +1,79 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read a model type'
+  description: 'Returns a list of model instances. If the query parameter context is set to true, it returns information about the model type.'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+  responses:
+    '200':
+      description: 'The model type was read successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'
+          example: {}
+put:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Update a model type'
+  description: 'Update a single model type.'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ModelTypePayloadDocument'
+        example:
+          name: scans
+    required: true
+  responses:
+    '201':
+      description: 'The model type was updated successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ModelTypePayloadDocument'
+          example: {}
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          schema:
+            type: object
+          example: {}
+post:
+  x-api-status: Alpha
+  summary: 'Create a new model of type'
+  description: 'Create a new instance of a model type'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  responses:
+    '200':
+      description: 'The new model was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'
+          example: {}
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          schema:
+            type: object
+          example: {}

@@ -1,0 +1,45 @@
+description: 'Object describing the order of ADIs to generate.'
+type: object
+required:
+  - metadata
+  - purchaseOrder
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  status:
+    $ref: '#/components/schemas/ADIOrderStatusDocument'
+  result:
+    type: string
+    description: 'The result of the order once it has been completed.'
+    enum:
+      - SUCCEEDED
+      - FAILED
+      - SUCCEEDED_WITH_FAILURES
+  metadata:
+    $ref: '#/components/schemas/ADIOrderMetadataDocument'
+  purchaseOrder:
+    type: string
+    description: 'ID of the associated purchase order.'
+    example: 7328468
+  ids:
+    type: array
+    description: 'Array of string IDs to be used for each generated ADI.'
+    items:
+      type: string
+    uniqueItems: true
+    example:
+      - 827bd8a2
+      - 897c9a7d
+      - 90ab78a6
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+  idGeneration:
+    $ref: '#/components/schemas/ADIOrderIDGenerationDocument'
+  fileMetadata:
+    $ref: '#/components/schemas/ADIOrderFileMetadataDocument'
+  results:
+    $ref: '#/components/schemas/ADIOrderResultsDocument'

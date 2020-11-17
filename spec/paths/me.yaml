@@ -1,0 +1,63 @@
+get:
+  summary: "Get the caller's own account Operator access and inline policies"
+  description: Reads and returns account operator access and inline policies based on the caller's API key.
+  tags:
+    - Enterprise Access
+  x-api-keys:
+    - Operator
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MeDocument'
+          example:
+            id: 'Ud6TycDekE5afp6M8QAEEMhp'
+            operator: 123932QJ1235823412S741WG4
+            name: 'first last'
+            email: 'operator@email.com'
+            description: 'access description'
+            policies:
+              - name: 'FactoryAdministratorPolicy'
+                description: 'Description of FactoryAdministratorPolicy'
+                permissions:
+                  - 'actions:create'
+                  - 'places:list,read,update'
+                  - 'operatorAccess:list,read,update'
+                  - 'products:list,read'
+                  - 'purchaseOrders:list,read'
+                  - 'thngs:read'
+                uiPermissions:
+                  - 'activation'
+                  - 'authenticate'
+                homepage: 'authenticate'
+                identifiers:
+                  ean: aen232032
+                tags:
+                  - roles
+                  - and
+                  - permissions
+              - name: 'BrandProtector'
+                permissions:
+                  - 'actions:create'
+                  - 'products:list,read'
+                  - 'purchaseOrders:list,read'
+                  - 'thngs:read'
+                uiPermissions:
+                  - 'brandProtection'
+                  - 'authenticate'
+                homepage: 'brandProtection'
+            conditions:
+              - places:UPBCycCpgVGArgYc5y5UnkAg
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 403
+            errors:
+              - This API is only supported for operators
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-and-error-codes#section-error-codes

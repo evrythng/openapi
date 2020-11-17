@@ -1,0 +1,6 @@
+type: array
+description: 'Array of string tags associated with this resource.'
+items:
+  type: string
+  maxLength: 256
+  maximum: 60

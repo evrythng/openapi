@@ -30,13 +30,26 @@ properties:
   identifiers:
     $ref: '#/components/schemas/IdentifiersDocument'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - createdAt
-  - identifiers.<key>
-  - name
-  - tags
+  - name: 'createdAt'
+    type: 'number'
+    operators:
+      - '>'
+      - '<'
+  - name: 'identifiers.<key>'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'name'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='

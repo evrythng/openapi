@@ -1,0 +1,8 @@
+name: orderEventId
+in: path
+required: true
+description: 'A 24 character EVRYTHNG resource ID for the ADI Order event.'
+example: 'U5DBbKK5mXQBVeaaa4xqpp2t'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

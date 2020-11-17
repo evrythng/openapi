@@ -33,8 +33,8 @@ put:
           type: array
           items:
             type: string
-          example:
-            - UkNCRED7BDPaQKRRwhAnPaQn
+        example:
+          - UkNCRED7BDPaQKRRwhAnPaQn
     description: 'A list of Thng IDs to add to the collection.'
     required: true
 get:

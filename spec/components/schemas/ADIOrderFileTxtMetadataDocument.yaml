@@ -1,0 +1,28 @@
+type: object
+description: 'Contains configuration parameters for txt file generation.'
+properties:
+  value:
+    type: string
+    description: 'Characteristic of the ADI. The value of this field will refer to ADI in the generated file.'
+    enum:
+      - digitalLink
+      - shortUrl
+      - identifier
+      - product
+    example: digitalLink
+  digitalLinkDomain:
+    type: string
+    example: 'https://pxgkp.tn.gg'
+    description: 'This url will be used for constructing digital link of the ADI in a file if "value" equals to the digitalLink.'
+  perLine:
+    type: number
+    description: 'Number of identifiers per line in the generated file.'
+    example: 3
+  separator:
+    type: string
+    description: 'Character or sequence of characters to be used for separation of identifiers located in one line.'
+    example: '|'
+  newLine:
+    type: string
+    description: 'Character or sequence of characters to be used as the end of the line.'
+    example: '\r\n'

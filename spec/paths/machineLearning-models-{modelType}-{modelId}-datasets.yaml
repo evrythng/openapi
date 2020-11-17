@@ -1,0 +1,53 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read all training datasets'
+  description: 'Read a list of training datasets.'
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+  responses:
+    '200':
+      description: 'The dataset was read successfully'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'
+post:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Create a Training Dataset'
+  description: "Creates a training data set. The dataset is described as an EVRYTHNG URL"
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+  requestBody:
+    content:
+      application/json:
+        example: {}
+        schema:
+          $ref: '#/components/schemas/DatasetDefinitionDocument'
+  responses:
+    '201':
+      description: 'The dataset was created successfully.'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/DatasetDefinitionDocument'
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          example: {}
+          schema:
+            type: object

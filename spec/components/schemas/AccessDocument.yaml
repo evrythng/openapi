@@ -1,6 +1,7 @@
 additionalProperties: false
 type: object
 description: 'An object representing an account''s access record.'
+readOnly: true
 properties:
   account:
     type: string

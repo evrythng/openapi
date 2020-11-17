@@ -1,0 +1,16 @@
+required:
+  - secret
+  - state
+type: object
+description: 'Callback payload after dataset is downloaded'
+properties:
+  secret:
+    type: string
+    description: 'Secret key used to authorize calling the callback'
+  state:
+    type: string
+    description: 'State of the dataset'
+    enum:
+      - 'downloaded'
+      - 'running'
+      - 'failed'

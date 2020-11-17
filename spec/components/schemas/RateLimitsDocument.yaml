@@ -7,5 +7,6 @@ properties:
     description: 'The name of the rate limit type.'
   rateLimits:
     type: array
+    description: 'Array of applicable rate limit information'
     items:
-      $ref: '#/components/schemas/SingleRateLimitField'
+      $ref: '#/components/schemas/SingleRateLimitDocument'

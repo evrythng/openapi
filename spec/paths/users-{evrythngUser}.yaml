@@ -61,8 +61,8 @@ put:
         example:
           firstName: Test
           lastName: Testers
-          password: password
-          oldPassword: password
+          password: P@ssw0rd!
+          oldPassword: P@ssw0rd
     description: 'The ApplicationUserDocument with fields to update.'
     required: true
 delete:

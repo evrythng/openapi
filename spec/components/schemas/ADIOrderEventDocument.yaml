@@ -1,0 +1,40 @@
+description: 'Object containing action details and IDs of ADIs to create actions for.'
+type: object
+required:
+  - metadata
+  - ids
+properties:
+  id:
+    type: string
+    description: 'id of adi order event'
+    example: U7x9gTmMRFEaSHxMC5g8bqSd
+  status:
+    $ref: '#/components/schemas/ADIOrderEventStatusDocument'
+  result:
+    type: string
+    description: 'adi order event processing result'
+    enum:
+      - succeeded
+      - failed
+      - succeeded_with_failures
+  metadata:
+    $ref: '#/components/schemas/ActionDocument'
+  ids:
+    type: array
+    items:
+      type: string
+    description: 'array of ADIs'' ids to create actions for'
+    example:
+      - ad76as8d7ga
+      - ad87ad6fg8a7f
+  customFields:
+    type: object
+    description: 'Object of case-sensititve key-value pairs of custom fields associated with the resource.'
+  identifiers:
+    type: object
+    description: 'Various identifiers (EPC, ISBN, etc.) as a JSON object with one or more key-value pairs.'
+  tags:
+    type: array
+    description: 'Array of string tags associated with this resource.'
+    items:
+      type: string

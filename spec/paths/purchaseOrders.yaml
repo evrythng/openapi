@@ -1,0 +1,148 @@
+post:
+  summary: Create a purchase order
+  description: Create a new purchase order resource.
+  tags:
+    - 'Purchase Orders'
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/useEvrythngId'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PurchaseOrderDocument'
+        example:
+          id: '234567890'
+          status: open
+          type: stand-alone
+          description: A purchase order for 100 items
+          issueDate: '2019-02-14'
+          parties:
+          - id: gs1:414:943234
+            type: supplier
+          - id: gs1:414:01251
+            type: ship-from
+          - id: gs1:414:NA0193
+            type: ship-to
+          lines:
+          - id: '00010'
+            quantity: 100
+            product: gs1:01:00000123456789
+            exportDate: '2019-02-17'
+            deliveryDate: '2019-02-20'
+  responses:
+    201:
+      description: The purchase order was successfully created.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PurchaseOrderDocument'
+          example:
+            id: '234567890'
+            evrythngId: 'U8xtbEasDmbnhagkfsbgbpdr'
+            status: 'open'
+            type: 'stand-alone'
+            description: 'A purchase order for 100 items'
+            issueDate: '2019-02-14'
+            parties:
+              - id: 'gs1:414:943234'
+                type: 'supplier'
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - id: 'gs1:414:NA0193'
+                type: 'ship-to'
+            lines:
+              - id: '00010'
+                quantity: 100
+                product: 'gs1:01:00000123456789'
+                exportDate: '2019-02-17'
+                deliveryDate: '2019-02-20'
+            version: '1'
+            createdAt: 1550143360591
+            updatedAt: 1550143360591
+    400:
+      description: A purchase order was not created because the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - PurchaseOrder should have required property 'type'
+            code: 50331648
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50331648
+    409:
+      description: A purchase order was not created because one with the same ID already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 409
+            errors:
+              - The purchase order already exists
+            code: 67239936
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-67239936
+get:
+  summary: Read all purchase orders
+  description: List purchase orders in an account
+  tags:
+    - 'Purchase Orders'
+  x-api-keys:
+    - Operator
+  responses:
+    200:
+      description: A list of purchase orders
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PurchaseOrderDocument'
+          example:
+            - id: '234567890'
+              evrythngId: 'U8xtbEasDmbnhagkfsbgbpdr'
+              status: 'open'
+              type: 'stand-alone'
+              description: 'A purchase order for 100 items'
+              issueDate: '2019-02-14'
+              parties:
+                - id: 'gs1:414:943234'
+                  type: 'supplier'
+                - id: 'gs1:414:01251'
+                  type: 'ship-from'
+                - id: 'gs1:414:NA0193'
+                  type: 'ship-to'
+              lines:
+                - id: '00010'
+                  quantity: 100
+                  product: 'gs1:01:00000123456789'
+                  exportDate: '2019-02-17'
+                  deliveryDate: '2019-02-20'
+              version: '1'
+              createdAt: 1550143360591
+              updatedAt: 1550143360591
+            - id: '234567891'
+              evrythngId: 'UsStxg3pkgabqngdmrecpfeb'
+              status: 'open'
+              type: 'stand-alone'
+              description: 'A purchase order for 10 items'
+              issueDate: '2019-02-01'
+              parties:
+                - id: 'gs1:414:92431223'
+                  type: 'supplier'
+                - id: 'gs1:414:9382392'
+                  type: 'ship-from'
+                - id: 'gs1:414:NA0193'
+                  type: 'ship-to'
+              lines:
+                - id: '00010'
+                  quantity: 10
+                  product: 'gs1:01:00000123456789'
+                  exportDate: '2019-02-10'
+                  deliveryDate: '2019-02-13'
+              createdAt: 1550143360594
+              updatedAt: 1550143360594

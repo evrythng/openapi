@@ -1,6 +1,8 @@
 additionalProperties: false
 type: object
-description: 'An object describing a Reactor schedule.'
+description: 'An object describing a Reactor schedule. Either ''cron'' or ''executeAt'' is required.'
+required:
+  - event
 properties:
   event:
     type: object

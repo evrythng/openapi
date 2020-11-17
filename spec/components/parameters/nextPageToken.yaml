@@ -1,0 +1,6 @@
+in: query
+name: nextPageToken
+description: The pagination parameter used to address the next page of results.
+required: false
+schema:
+  type: string

@@ -70,20 +70,20 @@ put:
           type: array
           items:
             $ref: '#/components/schemas/LocationDocument'
-          example:
-            -
-              position:
-                type: Point
-                coordinates:
-                  - -17.3
-                  - 36
-            -
-              timestamp: 1347028945711
-              position:
-                type: Point
-                coordinates:
-                  - -179.3
-                  - -37
+        example:
+          -
+            position:
+              type: Point
+              coordinates:
+                - -17.3
+                - 36
+          -
+            timestamp: 1347028945711
+            position:
+              type: Point
+              coordinates:
+                - -179.3
+                - -37
     description: 'The LocationDocument to update the Thng''s location.'
     required: true
 delete:

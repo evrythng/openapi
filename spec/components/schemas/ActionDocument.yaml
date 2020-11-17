@@ -62,20 +62,54 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   reactions:
     type: array
     description: 'An array of Redirector reactions that occured from this action.'
     items:
       $ref: '#/components/schemas/ReactionDocument'
+  url:
+    type: 'string'
+    description: 'The URL to the triggering scan, added in some cases.'
 x-filterable-fields:
-  - timestamp
-  - identifiers.<key>
-  - tags
-  - type
-  - user
-  - context.city
-  - context.countryCode
-  - thng
-  - product
-  - collection
+  - name: 'timestamp'
+    type: 'number'
+    operators:
+      - '>'
+      - '<'
+  - name: 'identifiers.<key>'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='
+  - name: 'type'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'user'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'context.city'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'context.countryCode'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'thng'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'product'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'collection'
+    type: 'string'
+    operators:
+      - '='

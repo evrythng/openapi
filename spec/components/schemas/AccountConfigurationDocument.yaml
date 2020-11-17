@@ -1,0 +1,5 @@
+type: object
+description: 'Object containing account related configuration.'
+properties:
+  uniqueIdentifiers:
+    $ref: '#/components/schemas/AccountUniqueIdentifiersDocument'

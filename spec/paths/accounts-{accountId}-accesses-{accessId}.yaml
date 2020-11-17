@@ -4,10 +4,8 @@ get:
   summary: 'Read an account access'
   description: 'Read an account access by ID.'
   parameters:
-    -
-      $ref: '#/components/parameters/accountId'
-    -
-      $ref: '#/components/parameters/accessId'
+    - $ref: '#/components/parameters/accountId'
+    - $ref: '#/components/parameters/accessId'
   responses:
     '200':
       description: 'The access requested, if available.'
@@ -52,8 +50,8 @@ put:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/AccountDocument'
+          $ref: '#/components/schemas/AccessDocument'
         example:
           role: admin
-    description: 'The AccountDocument containing the role to create/update.'
+    description: 'The AccessDocument containing the role to create/update.'
     required: true

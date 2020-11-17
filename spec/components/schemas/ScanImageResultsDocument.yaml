@@ -6,5 +6,6 @@ properties:
     $ref: '#/components/schemas/ScanImageMetadataDocument'
   results:
     type: array
+    description: 'Array of individual results'
     items:
       $ref: '#/components/schemas/ScanImageResultDocument'

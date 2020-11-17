@@ -20,8 +20,8 @@ post:
           type: array
           items:
             type: string
-          example:
-            - Ukr6sEY7Bg8w9pRawDUgYDdh
+        example:
+          - Ukr6sEY7Bg8w9pRawDUgYDdh
     description: 'A list of collection IDs to add to the collection.'
     required: true
 get:

@@ -1,0 +1,52 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  responses:
+    '200':
+      description: 'Returns a list of model types.'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+          example:
+            - 'scanningAnomalies'
+            - 'supplychainIntegrityChecks'
+  summary: 'Read all model types'
+  description: 'Returns a list of model types that can be activated by customers.'
+post:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Create a model type'
+  description: 'Creates a new model type.'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ModelTypePayloadDocument'
+        example:
+          name: abnormalScans
+    required: true
+  responses:
+    '201':
+      description: 'The new model was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ModelTypePayloadDocument'
+          example: {}
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          schema:
+            type: object

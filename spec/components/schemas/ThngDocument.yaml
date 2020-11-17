@@ -16,8 +16,10 @@ properties:
     type: integer
     description: 'Timestamp when the Thng was activated.'
     readOnly: true
+  type:
+    $ref: '#/components/schemas/TypeField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   description:
     $ref: '#/components/schemas/DescriptionField'
   customFields:
@@ -47,9 +49,28 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - collections
-  - createdAt
-  - identifiers.<key>
-  - name
-  - product
-  - tags
+  - name: collections
+    type: list of string
+    operators:
+    - '='
+  - name: createdAt
+    type: number
+    operators:
+    - '<'
+    - '>'
+  - name: identifiers.<key>
+    type: string
+    operators:
+    - '='
+  - name: name
+    type: string
+    operators:
+    - '='
+  - name: product
+    type: string
+    operators:
+    - '='
+  - name: tags
+    type: list of string
+    operators:
+    - '='

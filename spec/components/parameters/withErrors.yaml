@@ -1,0 +1,6 @@
+in: query
+name: withErrors
+description: 'If set to true the response will contain status with error details.'
+required: false
+schema:
+  type: boolean

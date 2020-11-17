@@ -1,0 +1,43 @@
+description: A purchase order Line Item.
+type: object
+additionalProperties: false
+required:
+  - id
+  - quantity
+  - product
+  - exportDate
+  - deliveryDate
+properties:
+  id:
+    description: The purchase order Line number.
+    type: string
+    example: '00010'
+    minLength: 2,
+    maxLength: 64
+  quantity:
+    description: The quantity of products to be manufactured.
+    type: number
+    example: 100
+    minimum: 1
+  unitOfMeasure:
+    description: The unit of measure for the line item such as "each".
+    type: string
+    minLength: 1
+    maxLength: 64
+    default: 'each'
+  product:
+    description: A colon separated identifier string referencing an EVRYTHNG product.
+    type: string
+    example: 'gs1:01:00000123456789'
+    minLength: 3
+    maxLength: 128
+  exportDate:
+    description: The date the line item is expected to be exported on, in YYYY-MM-DD format.
+    type: string
+    example: '2019-02-14'
+    format: date
+  deliveryDate:
+    description: The date the line item is expected to be delivered on, in YYYY-MM-DD format.
+    type: string
+    example: '2019-02-18'
+    format: date

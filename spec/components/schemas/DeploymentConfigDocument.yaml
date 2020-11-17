@@ -1,0 +1,10 @@
+required:
+  - datasets
+type: object
+description: 'An object containing a list of datasets.'
+properties:
+  datasets:
+    type: array
+    description: 'The list of datasets on which the model will be trained.'
+    items:
+      type: string

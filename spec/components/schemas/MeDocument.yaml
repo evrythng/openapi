@@ -1,0 +1,48 @@
+additionalProperties: false
+type: object
+description: 'An object representing the payload of the "/me" API'
+readOnly: true
+required:
+  - name
+  - email
+  - conditions
+  - policies
+properties:
+  name:
+    description: The name of the operator.
+    type: string
+    example: 'Firstname Lastname'
+    minLength: 5
+    maxLength: 128
+  email:
+    type: string
+    description: The operator email address.
+    example: 'email@domain.com'
+  description:
+    description: The description of the operator access.
+    type: string
+    maxLength: 256
+  operator:
+    description: The operator ID
+    type: string
+  policies:
+    description: An array of policies
+    type: array
+    items:
+      $ref: '#/components/schemas/AccessPolicyDocument'
+  conditions:
+    description: A conditions array.
+    type: array
+    items:
+      type: string
+      minLength: 3
+      maxLength: 128
+      pattern: '^[A-Za-z0-9_-]+:[A-Za-z0-9_-]+$'
+    maxItems: 256
+    uniqueItems: true
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'

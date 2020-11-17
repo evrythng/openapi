@@ -14,10 +14,12 @@ properties:
     $ref: '#/components/schemas/UpdatedAtField'
   description:
     $ref: '#/components/schemas/DescriptionField'
+  type:
+    $ref: '#/components/schemas/TypeField'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   identifiers:
     $ref: '#/components/schemas/IdentifiersDocument'
   collections:
@@ -30,7 +32,19 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - collections
-  - identifiers
-  - name
-  - tags
+  - name: 'collections'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'identifiers.<key>'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'name'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='

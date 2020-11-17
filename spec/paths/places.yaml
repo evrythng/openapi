@@ -37,7 +37,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/LocationDocument'
+          $ref: '#/components/schemas/PlaceDocument'
         example:
           name: 'Evrythng London Office'
           position:
@@ -53,8 +53,6 @@ post:
             countryCode: GB
           description: 'London HQ'
           icon: 'https://evrythng.com/wp-content/themes/evrythng_v2.4/img/logo.svg'
-    description: 'The LocationDocument containing the fields to create.'
-    required: true
 get:
   tags:
     - Places

@@ -8,6 +8,7 @@ properties:
     $ref: '#/components/schemas/ThngDocument'
   redirections:
     type: array
+    description: 'Array of redirections for the resource'
     items:
       type: string
     readOnly: true

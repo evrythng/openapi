@@ -1,0 +1,108 @@
+description: An object representing a shipment notice.
+type: object
+required:
+  - asnId
+  - status
+  - issueDate
+  - parties
+properties:
+  id:
+    $ref: '#/components/schemas/IdField'
+  asnId:
+    type: string
+    description: ID of the associated shipment notice.
+    minLength: 1
+    maxLength: 64
+    pattern: '^[A-Za-z0-9._:+-]+$'
+    example: '9827429837429823828273'
+  description:
+    $ref: '#/components/schemas/DescriptionField'
+  createdAt:
+    $ref: '#/components/schemas/CreatedAtField'
+  updatedAt:
+    $ref: '#/components/schemas/UpdatedAtField'
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  version:
+    description: Identifies the current version of the shipment, the default value is '1'
+    type: string
+    minLength: 1
+    maxLength: 32
+    default: 1
+    example: '1'
+  status:
+    type: string
+    description: The status of the shipment
+    enum:
+      - open
+      - closed
+      - cancelled
+    default: open
+    example: open
+  purchaseOrderId:
+    description: A reference to an associated purchase order
+    type: string
+    minLength: 1
+    maxLength: 64
+    pattern: '^[a-zA-Z0-9:_+.@-]+$'
+    example: '4700990774'
+  issueDate:
+    description: The date the shipment was issued on
+    type: string
+    format: 'date-time'
+    example: '2016-12-19T16:39:57-08:00'
+  deliveryDate:
+    description: The date the shipment is due to be delivered
+    type: string
+    format: date-time
+    example: '2013-04-12T23:20:50.52Z'
+  transportation:
+    type: string
+    description: The type of transportation
+    minLength: 1
+    maxLength: 32
+    example: Air
+  parties:
+    type: array
+    description: The parties involved in the shipment
+    minItems: 2
+    maxItems: 3
+    items:
+      $ref: '#/components/schemas/ShipmentNoticePartyDocument'
+    example:
+      - id: 'gs1:414:01251'
+        type: 'ship-from'
+      - name: 'The Landmark, Shop No. G14'
+        type: 'ship-to'
+        address:
+          street: 113-114, Central
+          city: Hong Kong
+  contents:
+    type: array
+    description: Array of products in the shipment and their quantites.
+    items:
+      $ref: '#/components/schemas/ShipmentNoticeContentDocument'
+    minItems: 1
+    maxItems: 1000
+    example:
+      - product: 'gs1:01:00001254563898'
+        quantity: 250
+      - product: 'gs1:01:00283679123844'
+        quantity: 42
+x-filterable-fields:
+  - name: 'purchaseOrderId'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='
+  - name: 'status'
+    type: 'list of string'
+    operators:
+      - '='

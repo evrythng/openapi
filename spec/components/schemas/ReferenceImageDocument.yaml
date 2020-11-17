@@ -1,6 +1,8 @@
 additionalProperties: false
 type: object
 description: 'Object representing an image recognition reference image.'
+required:
+  - name
 properties:
   id:
     $ref: '#/components/schemas/IdField'

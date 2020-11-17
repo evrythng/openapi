@@ -1,6 +1,8 @@
 additionalProperties: false
 type: object
 description: 'An object representing the account''s Redirector rules'
+required:
+  - rules
 properties:
   rules:
     description: 'The rules set up for a Redirector.'

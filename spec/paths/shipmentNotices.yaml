@@ -1,0 +1,162 @@
+post:
+  x-api-status: Beta
+  summary: Create a shipment notice
+  description: Create a new shipment notice resource.
+  tags:
+    - Shipment Notices
+  parameters:
+    - $ref: '#/components/parameters/useEvrythngId'
+  x-api-keys:
+    - Operator
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ShipmentNoticeDocument'
+        example:
+          asnId: '9827429837429823828273'
+          version: '1'
+          purchaseOrderId: '4700990774'
+          issueDate: '2019-06-19T16:39:57-08:00'
+          transportation: Expedited Freight
+          parties:
+            - id: 'gs1:414:01251'
+              type: 'ship-from'
+            - name: 'The Landmark, Shop No. G14'
+              type: 'ship-to'
+              address:
+                street: 113-114, Central
+                city: Hong Kong
+          contents:
+            - product: 'gs1:01:00001254563898'
+              quantity: 250
+            - product: 'gs1:01:00283679123844'
+              quantity: 42
+          tags:
+            - ongoing
+            - important
+            - access-all
+  responses:
+    201:
+      description: The shipment notice was successfully created.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentNoticeDocument'
+          example:
+            id: Un9MbDrTBXsatpawwkbDRHdb
+            asnId: '9827429837429823828273'
+            version: '1'
+            purchaseOrderId: '4700990774'
+            issueDate: '2019-06-19T16:39:57-08:00'
+            transportation: Expedited Freight
+            parties:
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - name: 'The Landmark, Shop No. G14'
+                type: 'ship-to'
+                address:
+                  street: 113-114, Central
+                  city: Hong Kong
+            contents:
+              - product: 'gs1:01:00001254563898'
+                quantity: 250
+              - product: 'gs1:01:00283679123844'
+                quantity: 42
+            tags:
+              - ongoing
+              - important
+              - access-all
+            createdAt: 1550143360591
+            updatedAt: 1550143360591
+    400:
+      description: A shipment notice was not created because the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Shipment notice should have required property 'id'
+            code: 50331648
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50331648
+    409:
+      description: A shipment notice was not created because one with the same ID already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 409
+            errors:
+              - The shipment notice already exists
+            code: 67239936
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-67239936
+get:
+  x-api-status: Beta
+  summary: Read all shipment notices
+  description: Read all shipment notices in an account
+  tags:
+    - Shipment Notices
+  x-api-keys:
+    - Operator
+  x-filterable-fields:
+    - tags
+    - status
+    - purchaseOrderId
+  responses:
+    200:
+      description: A list of shipment notices was returned successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            description: List of shipment notices returned
+            items:
+              $ref: '#/components/schemas/ShipmentNoticeDocument'
+          example:
+            - asnId: '9827429837429823828273'
+              id: Un9MbDrTBXsatpawwkbDRHdb
+              version: '1'
+              purchaseOrderId: '4700990774'
+              issueDate: '2019-06-19T16:39:57-08:00'
+              transportation: Expedited Freight
+              parties:
+                - id: 'gs1:414:01251'
+                  type: 'ship-from'
+                - name: 'The Landmark, Shop No. G14'
+                  type: 'ship-to'
+                  address:
+                    street: 113-114, Central
+                    city: Hong Kong
+              tags:
+                - ongoing
+                - important
+                - access-all
+              createdAt: 1550143360591
+              updatedAt: 1550143360591
+            - asnId: 'ASN:39842734:FASSLK'
+              id: UrVeSHdrBD8a9pwwRpHVAnYf
+              version: '12'
+              purchaseOrderId: '5230917486'
+              issueDate: '2018-05-13T12:00:00-03:00'
+              transportation: Truckload
+              createdAt: 1550143360591
+              updatedAt: 1550143360591
+              parties:
+                - id: 'factory:23048273'
+                  type: 'ship-from'
+                - name: 'GREOLE HUB'
+                  type: 'ship-to'
+                  address:
+                    country: CN
+                    latitude: 43.493847983
+                    longitude: 56.342948273
+                - name: 'GREOLE TRST. Co.'
+                  type: 'bill-to'
+                  address:
+                    country: CN
+                    latitude: 43.837298364
+                    longitude: 56.499824300

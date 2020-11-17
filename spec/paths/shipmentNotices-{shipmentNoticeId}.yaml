@@ -1,0 +1,149 @@
+get:
+  x-api-status: Beta
+  summary: Read a shipment notice
+  description: Read a shipment notice resource.
+  tags:
+    - Shipment Notices
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/shipmentNoticeId'
+  responses:
+    200:
+      description: The shipment notice was found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentNoticeDocument'
+          example:
+            id: Un9MbDrTBXsatpawwkbDRHdb
+            asnId: '9827429837429823828273'
+            version: '1'
+            purchaseOrderId: '4700990774'
+            issueDate: '2019-06-19T16:39:57-08:00'
+            transportation: Expedited Freight
+            parties:
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - name: 'The Landmark, Shop No. G14'
+                type: 'ship-to'
+                address:
+                  street: 113-114, Central
+                  city: Hong Kong
+            tags:
+              - ongoing
+              - important
+              - access-all
+            createdAt: 1550143360591
+            updatedAt: 1550143360591
+    404:
+      description: The shipment notice was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+put:
+  x-api-status: Beta
+  summary: Update a shipment notice
+  description: Update a shipment notice resource.
+  tags:
+    - Shipment Notices
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/shipmentNoticeId'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ShipmentNoticeDocument'
+        example:
+          asnId: '9827429837429823828273'
+          version: '2'
+          purchaseOrderId: '4700990774'
+          issueDate: '2019-06-19T16:39:57-08:00'
+          transportation: Expedited Freight
+          parties:
+            - id: 'gs1:414:01251'
+              type: 'ship-from'
+            - name: 'The Landmark, Shop No. G14'
+              type: 'ship-to'
+              address:
+                street: 113-114, Central
+                city: Hong Kong
+          tags:
+            - ongoing
+            - important
+            - access-all
+  responses:
+    200:
+      description: The shipment notice was updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentNoticeDocument'
+          example:
+            id: Un9MbDrTBXsatpawwkbDRHdb
+            asnId: '9827429837429823828273'
+            version: '2'
+            purchaseOrderId: '4700990774'
+            issueDate: '2019-06-19T16:39:57-08:00'
+            transportation: Expedited Freight
+            parties:
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - name: 'The Landmark, Shop No. G14'
+                type: 'ship-to'
+                address:
+                  street: 113-114, Central
+                  city: Hong Kong
+            tags:
+              - ongoing
+              - important
+              - access-all
+            createdAt: 1550143360591
+            updatedAt: 1550143860591
+    400:
+      description: Shipment notice update payload did not validate.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Shipment notice should have at least two parties.
+            code: 50593792
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792
+    404:
+      description: The shipment notice was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+delete:
+  x-api-status: Beta
+  summary: Delete a shipment notice
+  description: Delete a shipment notice resource.
+  tags:
+    - Shipment Notices
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/shipmentNoticeId'
+  responses:
+    204:
+      description: The shipment notice was deleted.

@@ -1,0 +1,8 @@
+type: object
+description: 'The template of the short ID format. Contains one field ''type'' with only one permitted value ''THNG_ID''.'
+properties:
+  type:
+    type: string
+    description: 'The type of template. Can only be ''THNG_ID'''
+    enum:
+      - THNG_ID

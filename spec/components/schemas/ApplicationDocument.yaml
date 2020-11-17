@@ -18,7 +18,7 @@ properties:
   updatedAt:
     $ref: '#/components/schemas/UpdatedAtField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   description:
@@ -44,5 +44,11 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - name
-  - project
+  - name: name
+    type: 'string'
+    operators:
+      - '='
+  - name: project
+    type: 'string'
+    operators:
+      - '='

@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
 description: 'Input parameters for a Short ID Generation Task.'
+required:
+  - quantity
+  - shortIdTemplate
 properties:
   quantity:
     type: integer

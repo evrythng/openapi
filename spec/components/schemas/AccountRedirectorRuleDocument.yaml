@@ -1,8 +1,6 @@
 additionalProperties: false
 type: object
 description: 'An object containing a single Redirector rule set.'
-required:
-  - match
 properties:
   match:
     type: string

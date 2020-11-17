@@ -26,4 +26,4 @@ properties:
   quantity:
     $ref: '#/components/schemas/QuantityField'
   shortIdTemplate:
-    $ref: '#/components/schemas/ShortIdTemplateField'
+    $ref: '#/components/schemas/ShortIdFormatDocument'

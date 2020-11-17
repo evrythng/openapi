@@ -1,18 +1,28 @@
 additionalProperties: false
 type: object
 description: 'An object representing a single property update. The `value` property may be a string or integer.'
+required:
+  - key
+  - value
 properties:
   key:
     type: string
     description: 'The property key-value key.'
+    example: temperature_celsius
   value:
     description: 'The property key-value value.'
+    example: 32
   timestamp:
     type: integer
     description: 'The timestamp of the property update.'
     readOnly: true
     minimum: 0
+    example: 1566209345528
   createdAt:
     $ref: '#/components/schemas/CreatedAtField'
 x-filterable-fields:
-  - timestamp
+  - name: 'timestamp'
+    type: 'number'
+    operators:
+      - '<'
+      - '>'

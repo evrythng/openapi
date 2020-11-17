@@ -1,0 +1,17 @@
+type: object
+description: Object describing information about the factory.
+required:
+  - factory
+properties:
+  factory:
+    description: 'Identifier of a factory. This value should match "identifiers.factory" of the place referenced in "location.place" field and match "customFields.factory" value of a Thng.'
+    type: string
+    example: 123141414
+  supplier:
+    description: 'ID of a supplier'
+    type: string
+    example: 574574363
+  zone:
+    description: 'Name of the zone within the factory'
+    type: string
+    example: 'Line 65'

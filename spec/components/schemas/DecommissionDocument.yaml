@@ -1,0 +1,14 @@
+type: object
+description: Object describing a decommissioning event.
+required:
+  - location
+  - occurredAt
+properties:
+  location:
+    $ref: '#/components/schemas/LocationDocument'
+  occurredAt:
+    description: 'Date and time of commission in ISO8601 format with time offset'
+    type: string
+    format: date-time
+  factoryMetadata:
+    $ref: '#/components/schemas/FactoryMetadataDocument'

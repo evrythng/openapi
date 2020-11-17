@@ -1,6 +1,8 @@
 additionalProperties: false
 type: object
 description: 'A redirection on a resource.'
+required:
+  - defaultRedirectUrl
 properties:
   createdAt:
     $ref: '#/components/schemas/CreatedAtField'
@@ -44,3 +46,5 @@ properties:
     type: integer
     description: 'The number of times the redirection has been hit.'
     readOnly: true
+  scopes:
+    $ref: '#/components/schemas/ScopesDocument'

@@ -1,0 +1,6 @@
+description: 'An access policy permission. Each must include an resource type, such as places or thngs, and one or more types of access from create, list, read, update, and delete.'
+type: string
+example: 'places:list,read,update'
+minLength: 3
+maxLength: 256
+pattern: '^[a-zA-Z0-9\\.]+:[a-z\\,\\*]+$'

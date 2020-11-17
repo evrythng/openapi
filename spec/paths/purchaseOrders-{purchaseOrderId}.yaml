@@ -1,0 +1,163 @@
+get:
+  summary: Read a purchase order
+  description: Read a purchase order resource.
+  tags:
+    - 'Purchase Orders'
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/purchaseOrderId'
+  responses:
+    200:
+      description: The purchase order was found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PurchaseOrderDocument'
+          example:
+            id: '1234567890'
+            evrythngId: 'UsStxg3pkgabqngdmrecpfeb'
+            status: 'open'
+            type: 'stand-alone'
+            description: 'A purchase order for 100 items'
+            issueDate: '2019-02-14'
+            parties:
+              - id: 'gs1:414:943234'
+                type: 'supplier'
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - id: 'gs1:414:NA0193'
+                type: 'ship-to'
+            lines:
+              - id: '00010'
+                quantity: 100
+                product: 'gs1:01:00000123456789'
+                exportDate: '2019-02-17'
+                deliveryDate: '2019-02-20'
+            version: '1'
+            createdAt: 1550143360591
+            updatedAt: 1550143360591
+    404:
+      description: The purchase order was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+put:
+  summary: Update a purchase order
+  description: Update a purchase order resource by ID.
+  tags:
+    - 'Purchase Orders'
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/purchaseOrderId'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PurchaseOrderDocument'
+        example:
+          id: '234567890'
+          status: open
+          type: stand-alone
+          description: A purchase order for 100 items
+          issueDate: '2019-02-14'
+          parties:
+          - id: gs1:414:943234
+            type: supplier
+          - id: gs1:414:01251
+            type: ship-from
+          - id: gs1:414:NA0193
+            type: ship-to
+          lines:
+          - id: '00010'
+            quantity: 100
+            product: gs1:01:00000123456789
+            exportDate: '2019-02-17'
+            deliveryDate: '2019-02-20'
+  responses:
+    200:
+      description: The Purchase Order was updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PurchaseOrderDocument'
+          example:
+            id: '1234567890'
+            evrythngId: 'UsStxg3pkgabqngdmrecpfeb'
+            status: 'open'
+            type: 'stand-alone'
+            description: 'A purchase order for 100 items'
+            issueDate: '2019-02-14'
+            parties:
+              - id: 'gs1:414:943234'
+                type: 'supplier'
+              - id: 'gs1:414:01251'
+                type: 'ship-from'
+              - id: 'gs1:414:NA0193'
+                type: 'ship-to'
+            lines:
+              - id: '00010'
+                quantity: 100
+                product: 'gs1:01:00000123456789'
+                exportDate: '2019-02-17'
+                deliveryDate: '2019-02-20'
+            version: '1'
+            createdAt: 1550143360591
+            updatedAt: 1550143456043
+    400:
+      description: Purchase order update payload did not validate.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Purchase order id in request body does not match id in url.
+            code: 50593792
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792
+    404:
+      description: The Purchase Order was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+delete:
+  summary: Delete a purchase order
+  description: Delete a purchase order resource by ID.
+  tags:
+    - 'Purchase Orders'
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/purchaseOrderId'
+  responses:
+    204:
+      description: The Purchase Order was deleted.
+    404:
+      description: The Purchase Order was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The purchase order does not exist.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752

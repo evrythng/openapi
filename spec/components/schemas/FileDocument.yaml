@@ -13,7 +13,9 @@ properties:
   updatedAt:
     $ref: '#/components/schemas/UpdatedAtField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
   uploadUrl:
     type: string
     description: 'The URL to upload file data to with an HTTP `PUT` request. Will expire after 30 mins.'
@@ -38,5 +40,11 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - name
-  - tags
+  - name: 'name'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='

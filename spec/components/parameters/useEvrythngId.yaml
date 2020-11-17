@@ -1,0 +1,5 @@
+in: query
+name: useEvrythngId
+schema:
+  type: boolean
+description: Set to 'true' to use the generated 'evrythngId' as 'id' for purchase orders, or 'asnId' for shipment notices.

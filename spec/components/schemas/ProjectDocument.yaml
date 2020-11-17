@@ -1,6 +1,8 @@
 additionalProperties: false
 type: object
 description: 'An object describing a platform project.'
+required:
+  - name
 properties:
   name:
     $ref: '#/components/schemas/NameField'
@@ -11,7 +13,7 @@ properties:
   updatedAt:
     $ref: '#/components/schemas/UpdatedAtField'
   tags:
-    $ref: '#/components/schemas/TagsField'
+    $ref: '#/components/schemas/TagsDocument'
   description:
     $ref: '#/components/schemas/DescriptionField'
   startsAt:
@@ -35,6 +37,15 @@ properties:
   scopes:
     $ref: '#/components/schemas/ScopesDocument'
 x-filterable-fields:
-  - identifiers.<key>
-  - name
-  - tags
+  - name: 'name'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'identifiers.<key>'
+    type: 'string'
+    operators:
+      - '='
+  - name: 'tags'
+    type: 'list of string'
+    operators:
+      - '='

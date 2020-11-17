@@ -1,0 +1,22 @@
+description: A party involved in the purchase order.
+type: object
+additionalProperties: false
+required:
+  - id
+  - type
+properties:
+  id:
+    description: Colon separated identifer, referencing a place.
+    type: string
+    example: 'gs1:414:01251'
+    minLength: 2,
+    maxLength: 64
+  type:
+    description: The role the party has in the purchase order, such as 'ship-from', 'ship-to', 'supplier', 'mark-for'.
+    type: string
+    enum:
+      - 'ship-from'
+      - 'ship-to'
+      - 'supplier'
+      - 'mark-for'
+    example: 'ship-from'

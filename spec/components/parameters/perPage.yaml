@@ -1,0 +1,6 @@
+in: query
+name: perPage
+description: The pagination parameter specifying the number of resources to return in one response.
+required: false
+schema:
+  type: number

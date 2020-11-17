@@ -15,5 +15,16 @@ get:
             type: array
             items:
               $ref: '#/components/schemas/AccessDocument'
+          example:
+            - id: 5aa7f5e7f6c02e003006ace0
+              account: UHHEQWPYeg8RtpaawkFrksDp
+              operator: UH4YtfsYBD8wQpwwRktfsrRg
+              apiKey: lw7dzUvfLGmdTzvv...
+              role: admin
+            - id: 5aa7f64b6ca8b70030800024
+              account: UHHEQWPYeg8RtpaawkFrksDp
+              operator: UEp4rDGsnpCAF6xABbys5Amc
+              apiKey: VBBFEv9os46i0xqm...
+              role: admin
   x-api-keys:
     - Operator
