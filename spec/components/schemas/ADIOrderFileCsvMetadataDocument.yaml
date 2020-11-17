@@ -1,0 +1,18 @@
+type: object
+description: 'Contains configuration parameters for txt file generation.'
+properties:
+  columns:
+    type: array
+    description: 'Set of characteristics of the ADI to be written in one row of the csv file.'
+    items:
+      type: string
+      enum:
+        - digitalLink
+        - shortUrl
+        - identifier
+        - product
+    example: ["product","identifier","shortUrl","digitalLink"]
+  digitalLinkDomain:
+    type: string
+    example: 'https://pxgkp.tn.gg'
+    description: 'This url will be used for constructing digital link of ADI in a file if "columns" array contains "digitalLink".'

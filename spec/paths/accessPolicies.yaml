@@ -1,0 +1,108 @@
+post:
+  summary: Create an access policy
+  description: Create a new access policy resource.
+  tags:
+    - Access Policies
+  x-api-keys:
+    - Operator
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccessPolicyDocument'
+        example:
+          name: 'FactoryAdministratorPolicy'
+          permissions:
+            - 'actions:create'
+            - 'places:list,read,update'
+            - 'products:list,read'
+            - 'purchaseOrders:list,read'
+            - 'thngs:read'
+          uiPermissions:
+            - 'activation'
+            - 'authenticate'
+  responses:
+    '201':
+      description: The access policy was successfully created.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessPolicyDocument'
+          example:
+            name: 'FactoryAdministratorPolicy'
+            permissions:
+              - 'actions:create'
+              - 'places:list,read,update'
+              - 'products:list,read'
+              - 'purchaseOrders:list,read'
+              - 'thngs:read'
+            uiPermissions:
+              - 'activation'
+              - 'authenticate'
+    '400':
+      description: An access policy was not created because the request was invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - AccessPolicy should have required property 'name'
+            code: 50331648
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50331648
+    '409':
+      description: An access policy was not created because one with the same name already exists within this account.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 409
+            errors:
+              - The access policy already exists
+            code: 67239936
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-67239936
+get:
+  summary: Read all access policies
+  description: Read all access policies in an account
+  tags:
+    - Access Policies
+  x-api-keys:
+    - Operator
+  responses:
+    '200':
+      description: A list of access policies
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AccessPolicyDocument'
+          example:
+            - name: 'FactoryAdministratorPolicy'
+              description: 'Description of FactoryAdministratorPolicy'
+              permissions:
+                - 'actions:create'
+                - 'places:list,read,update'
+                - 'products:list,read'
+                - 'purchaseOrders:list,read'
+                - 'thngs:read'
+              uiPermissions:
+                - 'activation'
+                - 'authenticate'
+              homepage: 'authenticate'
+              identifiers:
+                ean: aen232032
+              tags:
+                - roles
+                - and
+                - permissions
+            - name: 'BrandOwnerPolicy'
+              permissions:
+                - 'actions:create'
+                - 'places:list,read,update'
+                - 'products:list,read'
+                - 'purchaseOrders:list,read'
+                - 'thngs:read'

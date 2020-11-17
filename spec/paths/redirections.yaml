@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Redirections
+  summary: 'Create a redirection'
+  description: 'Create a Thng or product redirection.'
+  servers:
+    - url: 'https://tn.gg'
+  responses:
+    '201':
+      description: 'The redirection was created successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RedirectionDocument'
+          example:
+            createdAt: 1496668317836
+            updatedAt: 1496670833807
+            defaultRedirectUrl: 'https://google.com/Uk6qwgSReXPat5awagfNpHsk'
+            evrythngUrl: 'https://api.evrythng.com/thngs/Uk6qwgSReXPat5awagfNpHsk'
+            shortDomain: tn.gg
+            shortId: pk9a7qxA
+            type: 'thng'
+            evrythngId: 'UP73aanFqN6WnsAfF4fQ7a4e'
+            hits: 0
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+    - 'Application User'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/RedirectionDocument'
+        example:
+          defaultRedirectUrl: 'https://google.com/{shortId}'
+          evrythngId: 'UP73aanFqN6WnsAfF4fQ7a4e'
+          type: 'thng'
+    description: 'The request body for creating a redirection.'
+    required: true

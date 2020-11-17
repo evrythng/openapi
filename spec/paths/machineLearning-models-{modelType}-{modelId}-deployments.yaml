@@ -1,0 +1,58 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read all deployed models'
+  description: 'Returns a list of deployed models'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+    - $ref: '#/components/parameters/modelId'
+  responses:
+    '200':
+      description: 'The list of deployments was read successfully.'
+      content:
+        application/json:
+          example:
+            - '1223'
+            - '23432'
+            - '2345asd'
+          schema:
+            type: array
+            items:
+              type: string
+post:
+  x-api-status: Alpha
+  summary: 'Create a new model deployment'
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  description: 'Create a new model deployment of the specified model type.'
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+  requestBody:
+    content:
+      application/json:
+        example: {}
+        schema:
+          $ref: '#/components/schemas/DeploymentConfigDocument'
+  responses:
+    '201':
+      description: 'The deployment was created successfully.'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/DeploymentConfigDocument'
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          example: {}
+          schema:
+            type: object

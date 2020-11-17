@@ -16,6 +16,8 @@ properties:
     type: integer
     description: 'Timestamp when the Thng was activated.'
     readOnly: true
+  type:
+    $ref: '#/components/schemas/TypeField'
   tags:
     $ref: '#/components/schemas/TagsDocument'
   description:

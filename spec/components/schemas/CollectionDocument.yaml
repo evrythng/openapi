@@ -14,6 +14,8 @@ properties:
     $ref: '#/components/schemas/UpdatedAtField'
   description:
     $ref: '#/components/schemas/DescriptionField'
+  type:
+    $ref: '#/components/schemas/TypeField'
   customFields:
     $ref: '#/components/schemas/CustomFieldsDocument'
   tags:

@@ -1,0 +1,10 @@
+required:
+  - data
+type: object
+description: 'Object containing the prediction data items.'
+properties:
+  data:
+    type: array
+    description: 'Input on which the model should generate a prediction.'
+    items:
+      $ref: '#/components/schemas/UnknownDocument'

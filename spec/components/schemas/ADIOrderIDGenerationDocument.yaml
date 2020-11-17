@@ -19,6 +19,8 @@ properties:
     enum:
     - 'GS1-64w'
     - 'AN-47'
+    - 'UAN-28'
+    - 'GS1-36w'
   length:
     type: number
     description: The length of ID part which is going to be generated. Does not include 'prefix' and 'suffix' if were set. Allowed values are in range 8..20

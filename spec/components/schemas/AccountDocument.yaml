@@ -22,6 +22,8 @@ properties:
   defaultUrl:
     type: string
     description: 'Invalid GS1 scans will redirect to this URL.'
+  configuration:
+    $ref: '#/components/schemas/AccountConfigurationDocument'
 x-filterable-fields:
   - name: name
     type: string

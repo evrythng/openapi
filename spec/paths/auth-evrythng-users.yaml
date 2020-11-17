@@ -27,6 +27,6 @@ post:
           firstName: Test
           lastName: Testers
           email: test@testers.com
-          password: password
+          password: P@ssw0rd
     description: 'The app user to create.'
     required: true

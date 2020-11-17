@@ -1,0 +1,7 @@
+name: operatorAccessId
+in: path
+description: 'An operator access ID.'
+required: true
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

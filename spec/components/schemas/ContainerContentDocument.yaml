@@ -1,0 +1,19 @@
+type: object
+description: A single container line item, describing the product and quantity
+required:
+  - quantity
+  - id
+additionalProperties: false
+properties:
+  quantity:
+    type: integer
+    description: The quantity of product in the container
+    minimum: 1
+  unitOfMeasure:
+    type: string
+    description: The unit of measure for the line item such as "each"
+    minLength: 1
+    maxLength: 128
+    default: each
+  id:
+    $ref: '#/components/schemas/ProductIdentifierField'

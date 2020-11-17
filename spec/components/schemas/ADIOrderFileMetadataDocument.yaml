@@ -1,0 +1,7 @@
+type: object
+description: 'Contains configuration required for file generation.'
+properties:
+  csv:
+    $ref: '#/components/schemas/ADIOrderFileCsvMetadataDocument'
+  txt:
+    $ref: '#/components/schemas/ADIOrderFileTxtMetadataDocument'

@@ -1,0 +1,8 @@
+name: accessPolicyId
+in: path
+description: The unique access policy identifier
+example: 'UNEdEQ5nFdMYPPyQxTcNqfnb'
+required: true
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{24}$'

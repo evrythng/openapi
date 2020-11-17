@@ -1,0 +1,9 @@
+description: 'The type of model that will be deployed'
+schema:
+  title: Modeltype
+  type: string
+  description: 'The type of model that will be deployed'
+  example: scans
+name: modelType
+in: path
+required: true

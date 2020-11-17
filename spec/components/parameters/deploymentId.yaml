@@ -1,0 +1,9 @@
+description: 'The ID of the deployed endpoint'
+schema:
+  title: Deploymentid
+  type: string
+  description: 'The ID of the deployed model'
+  example: a18d388b371c4c17b87bcf44750ce222
+name: deploymentId
+required: true
+in: path

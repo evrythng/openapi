@@ -1,0 +1,8 @@
+name: shortId
+in: path
+required: true
+description: 'A short ID for use in redirections.'
+example: '{shortId}'
+schema:
+  type: string
+  pattern: '^[abcdefghkmnpqrstwxyABCDEFGHKMNPQRSTUVWXY0123456789]{8,10}$'

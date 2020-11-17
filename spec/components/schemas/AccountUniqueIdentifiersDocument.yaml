@@ -1,0 +1,12 @@
+type: object
+description: 'Object containing lists of identifier keys which meant to be unique for a particular entity'
+properties:
+  products:
+    type: array
+    description: 'array of identifier keys meant to be unique for product entity. Identifiers
+    used in product "identifiers" field will be concatenated in the order specified in the
+    "products" array and used as unique identifier for a given product which means that user
+    will not be able to create two products with the same unique identifiers.'
+    items:
+      type: string
+    example: ["gs1:01", "gs1:22", "customCompanyId"]

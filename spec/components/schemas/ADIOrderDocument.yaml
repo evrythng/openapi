@@ -39,3 +39,7 @@ properties:
     $ref: '#/components/schemas/TagsDocument'
   idGeneration:
     $ref: '#/components/schemas/ADIOrderIDGenerationDocument'
+  fileMetadata:
+    $ref: '#/components/schemas/ADIOrderFileMetadataDocument'
+  results:
+    $ref: '#/components/schemas/ADIOrderResultsDocument'

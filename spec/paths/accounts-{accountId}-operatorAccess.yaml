@@ -1,0 +1,122 @@
+get:
+  summary: Read all Operator Accesses
+  description: Read all operator access for given account
+  tags:
+    - Enterprise Access
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/accountId'
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/OperatorAccessDocument'
+          example:
+            - id: 'Ud6TycDekE5afp6M8QAEEMhp'
+              name: 'first last'
+              operator: '123456789012345678901234'
+              email: 'operator@email.com'
+              description: 'access description'
+              policies:
+                - 123456789012345678901234
+              conditions:
+                - places:UPfPCQTASm6B8yx4eDMWDQcg
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The provided operator access account was not found.
+            code: 16777216
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16777216
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - The actor account can not manage the account provided in URL.
+            code: 50659328
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50659328
+post:
+  summary: Create an Operator Access
+  description: Creates an operator access for account
+  tags:
+    - Enterprise Access
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/accountId'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/OperatorAccessDocument'
+        example:
+          email: 'operator@email.com'
+          description: 'Access for a factory administrator'
+          policies:
+            - 123456789012345678901234
+          conditions:
+            - places:UPBCycCpgVGArgYc5y5UnkAg
+  responses:
+    '201':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OperatorAccessDocument'
+          example:
+            id: 'Ud6TycDekE5afp6M8QAEEMhp'
+            name: 'first last'
+            operator: 123456789012345678901234
+            email: 'operator@email.com'
+            description: 'access description'
+            policies:
+              - 123456789012345678901234
+            conditions:
+              - places:UPBCycCpgVGArgYc5y5UnkAg
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Invalid payload
+              - The actor account can not manage the account provided in URL
+              - The provided operator was not found
+              - Invalid policies provided
+              - Unsupported conditions
+              - Caller access exceeded
+              - The provided operator was not found
+            code: 50593792
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+              - account is invalid.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752

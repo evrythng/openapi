@@ -1,0 +1,142 @@
+get:
+  summary: Read an access policy
+  description: Read an access policy resource.
+  tags:
+    - Access Policies
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/accessPolicyId'
+  responses:
+    '200':
+      description: The access policy was found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessPolicyDocument'
+          example:
+            name: 'FactoryAdministratorPolicy'
+            permissions:
+              - 'actions:create'
+              - 'places:list,read,update'
+              - 'products:list,read'
+              - 'purchaseOrders:list,read'
+              - 'thngs:read'
+            uiPermissions:
+              - 'activation'
+              - 'authenticate'
+    '404':
+      description: The access policy was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+put:
+  summary: Update an access policy
+  description: Update an access policy resource.
+  tags:
+    - Access Policies
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/accessPolicyId'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccessPolicyDocument'
+        example:
+          name: 'FactoryAdministratorPolicy'
+          permissions:
+            - 'actions:create'
+            - 'places:list,read,update'
+            - 'products:list,read'
+            - 'purchaseOrders:list,read'
+            - 'thngs:read'
+          uiPermissions:
+            - 'activation'
+            - 'authenticate'
+  responses:
+    '200':
+      description: The Access policy was updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessPolicyDocument'
+          example:
+            name: 'FactoryAdministratorPolicy'
+            permissions:
+              - 'actions:create'
+              - 'places:list,read,update'
+              - 'products:list,read'
+              - 'purchaseOrders:list,read'
+              - 'thngs:read'
+            uiPermissions:
+              - 'activation'
+              - 'authenticate'
+    '400':
+      description: Access policy update payload did not validate.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Access policy ID in request body does not match ID in URL.
+            code: 50593792
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50593792
+    '404':
+      description: The Access policy was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The requested resource was not found.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752
+delete:
+  summary: Delete an access policy
+  description: Delete an access policy.
+  tags:
+    - Access Policies
+  x-api-keys:
+    - Operator
+  parameters:
+    - $ref: '#/components/parameters/accessPolicyId'
+  responses:
+    '204':
+      description: The Access policy was deleted.
+    '403':
+      description: The Access policy is a managed policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 403
+            errors:
+              - A managed policy cannot be deleted.
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-and-error-codes#section-error-codes
+    '404':
+      description: The Access policy was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 404
+            errors:
+              - The access policy does not exist.
+            code: 16842752
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-16842752

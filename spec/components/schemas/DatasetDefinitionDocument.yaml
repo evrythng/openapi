@@ -1,0 +1,14 @@
+required:
+  - datasetUrls
+type: object
+description: 'Object containing URLs to datasets.'
+properties:
+  datasetUrls:
+    type: array
+    description: 'One or more URLs describing the training set as URLs of EVRYTHNG resources'
+    items:
+      type: string
+    minLength: 1
+    maxLength: 65536
+    example:
+      - 'https://api.evrythng.com/actions/all?context=true'

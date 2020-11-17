@@ -1,0 +1,60 @@
+post:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Creating a new prediction'
+  description: 'Create a Prediction'
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+     - $ref: '#/components/parameters/deploymentId'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/PredictionPayloadDocument'
+        example:
+          data:
+            -
+              id: Upt3AYbSny3VatRRwGxSdkee
+              createdAt: 1543059217046
+              timestamp: 1543059217046
+              type: implicitScans
+              user: 10ff93f061029f0a20273005
+              location:
+                latitude: 51.4779
+                longitude: -0.0118
+                position:
+                  type: Point
+                  coordinates:
+                    - -0.0118
+                    - 51.4779
+              locationSource: geoIp
+              context:
+                city: Greenwich
+                region: England
+                countryCode: GB
+                userAgent: 'Wget/1.19.5 (darwin17.5.0)'
+                timeZone: Europe/London
+              createdByProject: 10ff93f061029f0a20273005
+              createdByApp: 10ff93f061029f1a20273005
+              thng: UKPcKYGCrbkSqFRaakRbTesr
+              product: U5egb3EkVg8a9pRaw3mSDbQd
+  responses:
+    '200':
+      description: 'THe prediction was created successfully'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/PredictionPayloadDocument'
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          example: {}
+          schema:
+            type: object

@@ -1,0 +1,21 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read a model deployment'
+  description: 'Returns metadata about a model deployment.'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+    - $ref: '#/components/parameters/modelId'
+    - $ref: '#/components/parameters/deploymentId'
+  responses:
+    '200':
+      description: 'The deployment was read successfully.'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'

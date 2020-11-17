@@ -1,0 +1,7 @@
+type: object
+description: 'Object containing links to generated files.'
+properties:
+  identifiers:
+    $ref: '#/components/schemas/ADIOrderFileIdentifiersDocument'
+  errors:
+    $ref: '#/components/schemas/ADIOrderFileErrorsDocument'

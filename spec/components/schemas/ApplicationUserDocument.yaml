@@ -20,9 +20,10 @@ properties:
     description: 'User''s last name.'
   password:
     type: string
-    description: 'The user''s password.'
+    description: 'The user''s password. Must be of 8-64 characters length as well as must contain at least 1 lowercase character, at least 1 uppercase character, at least 1 digit and at least 1 special character.'
     minLength: 8
-    maxLength: 30
+    maxLength: 64
+    writeOnly: true
   birthday:
     $ref: '#/components/schemas/BirthdayDocument'
   gender:

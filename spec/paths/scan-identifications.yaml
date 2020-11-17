@@ -5,7 +5,7 @@ post:
   description: 'Identify a 1D or 2D barcode from an uploaded image.'
   parameters:
     -
-      $ref: '#/components/parameters/filter'
+      $ref: '#/components/parameters/scanFilter'
   responses:
     '200':
       description: 'The request was accepted, and results may be returned.'

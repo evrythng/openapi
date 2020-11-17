@@ -14,4 +14,4 @@ properties:
     type: array
     description: 'An array of project IDs this resource is scoped to.'
     items:
-      $ref: '#/components/schemas/IdField'
+      type: 'string'

@@ -1,6 +1,9 @@
 additionalProperties: false
 type: object
-description: 'An object representing a platform product.'
+description: 'An object representing a platform product. Product can have identifiers. Identifiers
+which have keys mentioned in account unique identifiers configuration will be concatenated and
+used as unique identifier for a given product which means that user will not be able to create
+two products with the same unique identifiers.'
 required:
   - name
 properties:
@@ -18,6 +21,8 @@ properties:
     readOnly: true
   description:
     $ref: '#/components/schemas/DescriptionField'
+  type:
+    $ref: '#/components/schemas/TypeField'
   categories:
     description: 'An array of product categories as strings.'
     type: array

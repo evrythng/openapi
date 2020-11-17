@@ -1,0 +1,81 @@
+get:
+  summary: Read service access tokens
+  description: Read all service accesses for an account
+  tags:
+    - Enterprise Access
+  x-api-keys:
+    - Operator
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/AccessTokenDocument'
+          example:
+            - name: 'operator@email.com'
+              description: 'Factory worker'
+              policies:
+                - 123456789012345678901234
+              conditions:
+                - places:123932QJ1235823412S741WG4
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Invalid key
+            code: 50724864
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50724864
+post:
+  summary: Create an access token
+  description: Creates an access token for given account.
+  tags:
+    - Enterprise Access
+  x-api-keys:
+    - Operator
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AccessTokenDocument'
+        example:
+          name: 'operator@email.com'
+          description: 'access description'
+          policies:
+            - 123456789012345678901234
+          conditions:
+            - places:UPfPCQTASm6B8yx4eDMWDQcg
+  responses:
+    '201':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessTokenDocument'
+          example:
+            name: 'operator@email.com'
+            description: 'access description'
+            policies:
+              - 123456789012345678901234
+            conditions:
+              - places:UPfAtMqWAm3GwqSdg7Htsngb
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseDocument'
+          example:
+            status: 400
+            errors:
+              - Invalid key
+            code: 50724864
+            moreInfo: https://developers.evrythng.com/docs/http-verbs-errors#client-errors-50724864

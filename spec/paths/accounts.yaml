@@ -21,5 +21,8 @@ get:
               updatedAt: 1477652024205
               name: 'Test Account Owner'
               tfaRequired: false
+              configuration:
+                uniqueIdentifiers:
+                  products: ["gs1:01", "gs1:22"]
   x-api-keys:
     - Operator

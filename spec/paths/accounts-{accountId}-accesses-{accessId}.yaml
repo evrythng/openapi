@@ -4,10 +4,8 @@ get:
   summary: 'Read an account access'
   description: 'Read an account access by ID.'
   parameters:
-    -
-      $ref: '#/components/parameters/accountId'
-    -
-      $ref: '#/components/parameters/accessId'
+    - $ref: '#/components/parameters/accountId'
+    - $ref: '#/components/parameters/accessId'
   responses:
     '200':
       description: 'The access requested, if available.'

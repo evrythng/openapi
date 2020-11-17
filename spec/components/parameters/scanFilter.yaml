@@ -1,0 +1,22 @@
+name: scanFilter
+in: query
+description: |
+  The filter query parameter for Identifier Recognition requests.
+  For POST requests, the filter must contain 'method' and 'type' using values as detailed below:
+
+  method: 1d
+  types: codabar, code_11, code_39, code_93, ean_8, ean_13, industr_25, itf, rss_14, rss_expanded, rss_limited, upc_a, upc_e
+
+  method: 2d
+  types: qr_code, dm
+
+  method: ir
+  types: image
+
+  method: ocr
+  types: text
+
+  method: digimarc
+  types: gs1:01, gs1:21
+schema:
+  type: string

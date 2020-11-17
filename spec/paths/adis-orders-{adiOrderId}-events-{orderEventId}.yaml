@@ -7,7 +7,6 @@ get:
     - $ref: '#/components/parameters/adiOrderId'
     - $ref: '#/components/parameters/orderEventId'
     - $ref: '#/components/parameters/withErrors'
-    - $ref: '#/components/parameters/withIds'
   responses:
     '200':
       description: 'The order event was read successfully.'

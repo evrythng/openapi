@@ -4,6 +4,8 @@ post:
   description: Create a new shipment notice resource.
   tags:
     - Shipment Notices
+  parameters:
+    - $ref: '#/components/parameters/useEvrythngId'
   x-api-keys:
     - Operator
   requestBody:

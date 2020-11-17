@@ -1,0 +1,48 @@
+additionalProperties: false
+type: object
+description: 'An access policy resource.'
+required:
+  - name
+properties:
+  name:
+    description: The name of the policy.
+    type: string
+    example: 'FactoryAdministratorPolicy'
+    minLength: 5
+    maxLength: 128
+    pattern: '^[a-zA-Z0-9:\\._\\s-]+$'
+  permissions:
+    description: A list of combinations of resource and type of access.
+    type: array
+    items:
+      $ref: '#/components/schemas/AccessPolicyPermissionField'
+  uiPermissions:
+    description: A list of UI permissions
+    type: array
+    items:
+      type: string
+  homepage:
+    description: The homepage to display in the UI.  The homepage must be included in the uiPermissions list within the current access policy document.
+    type: string
+    example: 'adiOrders'
+    minLength: 1
+    maxLength: 128
+  customFields:
+    $ref: '#/components/schemas/CustomFieldsDocument'
+  identifiers:
+    $ref: '#/components/schemas/IdentifiersDocument'
+  tags:
+    $ref: '#/components/schemas/TagsDocument'
+x-filterable-fields:
+  - name: name
+    type: string
+    operators:
+    - '='
+  - name: identifiers.<key>
+    type: string
+    operators:
+    - '='
+  - name: tags
+    type: list of string
+    operators:
+    - '='

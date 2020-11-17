@@ -5,6 +5,8 @@ post:
     - 'Purchase Orders'
   x-api-keys:
     - Operator
+  parameters:
+    - $ref: '#/components/parameters/useEvrythngId'
   requestBody:
     required: true
     content:

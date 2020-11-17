@@ -1,0 +1,7 @@
+description: 'The ID of the model which will be deployed'
+schema:
+  type: string
+  example: fd168d2ac56f45619af2cb1de1a37ac2
+name: modelId
+required: true
+in: path

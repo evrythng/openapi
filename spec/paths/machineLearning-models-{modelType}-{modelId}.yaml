@@ -1,0 +1,20 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read a model instance'
+  description: 'Returns metadata for a given deployed model.'
+  parameters:
+    - $ref: '#/components/parameters/modelType'
+    - $ref: '#/components/parameters/modelId'
+  responses:
+    '200':
+      description: 'The model instance was read successfully.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'
+          example: {}

@@ -69,7 +69,7 @@ properties:
     items:
       $ref: '#/components/schemas/LineItemDocument'
     minItems: 1
-    maxItems: 500
+    maxItems: 1000
   tags:
     $ref: '#/components/schemas/TagsDocument'
   customFields:
@@ -77,6 +77,12 @@ properties:
   identifiers:
     $ref: '#/components/schemas/IdentifiersDocument'
 x-filterable-fields:
+  - name: 'createdAt'
+    type: 'number'
+    operators:
+      - '='
+      - '>'
+      - '<'
   - name: 'shipFrom'
     type: 'list of string'
     operators:
@@ -93,3 +99,9 @@ x-filterable-fields:
     type: 'list of string'
     operators:
       - '='
+  - name: 'updatedAt'
+    type: 'number'
+    operators:
+      - '='
+      - '>'
+      - '<'

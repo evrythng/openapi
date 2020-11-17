@@ -1,0 +1,55 @@
+get:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Read a training dataset'
+  description: 'Read a training dataset by ID.'
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+     - $ref: '#/components/parameters/datasetId'
+  responses:
+    '200':
+      description: 'The dataset was read successfully.'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/UnknownDocument'
+put:
+  x-api-status: Alpha
+  tags:
+    - Predictor
+  x-api-keys:
+    - Operator
+    - 'Trusted Application'
+  summary: 'Update a training dataset'
+  description: "Updates a dataset and calls this endpoint when the update is complete."
+  parameters:
+     - $ref: '#/components/parameters/modelType'
+     - $ref: '#/components/parameters/modelId'
+     - $ref: '#/components/parameters/datasetId'
+  requestBody:
+    content:
+      application/json:
+        example: {}
+        schema:
+          $ref: '#/components/schemas/DatasetCallbackDocument'
+  responses:
+    '200':
+      description: 'The dataset was updated successfully.'
+      content:
+        application/json:
+          example: {}
+          schema:
+            $ref: '#/components/schemas/DatasetCallbackDocument'
+    '400':
+      description: 'Validation Error'
+      content:
+        application/json:
+          example: {}
+          schema:
+            type: object
